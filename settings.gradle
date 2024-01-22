@@ -1,0 +1,6 @@
+rootProject.name = 'basterdz'
+include 'basterdz-api'
+include 'basterdz-domain'
+include 'basterdz-common'
+include 'basterdz-infra'
+
