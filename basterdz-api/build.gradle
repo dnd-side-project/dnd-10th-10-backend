@@ -4,4 +4,5 @@ jar { enabled = false }
 dependencies {
     implementation project(":basterdz-domain")
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:'
 }
