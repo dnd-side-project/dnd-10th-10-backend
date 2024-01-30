@@ -20,7 +20,7 @@ public class RankingReport {
     private Long id;
 
     @Column(nullable = false)
-    private int rank;
+    private int memberRank;
 
     @Column(nullable = false)
     private String memberNickname;

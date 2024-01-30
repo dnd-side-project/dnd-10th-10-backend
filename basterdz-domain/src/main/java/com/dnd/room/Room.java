@@ -1,4 +1,4 @@
-package com.dnd.group;
+package com.dnd.room;
 
 import com.dnd.common.entity.BaseTimeEntity;
 import jakarta.persistence.*;
@@ -13,11 +13,11 @@ import static lombok.AccessLevel.PROTECTED;
 @Getter
 @Entity
 @NoArgsConstructor(access = PROTECTED)
-public class Group extends BaseTimeEntity {
+public class Room extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "group_id")
+    @Column(name = "room_id")
     private Long id;
 
     @Column(nullable = false)
