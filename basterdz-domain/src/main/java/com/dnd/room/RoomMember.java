@@ -1,10 +1,9 @@
 package com.dnd.room;
 
+import com.dnd.member.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
@@ -20,8 +19,14 @@ public class RoomMember {
     private Long id;
 
     @Column(nullable = false)
-    private String appName;
+    private boolean isHost;
 
-    @Column(nullable = false)
-    private LocalDateTime limitHour;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_id")
+    private Room room;
+
 }

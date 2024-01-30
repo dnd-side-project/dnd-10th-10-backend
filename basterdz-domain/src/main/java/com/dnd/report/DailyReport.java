@@ -1,5 +1,6 @@
 package com.dnd.report;
 
+import com.dnd.member.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,4 +28,9 @@ public class DailyReport {
 
     @Column(nullable = false)
     private LocalDateTime UsageDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
 }

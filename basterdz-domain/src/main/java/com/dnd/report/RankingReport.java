@@ -1,5 +1,6 @@
 package com.dnd.report;
 
+import com.dnd.room.Room;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,4 +34,9 @@ public class RankingReport {
 
     @Column(nullable = false)
     private boolean isCompleted;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_id")
+    private Room room;
+
 }
