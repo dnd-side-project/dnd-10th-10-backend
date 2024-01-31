@@ -24,10 +24,10 @@ public class DailyReport {
     private String appName;
 
     @Column(nullable = false)
-    private LocalDateTime UsageTime;
+    private LocalDateTime usageTime;
 
     @Column(nullable = false)
-    private LocalDateTime UsageDate;
+    private LocalDateTime usageDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
