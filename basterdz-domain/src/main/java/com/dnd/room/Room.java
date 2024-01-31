@@ -1,12 +1,14 @@
 package com.dnd.room;
 
 import com.dnd.common.entity.BaseTimeEntity;
+import com.dnd.room.vo.RestrictApp;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -24,24 +26,31 @@ public class Room extends BaseTimeEntity {
     private String title;
 
     @Column(nullable = false)
-    private String resolution_message;
+    private String goalMessage;
 
     @Column(nullable = false)
-    private int maxHeadCount;
+    private int personnel;
 
     @Column(nullable = false)
-    private LocalDateTime start_date;
+    private LocalDateTime startDate;
 
     @Column(nullable = false)
-    private LocalDateTime end_date;
+    private LocalDateTime endDate;
 
     @Column(nullable = false)
-    private String invitationCode;
+    private String inviteCode;
 
     @Column(nullable = false)
     private boolean isActive;
 
     @Column(nullable = false)
     private boolean isFinished;
+
+    @Enumerated(STRING)
+    @Column(nullable = false)
+    private RestrictApp restrictApp;
+
+    @Column(nullable = false)
+    private int limitHour;
 
 }
