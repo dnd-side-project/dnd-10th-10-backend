@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dnd.common.dto.ApiResult;
+import com.dnd.common.error.NotFoundException;
 
 import jakarta.validation.Valid;
 
@@ -20,7 +21,7 @@ public class SampleController {
 
 	@GetMapping("/fail")
 	public ApiResult<SampleResponseDto> sampleErrorApi() {
-		throw new IllegalArgumentException("");
+		throw new NotFoundException(ErrorCode.NOT_FOUND);
 	}
 
 }
