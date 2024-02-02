@@ -33,7 +33,7 @@ public class Room extends BaseTimeEntity {
     private int curHeadcount = 1;
 
     @Column(nullable = false)
-    private int maxHeadcount;
+    private int personnel;
 
     @Column(nullable = false)
     private LocalDate startDate;
@@ -61,7 +61,7 @@ public class Room extends BaseTimeEntity {
     public Room(
             final Long id, final String title,
             final String goalMessage, final int curHeadcount,
-            final int maxHeadcount, final LocalDate startDate,
+            final int personnel, final LocalDate startDate,
             final LocalDate endDate, final String inviteCode,
             final boolean isActive, final boolean isFinished,
             final RestrictApp restrictApp, final int limitHour
@@ -70,7 +70,7 @@ public class Room extends BaseTimeEntity {
         this.title = title;
         this.goalMessage = goalMessage;
         this.curHeadcount = curHeadcount;
-        this.maxHeadcount = maxHeadcount;
+        this.personnel = personnel;
         this.startDate = startDate;
         this.endDate = endDate;
         this.inviteCode = inviteCode;

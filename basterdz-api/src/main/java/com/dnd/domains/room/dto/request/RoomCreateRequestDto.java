@@ -31,7 +31,7 @@ public class RoomCreateRequestDto {
     @NotNull(message = "인원 수를 입력해 주세요.")
     @Max(value = 6, message = "인원 수는 6명을 초과할 수 없습니다.")
     @Min(value = 1, message = "인원 수는 1명 미만일 수 없습니다.")
-    private int maxHeadcount;
+    private int personnel;
 
     @NotNull(message = "제한 앱을 설정해 주세요.")
     private RestrictApp restrictApp;
@@ -51,7 +51,7 @@ public class RoomCreateRequestDto {
         return Room.builder()
                 .title(title)
                 .goalMessage(goalMessage)
-                .maxHeadcount(maxHeadcount)
+                .personnel(personnel)
                 .restrictApp(restrictApp)
                 .inviteCode(code)
                 .startDate(startDate)
