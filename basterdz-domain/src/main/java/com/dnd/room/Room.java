@@ -3,10 +3,12 @@ package com.dnd.room;
 import com.dnd.common.entity.BaseTimeEntity;
 import com.dnd.room.vo.RestrictApp;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.UUID;
 
 import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.GenerationType.IDENTITY;
@@ -32,10 +34,10 @@ public class Room extends BaseTimeEntity {
     private int personnel;
 
     @Column(nullable = false)
-    private LocalDateTime startDate;
+    private LocalDate startDate;
 
     @Column(nullable = false)
-    private LocalDateTime endDate;
+    private LocalDate endDate;
 
     @Column(nullable = false)
     private String inviteCode;
@@ -53,4 +55,23 @@ public class Room extends BaseTimeEntity {
     @Column(nullable = false)
     private int limitHour;
 
+    @Builder
+    public Room(
+            final String title, final String goalMessage,
+            final int personnel, final LocalDate startDate,
+            final LocalDate endDate, final boolean isActive,
+            final boolean isFinished, final RestrictApp restrictApp,
+            final int limitHour
+    ) {
+        this.title = title;
+        this.goalMessage = goalMessage;
+        this.personnel = personnel;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.inviteCode = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
+        this.isActive = isActive;
+        this.isFinished = isFinished;
+        this.restrictApp = restrictApp;
+        this.limitHour = limitHour;
+    }
 }
