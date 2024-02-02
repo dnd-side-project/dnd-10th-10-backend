@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.GenerationType.IDENTITY;
@@ -31,7 +30,10 @@ public class Room extends BaseTimeEntity {
     private String goalMessage;
 
     @Column(nullable = false)
-    private int personnel;
+    private int curHeadcount = 1;
+
+    @Column(nullable = false)
+    private int maxHeadcount;
 
     @Column(nullable = false)
     private LocalDate startDate;
@@ -43,10 +45,10 @@ public class Room extends BaseTimeEntity {
     private String inviteCode;
 
     @Column(nullable = false)
-    private boolean isActive;
+    private boolean isActive = false;
 
     @Column(nullable = false)
-    private boolean isFinished;
+    private boolean isFinished = false;
 
     @Enumerated(STRING)
     @Column(nullable = false)
@@ -57,18 +59,21 @@ public class Room extends BaseTimeEntity {
 
     @Builder
     public Room(
-            final String title, final String goalMessage,
-            final int personnel, final LocalDate startDate,
-            final LocalDate endDate, final boolean isActive,
-            final boolean isFinished, final RestrictApp restrictApp,
-            final int limitHour
+            final Long id, final String title,
+            final String goalMessage, final int curHeadcount,
+            final int maxHeadcount, final LocalDate startDate,
+            final LocalDate endDate, final String inviteCode,
+            final boolean isActive, final boolean isFinished,
+            final RestrictApp restrictApp, final int limitHour
     ) {
+        this.id = id;
         this.title = title;
         this.goalMessage = goalMessage;
-        this.personnel = personnel;
+        this.curHeadcount = curHeadcount;
+        this.maxHeadcount = maxHeadcount;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.inviteCode = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
+        this.inviteCode = inviteCode;
         this.isActive = isActive;
         this.isFinished = isFinished;
         this.restrictApp = restrictApp;
