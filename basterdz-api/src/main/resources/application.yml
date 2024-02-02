@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    default: local
+  config:
+    import:
+      - db-local.yml
