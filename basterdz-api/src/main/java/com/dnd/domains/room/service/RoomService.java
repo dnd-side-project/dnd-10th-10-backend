@@ -18,10 +18,14 @@ public class RoomService {
 
     @Transactional
     public Room createRoom(final RoomCreateRequestDto requestDto) {
-        String code = UUID.randomUUID().toString()
-                .replace("-", "").substring(0, 8);
-        Room room = requestDto.toEntity(code);
+        String inviteCode = createInviteCode();
+        Room room = requestDto.toEntity(inviteCode);
         roomRepository.save(room);
         return room;
+    }
+
+    private String createInviteCode() {
+        return UUID.randomUUID().toString()
+                .replace("-", "").substring(0, 8);
     }
 }
