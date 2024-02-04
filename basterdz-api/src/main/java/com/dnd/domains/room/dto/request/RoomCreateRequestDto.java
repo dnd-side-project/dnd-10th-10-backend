@@ -13,11 +13,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-import static lombok.AccessLevel.PROTECTED;
-
 @Getter
-@NoArgsConstructor(access = PROTECTED)
-@AllArgsConstructor(access = PROTECTED)
+@NoArgsConstructor
+@AllArgsConstructor
 public class RoomCreateRequestDto {
 
     @NotBlank(message = "방 제목을 입력해 주세요.")
