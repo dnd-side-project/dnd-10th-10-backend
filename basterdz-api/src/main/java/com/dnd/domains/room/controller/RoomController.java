@@ -9,6 +9,8 @@ import com.dnd.room.Room;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,11 +24,11 @@ public class RoomController implements RoomApiPresentation {
 	private final RoomService roomService;
 
 	@PostMapping
-	public ApiResult<RoomCreateResponseDto> createRoom(
+	public ResponseEntity<ApiResult<RoomCreateResponseDto>> createRoom(
 		final @Valid @RequestBody RoomCreateRequestDto roomCreateRequestDto
 	) {
 		Room createdRoom = roomService.createRoom(roomCreateRequestDto);
 		RoomCreateResponseDto responseDto = RoomCreateResponseDto.from(createdRoom);
-		return ApiResult.ok(responseDto);
+		return ResponseEntity.status(HttpStatus.CREATED).body(ApiResult.ok(responseDto));
 	}
 }

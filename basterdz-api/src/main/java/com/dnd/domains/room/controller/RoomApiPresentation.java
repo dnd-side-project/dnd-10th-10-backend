@@ -1,5 +1,7 @@
 package com.dnd.domains.room.controller;
 
+import org.springframework.http.ResponseEntity;
+
 import com.dnd.common.dto.ApiResult;
 import com.dnd.domains.room.dto.request.RoomCreateRequestDto;
 import com.dnd.domains.room.dto.response.RoomCreateResponseDto;
@@ -12,6 +14,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public interface RoomApiPresentation {
 
 	@Operation(summary = "목표 방 생성")
-	@ApiResponse(responseCode = "200", description = "방 생성 성공")
-	ApiResult<RoomCreateResponseDto> createRoom(final RoomCreateRequestDto roomCreateRequestDto);
+	@ApiResponse(responseCode = "201", description = "방 생성 성공")
+	ResponseEntity<ApiResult<RoomCreateResponseDto>> createRoom(final RoomCreateRequestDto roomCreateRequestDto);
 }
