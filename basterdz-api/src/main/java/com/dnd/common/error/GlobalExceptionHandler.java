@@ -1,4 +1,4 @@
-package com.dnd.common;
+package com.dnd.common.error;
 
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpStatus;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MultipartException;
 
 import com.dnd.common.dto.ApiResult;
-import com.dnd.common.error.BasterdzException;
-import com.dnd.common.error.NotFoundException;
-import com.dnd.common.error.UnauthorizedException;
+import com.dnd.common.error.exception.BasterdzException;
+import com.dnd.common.error.exception.NotFoundException;
+import com.dnd.common.error.exception.UnauthorizedException;
 
 import lombok.extern.slf4j.Slf4j;
 
