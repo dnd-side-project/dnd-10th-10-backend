@@ -1,6 +1,14 @@
 spring:
-  profiles:
-    default: local
   config:
+    activate:
+      on-profile: local
     import:
       - db-local.yml
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+    import:
+    - db-test.yml
+

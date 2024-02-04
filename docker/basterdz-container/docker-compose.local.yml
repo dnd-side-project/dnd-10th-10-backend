@@ -14,3 +14,15 @@ services:
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
+
+  h2:
+    image: oscarfonts/h2:latest
+    container_name: basterdz-h2
+    ports:
+      - "1521:1521"
+      - "8081:81"
+    environment:
+      H2_OPTIONS: -ifNotExists
+    volumes:
+      - ./h2/:/opt/h2-data
+    restart: always
