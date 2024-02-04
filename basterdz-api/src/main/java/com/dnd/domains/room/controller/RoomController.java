@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/rooms")
 @RequiredArgsConstructor
-public class RoomController {
+public class RoomController implements RoomApiPresentation {
 
     private final RoomService roomService;
 
