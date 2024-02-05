@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Max;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,7 +17,6 @@ import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class CreateRoomRequestDto {
 
     @Schema(description = "방 제목", example = "우리들의 도파민 탈출기")
@@ -54,7 +53,7 @@ public class CreateRoomRequestDto {
     @Min(value = 1, message = "제한 시간은 1시간 미만일 수 없습니다.")
     private int limitHour;
 
-    public Room toEntity(final String code) {
+    public Room toEntity(final String code, final int remainingDay) {
         return Room.builder()
                 .title(title)
                 .goal(goal)
@@ -64,6 +63,23 @@ public class CreateRoomRequestDto {
                 .startDate(startDate)
                 .endDate(endDate)
                 .limitHour(limitHour)
+                .remainingDay(remainingDay)
                 .build();
+    }
+
+    @Builder
+    public CreateRoomRequestDto(
+            final String title, final String goal,
+            final int personnel, final RestrictApp restrictApp,
+            final LocalDate startDate, final LocalDate endDate,
+            final int limitHour
+    ) {
+        this.title = title;
+        this.goal = goal;
+        this.personnel = personnel;
+        this.restrictApp = restrictApp;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.limitHour = limitHour;
     }
 }
