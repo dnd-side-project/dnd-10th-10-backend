@@ -1,20 +1,20 @@
 package com.dnd.domains.room.controller;
 
 import com.dnd.common.dto.ApiResult;
-import com.dnd.domains.room.dto.request.RoomCreateRequestDto;
-import com.dnd.domains.room.dto.response.RoomCreateResponseDto;
+import com.dnd.domains.room.dto.request.CreateRoomRequestDto;
+import com.dnd.domains.room.dto.response.CreateRoomResponseDto;
+import com.dnd.domains.room.dto.response.FindRoomResponseDto;
 import com.dnd.domains.room.service.RoomService;
 import com.dnd.room.Room;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("/api/v1/rooms")
@@ -24,11 +24,20 @@ public class RoomController implements RoomApiPresentation {
 	private final RoomService roomService;
 
 	@PostMapping
-	public ResponseEntity<ApiResult<RoomCreateResponseDto>> createRoom(
-		final @Valid @RequestBody RoomCreateRequestDto roomCreateRequestDto
+	public ResponseEntity<ApiResult<CreateRoomResponseDto>> createRoom(
+		final @Valid @RequestBody CreateRoomRequestDto roomCreateRequestDto
 	) {
 		Room createdRoom = roomService.createRoom(roomCreateRequestDto);
-		RoomCreateResponseDto responseDto = RoomCreateResponseDto.from(createdRoom);
-		return ResponseEntity.status(HttpStatus.CREATED).body(ApiResult.ok(responseDto));
+		CreateRoomResponseDto responseDto = CreateRoomResponseDto.from(createdRoom);
+		return ResponseEntity.status(CREATED).body(ApiResult.ok(responseDto));
+	}
+
+	@GetMapping("/{roomId}")
+	public ResponseEntity<ApiResult<FindRoomResponseDto>> findRoom(
+			final @PathVariable Long roomId
+	) {
+		Room room = roomService.findRoom(roomId);
+		FindRoomResponseDto responseDto = FindRoomResponseDto.from(room);
+		return ResponseEntity.status(OK).body(ApiResult.ok(responseDto));
 	}
 }
