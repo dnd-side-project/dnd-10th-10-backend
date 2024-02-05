@@ -27,7 +27,11 @@ public class RoomService {
         return room;
     }
 
-    public Room findRoom(Long roomId) {
+    public Room findRoom(final Long roomId) {
         return roomRepository.findById(roomId).orElseThrow();
+    }
+
+    public Room findRoomByInviteCode(final String inviteCode) {
+        return roomRepository.findByInviteCode(inviteCode).orElseThrow();
     }
 }

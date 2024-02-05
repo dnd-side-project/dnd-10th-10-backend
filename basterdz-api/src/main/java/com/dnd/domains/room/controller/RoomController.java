@@ -3,6 +3,7 @@ package com.dnd.domains.room.controller;
 import com.dnd.common.dto.ApiResult;
 import com.dnd.domains.room.dto.request.CreateRoomRequestDto;
 import com.dnd.domains.room.dto.response.CreateRoomResponseDto;
+import com.dnd.domains.room.dto.response.FindRoomByCodeResponseDto;
 import com.dnd.domains.room.dto.response.FindRoomResponseDto;
 import com.dnd.domains.room.service.RoomService;
 import com.dnd.room.Room;
@@ -25,7 +26,7 @@ public class RoomController implements RoomApiPresentation {
 
 	@PostMapping
 	public ResponseEntity<ApiResult<CreateRoomResponseDto>> createRoom(
-		final @Valid @RequestBody CreateRoomRequestDto roomCreateRequestDto
+			final @Valid @RequestBody CreateRoomRequestDto roomCreateRequestDto
 	) {
 		Room createdRoom = roomService.createRoom(roomCreateRequestDto);
 		CreateRoomResponseDto responseDto = CreateRoomResponseDto.from(createdRoom);
@@ -40,4 +41,14 @@ public class RoomController implements RoomApiPresentation {
 		FindRoomResponseDto responseDto = FindRoomResponseDto.from(room);
 		return ResponseEntity.status(OK).body(ApiResult.ok(responseDto));
 	}
+
+	@GetMapping
+	public ResponseEntity<ApiResult<FindRoomByCodeResponseDto>> findRoomByInviteCode(
+			final @RequestParam String inviteCode
+	) {
+		Room room = roomService.findRoomByInviteCode(inviteCode);
+		FindRoomByCodeResponseDto responseDto = FindRoomByCodeResponseDto.from(room);
+		return ResponseEntity.status(OK).body(ApiResult.ok(responseDto));
+	}
+
 }
