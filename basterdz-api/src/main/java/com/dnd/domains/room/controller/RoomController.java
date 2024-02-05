@@ -17,7 +17,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/api/v1/rooms")
+@RequestMapping("/v1/rooms")
 @RequiredArgsConstructor
 public class RoomController implements RoomApiPresentation {
 
