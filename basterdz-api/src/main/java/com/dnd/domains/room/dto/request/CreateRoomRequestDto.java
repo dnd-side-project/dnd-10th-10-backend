@@ -28,7 +28,7 @@ public class CreateRoomRequestDto {
     @Schema(description = "목표 한마디", example = "갓생살자!갓생살자!")
     @NotBlank(message = "목표를 입력해 주세요.")
     @Size(max = 30, message = "목표는 30자를 초과할 수 없습니다.")
-    private String goalMessage;
+    private String goal;
 
     @Schema(description = "참여 정원", example = "6")
     @NotNull(message = "인원 수를 입력해 주세요.")
@@ -57,7 +57,7 @@ public class CreateRoomRequestDto {
     public Room toEntity(final String code) {
         return Room.builder()
                 .title(title)
-                .goalMessage(goalMessage)
+                .goal(goal)
                 .personnel(personnel)
                 .restrictApp(restrictApp)
                 .inviteCode(code)

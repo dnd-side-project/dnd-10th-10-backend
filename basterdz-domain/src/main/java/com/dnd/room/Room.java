@@ -27,7 +27,7 @@ public class Room extends BaseTimeEntity {
     private String title;
 
     @Column(nullable = false)
-    private String goalMessage;
+    private String goal;
 
     @Column(nullable = false)
     private int curHeadcount = 1;
@@ -60,7 +60,7 @@ public class Room extends BaseTimeEntity {
     @Builder
     public Room(
             final Long id, final String title,
-            final String goalMessage, final int curHeadcount,
+            final String goal, final int curHeadcount,
             final int personnel, final LocalDate startDate,
             final LocalDate endDate, final String inviteCode,
             final boolean isActive, final boolean isFinished,
@@ -68,7 +68,7 @@ public class Room extends BaseTimeEntity {
     ) {
         this.id = id;
         this.title = title;
-        this.goalMessage = goalMessage;
+        this.goal = goal;
         this.curHeadcount = curHeadcount;
         this.personnel = personnel;
         this.startDate = startDate;
