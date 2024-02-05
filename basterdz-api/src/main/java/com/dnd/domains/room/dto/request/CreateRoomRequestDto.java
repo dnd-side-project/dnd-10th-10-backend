@@ -35,7 +35,7 @@ public class CreateRoomRequestDto {
     @Min(value = 1, message = "인원 수는 1명 미만일 수 없습니다.")
     private int personnel;
 
-    @Schema(description = "제한 앱 설정", example = "인스타그램")
+    @Schema(description = "제한 앱 설정", example = "INSTAGRAM")
     @NotNull(message = "제한 앱을 설정해 주세요.")
     private RestrictApp restrictApp;
 

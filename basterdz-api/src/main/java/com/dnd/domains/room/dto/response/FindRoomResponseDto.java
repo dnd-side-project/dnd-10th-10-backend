@@ -24,7 +24,7 @@ public class FindRoomResponseDto {
     @Schema(name = "goal", example = "우리 시험기간에만 인스타 하지 말아보자")
     private String goal;
 
-    @Schema(name = "restrictApp", example = "인스타그램")
+    @Schema(name = "restrictApp", example = "INSTAGRAM")
     private RestrictApp restrictApp;
 
     @Schema(name = "startDate", example = "2024-01-23")
