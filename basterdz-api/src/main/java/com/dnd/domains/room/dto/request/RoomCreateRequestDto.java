@@ -15,11 +15,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-import static lombok.AccessLevel.PROTECTED;
-
 @Getter
-@NoArgsConstructor(access = PROTECTED)
-@AllArgsConstructor(access = PROTECTED)
+@NoArgsConstructor
+@AllArgsConstructor
 public class RoomCreateRequestDto {
 
     @Schema(description = "방 제목", example = "우리들의 도파민 탈출기")

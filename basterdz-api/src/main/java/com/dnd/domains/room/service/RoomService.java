@@ -1,13 +1,12 @@
 package com.dnd.domains.room.service;
 
 import com.dnd.domains.room.dto.request.RoomCreateRequestDto;
+import com.dnd.domains.room.util.InviteCodeUtil;
 import com.dnd.room.Room;
 import com.dnd.room.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.UUID;
 
 @Service
 @Transactional(readOnly = true)
@@ -15,17 +14,14 @@ import java.util.UUID;
 public class RoomService {
 
     private final RoomRepository roomRepository;
+    private final InviteCodeUtil inviteCodeUtil;
 
     @Transactional
     public Room createRoom(final RoomCreateRequestDto requestDto) {
-        String inviteCode = createInviteCode();
+        String inviteCode = inviteCodeUtil.generate();
         Room room = requestDto.toEntity(inviteCode);
         roomRepository.save(room);
         return room;
     }
 
-    private String createInviteCode() {
-        return UUID.randomUUID().toString()
-                .replace("-", "").substring(0, 8);
-    }
 }
