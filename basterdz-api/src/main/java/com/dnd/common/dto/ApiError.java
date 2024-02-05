@@ -1,6 +1,6 @@
 package com.dnd.common.dto;
 
-import com.dnd.common.ErrorCode;
+import com.dnd.common.error.ErrorCode;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

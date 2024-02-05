@@ -1,6 +1,6 @@
 package com.dnd.common.dto;
 
-import com.dnd.common.ErrorCode;
+import com.dnd.common.error.ErrorCode;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,5 +24,4 @@ public class ApiResult<T> {
 	public static ApiResult<?> error(ErrorCode errorCode, String message) {
 		return new ApiResult<>(false, null, new ApiError(errorCode, message));
 	}
-
 }

@@ -1,4 +1,4 @@
-package com.dnd.common;
+package com.dnd.common.error;
 
 import org.springframework.http.HttpStatus;
 
