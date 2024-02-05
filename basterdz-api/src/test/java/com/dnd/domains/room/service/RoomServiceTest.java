@@ -1,6 +1,6 @@
 package com.dnd.domains.room.service;
 
-import com.dnd.domains.room.dto.request.RoomCreateRequestDto;
+import com.dnd.domains.room.dto.request.CreateRoomRequestDto;
 import com.dnd.domains.room.util.InviteCodeUtil;
 import com.dnd.room.Room;
 import com.dnd.room.RoomRepository;
@@ -40,7 +40,7 @@ class RoomServiceTest {
     @Test
     void createRoom(){
         // given
-        RoomCreateRequestDto requestDto = new RoomCreateRequestDto(
+        CreateRoomRequestDto requestDto = new CreateRoomRequestDto(
                 "우리들의 도파민 탈출기", "우리 시험기간에만 인스타 하지 말아보자",
                 4,
                 INSTAGRAM,

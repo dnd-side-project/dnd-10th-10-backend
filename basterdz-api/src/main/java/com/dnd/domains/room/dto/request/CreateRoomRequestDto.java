@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoomCreateRequestDto {
+public class CreateRoomRequestDto {
 
     @Schema(description = "방 제목", example = "우리들의 도파민 탈출기")
     @NotBlank(message = "방 제목을 입력해 주세요.")
