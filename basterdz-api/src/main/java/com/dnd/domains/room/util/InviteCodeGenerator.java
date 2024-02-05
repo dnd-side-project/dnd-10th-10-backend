@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-public class InviteCode implements InviteCodeUtil{
+public class InviteCodeGenerator implements InviteCodeUtil{
 
     @Override
     public String generate() {
