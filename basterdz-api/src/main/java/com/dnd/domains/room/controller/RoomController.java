@@ -14,8 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("/v1/rooms")
@@ -28,7 +29,8 @@ public class RoomController implements RoomApiPresentation {
 	public ResponseEntity<ApiResult<CreateRoomResponseDto>> createRoom(
 			final @Valid @RequestBody CreateRoomRequestDto roomCreateRequestDto
 	) {
-		Room createdRoom = roomService.createRoom(roomCreateRequestDto);
+		LocalDate registeredDate = LocalDate.now();
+		Room createdRoom = roomService.createRoom(roomCreateRequestDto, registeredDate);
 		CreateRoomResponseDto responseDto = CreateRoomResponseDto.from(createdRoom);
 		return ResponseEntity.status(CREATED).body(ApiResult.ok(responseDto));
 	}

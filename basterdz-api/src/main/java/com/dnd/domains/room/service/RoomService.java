@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.Period;
 
 import static com.dnd.common.error.ErrorCode.NOT_FOUND;
@@ -22,9 +23,11 @@ public class RoomService {
     private final InviteCodeUtil inviteCodeUtil;
 
     @Transactional
-    public Room createRoom(final CreateRoomRequestDto requestDto) {
+    public Room createRoom(
+            final CreateRoomRequestDto requestDto, final LocalDate registerDate
+    ) {
         String inviteCode = inviteCodeUtil.generate();
-        Period period = Period.between(requestDto.getStartDate(), requestDto.getEndDate());
+        Period period = Period.between(registerDate, requestDto.getEndDate());
         Room room = requestDto.toEntity(inviteCode, period.getDays());
         roomRepository.save(room);
         return room;

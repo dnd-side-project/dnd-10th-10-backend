@@ -52,10 +52,12 @@ class RoomServiceTest {
 
         Room createdRoom = requestDto.toEntity("abcdefg", 2);
 
+        LocalDate registeredDate = LocalDate.of(2024, 1, 23);
+
         // when
         given(inviteCodeUtil.generate()).willReturn("abcdefg");
 
-        Room result = roomService.createRoom(requestDto);
+        Room result = roomService.createRoom(requestDto, registeredDate);
 
         // then
         Assertions.assertThat(createdRoom.getInviteCode())
