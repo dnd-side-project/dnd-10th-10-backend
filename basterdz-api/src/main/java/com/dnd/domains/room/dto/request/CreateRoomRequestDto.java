@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Max;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,8 +17,7 @@ import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
-public class RoomCreateRequestDto {
+public class CreateRoomRequestDto {
 
     @Schema(description = "방 제목", example = "우리들의 도파민 탈출기")
     @NotBlank(message = "방 제목을 입력해 주세요.")
@@ -28,7 +27,7 @@ public class RoomCreateRequestDto {
     @Schema(description = "목표 한마디", example = "갓생살자!갓생살자!")
     @NotBlank(message = "목표를 입력해 주세요.")
     @Size(max = 30, message = "목표는 30자를 초과할 수 없습니다.")
-    private String goalMessage;
+    private String goal;
 
     @Schema(description = "참여 정원", example = "6")
     @NotNull(message = "인원 수를 입력해 주세요.")
@@ -36,7 +35,7 @@ public class RoomCreateRequestDto {
     @Min(value = 1, message = "인원 수는 1명 미만일 수 없습니다.")
     private int personnel;
 
-    @Schema(description = "제한 앱 설정", example = "인스타그램")
+    @Schema(description = "제한 앱 설정", example = "INSTAGRAM")
     @NotNull(message = "제한 앱을 설정해 주세요.")
     private RestrictApp restrictApp;
 
@@ -54,16 +53,33 @@ public class RoomCreateRequestDto {
     @Min(value = 1, message = "제한 시간은 1시간 미만일 수 없습니다.")
     private int limitHour;
 
-    public Room toEntity(final String code) {
+    public Room toEntity(final String code, final int remainingDay) {
         return Room.builder()
                 .title(title)
-                .goalMessage(goalMessage)
+                .goal(goal)
                 .personnel(personnel)
                 .restrictApp(restrictApp)
                 .inviteCode(code)
                 .startDate(startDate)
                 .endDate(endDate)
                 .limitHour(limitHour)
+                .remainingDay(remainingDay)
                 .build();
+    }
+
+    @Builder
+    public CreateRoomRequestDto(
+            final String title, final String goal,
+            final int personnel, final RestrictApp restrictApp,
+            final LocalDate startDate, final LocalDate endDate,
+            final int limitHour
+    ) {
+        this.title = title;
+        this.goal = goal;
+        this.personnel = personnel;
+        this.restrictApp = restrictApp;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.limitHour = limitHour;
     }
 }

@@ -1,6 +1,6 @@
 package com.dnd.domains.room.service;
 
-import com.dnd.domains.room.dto.request.RoomCreateRequestDto;
+import com.dnd.domains.room.dto.request.CreateRoomRequestDto;
 import com.dnd.domains.room.util.InviteCodeUtil;
 import com.dnd.room.Room;
 import com.dnd.room.RoomRepository;
@@ -40,21 +40,24 @@ class RoomServiceTest {
     @Test
     void createRoom(){
         // given
-        RoomCreateRequestDto requestDto = new RoomCreateRequestDto(
-                "우리들의 도파민 탈출기", "우리 시험기간에만 인스타 하지 말아보자",
-                4,
-                INSTAGRAM,
-                LocalDate.of(2024, 1, 23),
-                LocalDate.of(2024, 1, 25),
-                1
-        );
+        CreateRoomRequestDto requestDto = CreateRoomRequestDto.builder()
+                .title("우리들의 도파민 탈출기")
+                .goal("우리 시험기간에만 인스타 하지 말아보자")
+                .personnel(4)
+                .restrictApp(INSTAGRAM)
+                .startDate(LocalDate.of(2024, 1, 23))
+                .endDate(LocalDate.of(2024, 1, 25))
+                .limitHour(1)
+                .build();
 
-        Room createdRoom = requestDto.toEntity("abcdefg");
+        Room createdRoom = requestDto.toEntity("abcdefg", 2);
+
+        LocalDate registeredDate = LocalDate.of(2024, 1, 23);
 
         // when
         given(inviteCodeUtil.generate()).willReturn("abcdefg");
 
-        Room result = roomService.createRoom(requestDto);
+        Room result = roomService.createRoom(requestDto, registeredDate);
 
         // then
         Assertions.assertThat(createdRoom.getInviteCode())
