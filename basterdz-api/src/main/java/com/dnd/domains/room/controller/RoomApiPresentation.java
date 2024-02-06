@@ -21,9 +21,9 @@ public interface RoomApiPresentation {
 
 	@Operation(summary = "목표 방 조회")
 	@ApiResponse(responseCode = "200", description = "방 조회 성공")
-	ResponseEntity<ApiResult<FindRoomResponseDto>> findRoom(final Long roomId);
+	ApiResult<FindRoomResponseDto> findRoom(final Long roomId);
 
 	@Operation(summary = "초대 코드를 통한 목표 방 조회")
 	@ApiResponse(responseCode = "200", description = "방 조회 성공")
-	ResponseEntity<ApiResult<FindRoomByCodeResponseDto>> findRoomByInviteCode(final String inviteCode);
+	ApiResult<FindRoomByCodeResponseDto> findRoomByInviteCode(final String inviteCode);
 }

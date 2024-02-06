@@ -34,21 +34,21 @@ public class RoomController implements RoomApiPresentation {
 	}
 
 	@GetMapping("/{roomId}")
-	public ResponseEntity<ApiResult<FindRoomResponseDto>> findRoom(
+	public ApiResult<FindRoomResponseDto> findRoom(
 			final @PathVariable Long roomId
 	) {
 		Room room = roomService.findRoom(roomId);
 		FindRoomResponseDto responseDto = FindRoomResponseDto.from(room);
-		return ResponseEntity.status(OK).body(ApiResult.ok(responseDto));
+		return ApiResult.ok(responseDto);
 	}
 
 	@GetMapping
-	public ResponseEntity<ApiResult<FindRoomByCodeResponseDto>> findRoomByInviteCode(
+	public ApiResult<FindRoomByCodeResponseDto> findRoomByInviteCode(
 			final @RequestParam String inviteCode
 	) {
 		Room room = roomService.findRoomByInviteCode(inviteCode);
 		FindRoomByCodeResponseDto responseDto = FindRoomByCodeResponseDto.from(room);
-		return ResponseEntity.status(OK).body(ApiResult.ok(responseDto));
+		return ApiResult.ok(responseDto);
 	}
 
 }
