@@ -30,7 +30,7 @@ public class Room extends BaseTimeEntity {
     private String goal;
 
     @Column(nullable = false)
-    private int memberCount = 1;
+    private int memberCount;
 
     @Column(nullable = false)
     private int personnel;
@@ -83,5 +83,9 @@ public class Room extends BaseTimeEntity {
         this.restrictApp = restrictApp;
         this.limitHour = limitHour;
         this.remainingDay = remainingDay;
+    }
+
+    public void addMemberCount() {
+        this.memberCount += 1;
     }
 }
