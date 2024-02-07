@@ -2,6 +2,7 @@ package com.dnd.domains.room.controller;
 
 import com.dnd.common.dto.ApiResult;
 import com.dnd.domains.room.dto.request.CreateRoomRequestDto;
+import com.dnd.domains.room.dto.request.EnterRoomRequestDto;
 import com.dnd.domains.room.dto.response.CreateRoomResponseDto;
 import com.dnd.domains.room.dto.response.FindRoomByCodeResponseDto;
 import com.dnd.domains.room.dto.response.FindRoomResponseDto;
@@ -53,4 +54,13 @@ public class RoomController implements RoomApiPresentation {
 		return ApiResult.ok(responseDto);
 	}
 
+	@PostMapping("{roomId}/entrance")
+	public ResponseEntity<ApiResult<Void>> enterRoom(
+			final @PathVariable Long roomId,
+			final @RequestBody @Valid EnterRoomRequestDto enterRoomRequestDto
+	) {
+		String inviteCode = enterRoomRequestDto.getInviteCode();
+		roomService.enterRoom(roomId, inviteCode);
+		return ResponseEntity.status(CREATED).body(ApiResult.ok(null));
+	}
 }
