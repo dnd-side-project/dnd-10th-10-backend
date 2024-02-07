@@ -35,11 +35,9 @@ public class LoginMemberArgumentResolver implements HandlerMethodArgumentResolve
 	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
 		NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 		log.info(webRequest.getContextPath());
-		String a = webRequest.getHeader(LOGIN_ID);
-		log.info("ssss + {}" , a);
-		if(a == null) throw new UnauthorizedException(ErrorCode.METHOD_ARGUMENT_NOT_VALID);
-		Long loginMemberId = Long.valueOf(a);
-		System.out.println(loginMemberId);
-		return memberFinder.find(loginMemberId);
+		String value = webRequest.getHeader(LOGIN_ID);
+		if(value == null) throw new UnauthorizedException(ErrorCode.UNAUTHORIZED);
+		Long loginId = Long.valueOf(value);
+		return memberFinder.find(loginId);
 	}
 }
