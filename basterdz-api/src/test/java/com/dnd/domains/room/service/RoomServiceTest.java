@@ -50,12 +50,12 @@ class RoomServiceTest {
                 .limitHour(1)
                 .build();
 
-        Room createdRoom = requestDto.toEntity("abcdefg", 2);
+        Room createdRoom = requestDto.toEntity("ABCDEFG", 2);
 
         LocalDate registeredDate = LocalDate.of(2024, 1, 23);
 
         // when
-        given(inviteCodeUtil.generate()).willReturn("abcdefg");
+        given(inviteCodeUtil.generate()).willReturn("ABCDEFG");
 
         Room result = roomService.createRoom(requestDto, registeredDate);
 

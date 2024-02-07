@@ -1,5 +1,6 @@
 package com.dnd.common.error;
 
+import com.dnd.common.error.exception.BadRequestException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,6 +69,8 @@ public class GlobalExceptionHandler {
 			return newResponse(ErrorCode.UNAUTHORIZED);
 		if (e instanceof NotFoundException)
 			return newResponse(ErrorCode.NOT_FOUND);
+		if (e instanceof BadRequestException)
+			return newResponse(ErrorCode.METHOD_ARGUMENT_NOT_VALID);
 		return newResponse(ErrorCode.INTERNAL_SERVER_ERROR);
 	}
 

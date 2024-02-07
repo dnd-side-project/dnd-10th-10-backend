@@ -1,5 +1,6 @@
 package com.dnd.domains.room.controller;
 
+import com.dnd.domains.room.dto.request.EnterRoomRequestDto;
 import com.dnd.domains.room.dto.response.FindRoomByCodeResponseDto;
 import com.dnd.domains.room.dto.response.FindRoomResponseDto;
 import org.springframework.http.ResponseEntity;
@@ -26,4 +27,8 @@ public interface RoomApiPresentation {
 	@Operation(summary = "초대 코드를 통한 목표 방 조회")
 	@ApiResponse(responseCode = "200", description = "방 조회 성공")
 	ApiResult<FindRoomByCodeResponseDto> findRoomByInviteCode(final String inviteCode);
+
+	@Operation(summary = "목표 방 입장")
+	@ApiResponse(responseCode = "201", description = "방 입장 성공")
+	ResponseEntity<ApiResult<Void>> enterRoom(final Long roomId, final EnterRoomRequestDto enterRoomRequestDto);
 }
