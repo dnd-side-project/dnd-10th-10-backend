@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class LoginMemberArgumentResolver implements HandlerMethodArgumentResolver {
 
-	private static final String LOGIN_ID = "LOGIN_ID";
+	private static final String LOGIN_ID = "Login-Id";
 
 	private final MemberFinder memberFinder;
 
