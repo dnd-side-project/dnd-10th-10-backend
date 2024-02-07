@@ -19,6 +19,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class CreateRoomRequestDto {
 
+    public static final int MINIMUM_MEMBER_COUNT = 1;
+
     @Schema(description = "방 제목", example = "우리들의 도파민 탈출기")
     @NotBlank(message = "방 제목을 입력해 주세요.")
     @Size(max = 20, message = "방 제목은 20자를 초과할 수 없습니다.")
@@ -64,6 +66,7 @@ public class CreateRoomRequestDto {
                 .endDate(endDate)
                 .limitHour(limitHour)
                 .remainingDay(remainingDay)
+                .memberCount(MINIMUM_MEMBER_COUNT)
                 .build();
     }
 
