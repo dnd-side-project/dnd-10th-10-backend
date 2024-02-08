@@ -2,6 +2,7 @@ package com.dnd.common.dto;
 
 import com.dnd.common.error.ErrorCode;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -9,8 +10,10 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ApiResult<T> {
 
+	@Schema(name = "success", example = "true")
 	private final boolean success;
 	private final T data;
+	@Schema(name = "error", example = "null")
 	private final ApiError error;
 
 	public static <T> ApiResult<T> ok(T data) {

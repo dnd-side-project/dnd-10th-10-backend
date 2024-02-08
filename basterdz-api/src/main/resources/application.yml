@@ -18,6 +18,7 @@ springdoc:
 
   cache:
     disabled: true
+  override-with-generic-response: false
 ---
 spring:
   config:
