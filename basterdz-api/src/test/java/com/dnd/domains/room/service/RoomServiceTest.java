@@ -1,9 +1,10 @@
 package com.dnd.domains.room.service;
 
-import com.dnd.domains.room.dto.request.CreateRoomRequestDto;
-import com.dnd.domains.room.util.InviteCodeUtil;
-import com.dnd.room.Room;
-import com.dnd.room.RoomRepository;
+import com.dnd.api.domains.room.dto.request.CreateRoomRequestDto;
+import com.dnd.api.domains.room.service.RoomService;
+import com.dnd.api.domains.room.util.InviteCodeUtil;
+import com.dnd.domain.room.Room;
+import com.dnd.domain.room.RoomRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +16,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
 
-import static com.dnd.room.vo.RestrictApp.INSTAGRAM;
+import static com.dnd.domain.room.vo.RestrictApp.INSTAGRAM;
 import static org.mockito.BDDMockito.given;
 
 @SpringBootTest
