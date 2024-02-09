@@ -3,8 +3,9 @@ package com.dnd.domains.room.service;
 import com.dnd.api.domains.room.dto.request.CreateRoomRequestDto;
 import com.dnd.api.domains.room.service.RoomService;
 import com.dnd.api.domains.room.util.InviteCodeUtil;
-import com.dnd.domain.room.Room;
-import com.dnd.domain.room.RoomRepository;
+import com.dnd.domain.room.entity.Room;
+import com.dnd.domain.room.implement.RoomRemover;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +17,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
 
-import static com.dnd.domain.room.vo.RestrictApp.INSTAGRAM;
+import static com.dnd.domain.room.entity.RestrictApp.INSTAGRAM;
 import static org.mockito.BDDMockito.given;
 
 @SpringBootTest
@@ -24,7 +25,7 @@ import static org.mockito.BDDMockito.given;
 class RoomServiceTest {
 
     @Autowired
-    private RoomRepository roomRepository;
+    private RoomRemover roomRemover;
 
     @Autowired
     private RoomService roomService;
@@ -34,7 +35,7 @@ class RoomServiceTest {
 
     @AfterEach
     void tearDown() {
-        roomRepository.deleteAllInBatch();
+        roomRemover.deleteAll();
     }
 
     @DisplayName("초기 방을 생성할 수 있습니다.")

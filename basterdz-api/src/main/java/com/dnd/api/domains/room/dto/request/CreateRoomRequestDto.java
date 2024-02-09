@@ -1,7 +1,7 @@
 package com.dnd.api.domains.room.dto.request;
 
-import com.dnd.domain.room.Room;
-import com.dnd.domain.room.vo.RestrictApp;
+import com.dnd.domain.room.entity.Room;
+import com.dnd.domain.room.entity.RestrictApp;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

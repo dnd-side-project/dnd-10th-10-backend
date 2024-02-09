@@ -1,4 +1,4 @@
-package com.dnd.domain.room.vo;
+package com.dnd.domain.room.entity;
 
 import lombok.Getter;
 

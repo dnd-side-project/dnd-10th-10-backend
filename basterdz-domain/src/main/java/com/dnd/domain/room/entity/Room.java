@@ -1,8 +1,8 @@
-package com.dnd.domain.room;
+package com.dnd.domain.room.entity;
 
 import com.dnd.domain.common.entity.BaseTimeEntity;
 import com.dnd.common.exception.BadRequestException;
-import com.dnd.domain.room.vo.RestrictApp;
+
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;

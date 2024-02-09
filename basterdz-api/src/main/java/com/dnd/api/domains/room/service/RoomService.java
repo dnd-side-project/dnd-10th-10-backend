@@ -1,14 +1,11 @@
 package com.dnd.api.domains.room.service;
 
-import static com.dnd.common.exception.ErrorCode.INVALID_INVITE_CODE;
-import static com.dnd.common.exception.ErrorCode.ROOM_NOT_FOUND;
-
 import com.dnd.api.domains.room.util.InviteCodeUtil;
-import com.dnd.common.exception.BadRequestException;
-import com.dnd.common.exception.NotFoundException;
 import com.dnd.api.domains.room.dto.request.CreateRoomRequestDto;
-import com.dnd.domain.room.Room;
-import com.dnd.domain.room.RoomRepository;
+import com.dnd.domain.room.entity.Room;
+import com.dnd.domain.room.implement.RoomAppender;
+import com.dnd.domain.room.implement.RoomFinder;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +18,8 @@ import java.time.Period;
 @RequiredArgsConstructor
 public class RoomService {
 
-    private final RoomRepository roomRepository;
+    private final RoomFinder roomFinder;
+    private final RoomAppender roomAppender;
     private final InviteCodeUtil inviteCodeUtil;
 
     @Transactional
@@ -31,23 +29,22 @@ public class RoomService {
         String inviteCode = inviteCodeUtil.generate().toUpperCase();
         Period period = Period.between(registerDate, requestDto.getEndDate());
         Room room = requestDto.toEntity(inviteCode, period.getDays());
-        return roomRepository.save(room);
+        return roomAppender.append(room);
     }
 
-    @Transactional
     public Room enterRoom(final String inviteCode) {
-        Room room = findRoomByInviteCode(inviteCode);
+        Room room = roomFinder.findByInviteCode(inviteCode);
         room.addMemberCount();
-        return roomRepository.save(room);
+        return room;
     }
 
-    public Room findRoom(final Long roomId) {
-        return roomRepository.findById(roomId)
-            .orElseThrow(() -> new NotFoundException(ROOM_NOT_FOUND));
+    public Room findRoom(Long roomId) {
+        return roomFinder.find(roomId);
     }
 
-    public Room findRoomByInviteCode(final String inviteCode) {
-        return roomRepository.findByInviteCode(inviteCode)
-            .orElseThrow(() -> new BadRequestException(INVALID_INVITE_CODE));
+    public Room findRoomByInviteCode(String inviteCode) {
+        return roomFinder.findByInviteCode(inviteCode);
     }
+
+
 }

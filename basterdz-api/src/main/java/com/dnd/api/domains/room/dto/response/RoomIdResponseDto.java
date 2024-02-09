@@ -1,6 +1,6 @@
 package com.dnd.api.domains.room.dto.response;
 
-import com.dnd.domain.room.Room;
+import com.dnd.domain.room.entity.Room;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

@@ -9,7 +9,7 @@ import com.dnd.api.domains.room.dto.request.EnterRoomRequestDto;
 import com.dnd.api.domains.room.dto.response.RoomIdResponseDto;
 import com.dnd.api.domains.room.dto.response.FindRoomByCodeResponseDto;
 import com.dnd.api.domains.room.dto.response.FindRoomResponseDto;
-import com.dnd.domain.room.Room;
+import com.dnd.domain.room.entity.Room;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

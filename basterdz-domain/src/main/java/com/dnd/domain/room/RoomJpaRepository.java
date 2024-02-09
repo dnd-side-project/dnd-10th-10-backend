@@ -7,8 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+import com.dnd.domain.room.entity.Room;
+
 @Repository
-public interface RoomRepository extends JpaRepository<Room, Long> {
+public interface RoomJpaRepository extends JpaRepository<Room, Long> {
 
     @Query("select r from Room r where r.inviteCode = :inviteCode")
     Optional<Room> findByInviteCode(@Param("inviteCode")final String inviteCode);

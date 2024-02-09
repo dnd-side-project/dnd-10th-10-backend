@@ -1,6 +1,8 @@
-package com.dnd.domain.room;
+package com.dnd.domain.room.entity;
 
 import com.dnd.domain.member.Member;
+import com.dnd.domain.room.entity.Room;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
