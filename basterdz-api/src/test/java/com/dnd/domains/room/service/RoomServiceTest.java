@@ -1,5 +1,6 @@
 package com.dnd.domains.room.service;
 
+import com.dnd.config.IntegrationServiceTest;
 import com.dnd.domains.room.dto.request.CreateRoomRequestDto;
 import com.dnd.domains.room.util.InviteCodeUtil;
 import com.dnd.room.Room;
@@ -9,18 +10,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
 
 import static com.dnd.room.vo.RestrictApp.INSTAGRAM;
 import static org.mockito.BDDMockito.given;
 
-@SpringBootTest
-@ActiveProfiles("test")
-class RoomServiceTest {
+class RoomServiceTest extends IntegrationServiceTest {
 
     @Autowired
     private RoomRepository roomRepository;
