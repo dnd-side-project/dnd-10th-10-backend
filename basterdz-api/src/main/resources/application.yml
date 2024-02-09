@@ -11,6 +11,7 @@ springdoc:
 
   cache:
     disabled: true
+  override-with-generic-response: false
 
 ---
 spring:
@@ -19,6 +20,14 @@ spring:
       on-profile: local
     import:
       - db-local.yml
+      
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+    import:
+      - db-dev.yml
 
 ---
 spring:
@@ -27,7 +36,6 @@ spring:
       on-profile: prod
     import:
       - db-prod.yml
-
 ---
 spring:
   config:
@@ -35,3 +43,4 @@ spring:
       on-profile: test
     import:
     - db-test.yml
+
