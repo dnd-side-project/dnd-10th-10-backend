@@ -17,7 +17,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = "Room", description = "Room API")
+@Tag(name = "\uD83C\uDFE0Room", description = "Room API")
 public interface RoomApiPresentation {
 
 	@Operation(summary = "목표 방 생성")
@@ -31,7 +31,7 @@ public interface RoomApiPresentation {
 			@ApiResponse(responseCode = "404", description = "존재하지 않는 그룹",
 				content = @Content(schema = @Schema(
 					example = "{\"success\": false, \"data\" : null,"
-						+ "\"error\": {\"status\": 404, \"code\": \"ROOM-01\", \"message\": \"존재하지 않는 그룹입니다.\"}}")))
+						+ "\"error\": {\"code\": \"ROOM-01\", \"message\": \"존재하지 않는 그룹입니다.\"}}")))
 		}
 	)
 	ApiResult<FindRoomResponseDto> findRoom(final Long roomId);
@@ -43,7 +43,7 @@ public interface RoomApiPresentation {
 			@ApiResponse(responseCode = "400", description = "유효하지 않은 초대코드",
 				content = @Content(schema = @Schema(
 					example = "{\"success\": false, \"data\" : null,"
-						+ "\"error\": {\"status\": 400, \"code\": \"ROOM-02\", \"message\": \"유효하지 않은 초대코드입니다.\"}}")))
+						+ "\"error\": {\"code\": \"ROOM-02\", \"message\": \"유효하지 않은 초대코드입니다.\"}}")))
 		}
 	)
 	ApiResult<FindRoomByCodeResponseDto> findRoomByInviteCode(final String inviteCode);
@@ -55,7 +55,11 @@ public interface RoomApiPresentation {
 			@ApiResponse(responseCode = "400", description = "유효하지 않은 초대코드",
 				content = @Content(schema = @Schema(
 					example = "{\"success\": false, \"data\" : null,"
-				+ "\"error\": {\"status\": 400, \"code\": \"ROOM-02\", \"message\": \"유효하지 않은 초대코드입니다.\"}}")))
+				+ "\"error\": {\"code\": \"ROOM-02\", \"message\": \"유효하지 않은 초대코드입니다.\"}}"))),
+			@ApiResponse(responseCode = "420", description = "정원 초과",
+				content = @Content(schema = @Schema(
+					example = "{\"success\": false, \"data\" : null,"
+						+ "\"error\": {\"code\": \"ROOM-03\", \"message\": \"정원을 초과하였습니다\"}}")))
 
 		}
 	)

@@ -29,7 +29,7 @@ public class SwaggerConfig {
 			.components(new Components().addSecuritySchemes(AUTHORIZATION, bearerAuth))
 			.addSecurityItem(securityItem)
 			.info(new Info()
-				.title("Basterdz Documentation")
+				.title("존경하는 아요분들~ \uD83C\uDF4E 늦어서 죄송합니다. 설날 때쯤이면 거의 다 작성되있지 않을까 싶어요\uD83D\uDC98")
 				.description("Basterdz 서비스의 API 명세서입니다.")
 				.version("v0.0.1"));
 	}

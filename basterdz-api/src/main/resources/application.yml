@@ -26,3 +26,11 @@ spring:
       on-profile: test
     import:
     - db-test.yml
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+    import:
+      - db-dev.yml

@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = "Report", description = "Report API")
+@Tag(name = "\uD83D\uDCC4Report", description = "Report API")
 public interface ScreenReportApiPresentation {
 
 	@Operation(summary = "하루 스크린 리포트 전송")
