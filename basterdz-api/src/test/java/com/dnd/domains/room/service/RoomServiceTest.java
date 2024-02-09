@@ -5,24 +5,21 @@ import com.dnd.api.domains.room.service.RoomService;
 import com.dnd.api.domains.room.util.InviteCodeUtil;
 import com.dnd.domain.room.entity.Room;
 import com.dnd.domain.room.implement.RoomRemover;
+import com.dnd.config.IntegrationServiceTest;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
 
 import static com.dnd.domain.room.entity.RestrictApp.INSTAGRAM;
 import static org.mockito.BDDMockito.given;
 
-@SpringBootTest
-@ActiveProfiles("test")
-class RoomServiceTest {
+class RoomServiceTest extends IntegrationServiceTest {
 
     @Autowired
     private RoomRemover roomRemover;

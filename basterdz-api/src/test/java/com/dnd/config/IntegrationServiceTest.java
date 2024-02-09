@@ -1,15 +1,12 @@
-package com.dnd;
+package com.dnd.config;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
 @SpringBootTest
+@ActiveProfiles("test")
 @TestPropertySource(properties = {"encryptor.key=testPassword"})
-public class BasterdzApiApplicationTests {
+public abstract class IntegrationServiceTest {
 
-    @Test
-    void contextLoads() {
-
-    }
 }
