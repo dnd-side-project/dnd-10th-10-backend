@@ -2,6 +2,7 @@ package com.dnd.domain.room.entity;
 
 import com.dnd.domain.common.entity.BaseTimeEntity;
 import com.dnd.common.exception.BadRequestException;
+import com.dnd.domain.vo.RestrictApp;
 
 import jakarta.persistence.*;
 import lombok.Builder;
