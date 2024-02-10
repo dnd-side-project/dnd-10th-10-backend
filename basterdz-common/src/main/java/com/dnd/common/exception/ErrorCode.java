@@ -16,6 +16,9 @@ public enum ErrorCode {
 	UNSUPPORTED_MEDIA_TYPE("COMMON-06", ""),
 	INTERNAL_SERVER_ERROR("COMMON-07", ""),
 
+	//Member
+	MEMBER_NOT_FOUND("MEMBER-01", "존재하지 않는 사용자입니다."),
+
 	//Room
 	ROOM_NOT_FOUND("ROOM-01", "존재하지 않는 그룹입니다."),
 	INVALID_INVITE_CODE("ROOM-02", "올바르지 않은 초대코드입니다."),
