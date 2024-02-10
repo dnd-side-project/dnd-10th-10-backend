@@ -2,6 +2,9 @@ package com.dnd.api.domains.report.dto;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import com.dnd.domain.report.entity.ScreenTime;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
@@ -16,4 +19,9 @@ public class ScreenReportRequest {
 
 	private List<ScreenTimeRequest> screenTimeData;
 
+	public List<ScreenTime> toScreenTimes() {
+		return screenTimeData.stream()
+			.map(screenTime -> ScreenTime.of(screenTime.getAppName(), screenTime.getDuration()))
+			.collect(Collectors.toList());
+	}
 }

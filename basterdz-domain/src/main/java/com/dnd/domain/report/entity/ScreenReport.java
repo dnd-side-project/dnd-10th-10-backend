@@ -39,11 +39,15 @@ public class ScreenReport {
     public static ScreenReport create(Long memberId, ScreenTime screenTime, LocalDate usageDate) {
         return ScreenReport.builder()
             .memberId(memberId)
-            .bundle(screenTime.getBundle())
+            .bundle(1L)
             .appName(screenTime.getAppName())
             .duration(screenTime.getDuration())
             .usageDate(usageDate)
             .build();
+    }
+
+    public void updateDuration(int duration) {
+        this.duration = duration;
     }
 
 }
