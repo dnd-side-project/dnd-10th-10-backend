@@ -1,4 +1,4 @@
-package com.dnd.api.domains.room.dto.response;
+package com.dnd.api.domains.room.dto;
 
 import com.dnd.domain.room.entity.Room;
 
@@ -14,13 +14,13 @@ import static lombok.AccessLevel.PROTECTED;
 @Builder
 @NoArgsConstructor(access = PROTECTED)
 @AllArgsConstructor(access = PROTECTED)
-public class RoomIdResponseDto {
+public class RoomIdResponse {
 
     @Schema(name = "id", example = "1")
     private Long id;
 
-    public static RoomIdResponseDto from(final Room room) {
-        return RoomIdResponseDto.builder()
+    public static RoomIdResponse from(final Room room) {
+        return RoomIdResponse.builder()
                 .id(room.getId())
                 .build();
     }

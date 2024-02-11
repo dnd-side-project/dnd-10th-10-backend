@@ -1,7 +1,7 @@
 package com.dnd.api.domains.room.service;
 
 import com.dnd.api.domains.room.util.InviteCodeUtil;
-import com.dnd.api.domains.room.dto.request.CreateRoomRequestDto;
+import com.dnd.api.domains.room.dto.CreateRoomRequest;
 import com.dnd.domain.room.entity.Room;
 import com.dnd.domain.room.implement.RoomAppender;
 import com.dnd.domain.room.implement.RoomFinder;
@@ -24,7 +24,7 @@ public class RoomService {
 
     @Transactional
     public Room createRoom(
-            final CreateRoomRequestDto requestDto, final LocalDate registerDate
+            final CreateRoomRequest requestDto, final LocalDate registerDate
     ) {
         String inviteCode = inviteCodeUtil.generate().toUpperCase();
         Period period = Period.between(registerDate, requestDto.getEndDate());

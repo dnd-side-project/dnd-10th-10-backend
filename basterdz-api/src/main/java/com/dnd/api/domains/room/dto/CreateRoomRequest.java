@@ -1,4 +1,4 @@
-package com.dnd.api.domains.room.dto.request;
+package com.dnd.api.domains.room.dto;
 
 import com.dnd.domain.room.entity.Room;
 import com.dnd.domain.vo.RestrictApp;
@@ -17,7 +17,7 @@ import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
-public class CreateRoomRequestDto {
+public class CreateRoomRequest {
 
     public static final int MINIMUM_MEMBER_COUNT = 1;
 
@@ -71,7 +71,7 @@ public class CreateRoomRequestDto {
     }
 
     @Builder
-    public CreateRoomRequestDto(
+    public CreateRoomRequest(
             final String title, final String goal,
             final int personnel, final RestrictApp restrictApp,
             final LocalDate startDate, final LocalDate endDate,

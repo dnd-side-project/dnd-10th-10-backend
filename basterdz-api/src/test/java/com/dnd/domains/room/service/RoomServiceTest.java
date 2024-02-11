@@ -1,6 +1,6 @@
 package com.dnd.domains.room.service;
 
-import com.dnd.api.domains.room.dto.request.CreateRoomRequestDto;
+import com.dnd.api.domains.room.dto.CreateRoomRequest;
 import com.dnd.api.domains.room.service.RoomService;
 import com.dnd.api.domains.room.util.InviteCodeUtil;
 import com.dnd.domain.room.entity.Room;
@@ -39,7 +39,7 @@ class RoomServiceTest extends IntegrationServiceTest {
     @Test
     void createRoom(){
         // given
-        CreateRoomRequestDto requestDto = CreateRoomRequestDto.builder()
+        CreateRoomRequest requestDto = CreateRoomRequest.builder()
                 .title("우리들의 도파민 탈출기")
                 .goal("우리 시험기간에만 인스타 하지 말아보자")
                 .personnel(4)

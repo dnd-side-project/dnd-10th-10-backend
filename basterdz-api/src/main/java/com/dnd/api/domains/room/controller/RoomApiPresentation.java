@@ -1,14 +1,14 @@
 package com.dnd.api.domains.room.controller;
 
-import com.dnd.api.domains.room.dto.request.CreateRoomRequestDto;
-import com.dnd.api.domains.room.dto.request.EnterRoomRequestDto;
-import com.dnd.api.domains.room.dto.response.FindRoomResponseDto;
-import com.dnd.api.domains.room.dto.response.FindRoomByCodeResponseDto;
+import com.dnd.api.domains.room.dto.CreateRoomRequest;
+import com.dnd.api.domains.room.dto.EnterRoomRequest;
+import com.dnd.api.domains.room.dto.FindRoomResponse;
+import com.dnd.api.domains.room.dto.FindRoomByCodeResponse;
 
 import org.springframework.http.ResponseEntity;
 
 import com.dnd.api.common.dto.ApiResult;
-import com.dnd.api.domains.room.dto.response.RoomIdResponseDto;
+import com.dnd.api.domains.room.dto.RoomIdResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -22,7 +22,7 @@ public interface RoomApiPresentation {
 
 	@Operation(summary = "목표 방 생성")
 	@ApiResponse(responseCode = "201", description = "방 생성 성공")
-	ResponseEntity<ApiResult<RoomIdResponseDto>> createRoom(final CreateRoomRequestDto roomCreateRequestDto);
+	ResponseEntity<ApiResult<RoomIdResponse>> createRoom(final CreateRoomRequest roomCreateRequestDto);
 
 	@Operation(summary = "목표 방 조회")
 	@ApiResponses(
@@ -34,7 +34,7 @@ public interface RoomApiPresentation {
 						+ "\"error\": {\"code\": \"ROOM-01\", \"message\": \"존재하지 않는 그룹입니다.\"}}")))
 		}
 	)
-	ApiResult<FindRoomResponseDto> findRoom(final Long roomId);
+	ApiResult<FindRoomResponse> findRoom(final Long roomId);
 
 	@Operation(summary = "초대 코드를 통한 목표 방 조회")
 	@ApiResponses(
@@ -46,7 +46,7 @@ public interface RoomApiPresentation {
 						+ "\"error\": {\"code\": \"ROOM-02\", \"message\": \"유효하지 않은 초대코드입니다.\"}}")))
 		}
 	)
-	ApiResult<FindRoomByCodeResponseDto> findRoomByInviteCode(final String inviteCode);
+	ApiResult<FindRoomByCodeResponse> findRoomByInviteCode(final String inviteCode);
 
 	@Operation(summary = "목표 방 입장")
 	@ApiResponses(
@@ -63,5 +63,5 @@ public interface RoomApiPresentation {
 
 		}
 	)
-	ApiResult<RoomIdResponseDto> enterRoom(final EnterRoomRequestDto enterRoomRequestDto);
+	ApiResult<RoomIdResponse> enterRoom(final EnterRoomRequest enterRoomRequestDto);
 }

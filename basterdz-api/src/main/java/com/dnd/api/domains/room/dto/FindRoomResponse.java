@@ -1,4 +1,4 @@
-package com.dnd.api.domains.room.dto.response;
+package com.dnd.api.domains.room.dto;
 
 import com.dnd.domain.room.entity.Room;
 import com.dnd.domain.vo.RestrictApp;
@@ -13,7 +13,7 @@ import static lombok.AccessLevel.PROTECTED;
 @Builder
 @AllArgsConstructor(access = PROTECTED)
 @NoArgsConstructor(access = PROTECTED)
-public class FindRoomResponseDto {
+public class FindRoomResponse {
 
     @Schema(name = "id", example = "1")
     private Long id;
@@ -48,8 +48,8 @@ public class FindRoomResponseDto {
     @Schema(name = "inviteCode", example = "inviteMe")
     private String inviteCode;
 
-    public static FindRoomResponseDto from(final Room room) {
-        return FindRoomResponseDto.builder()
+    public static FindRoomResponse from(final Room room) {
+        return FindRoomResponse.builder()
                 .id(room.getId())
                 .title(room.getTitle())
                 .goal(room.getGoal())
