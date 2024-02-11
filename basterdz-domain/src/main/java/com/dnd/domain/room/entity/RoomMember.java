@@ -4,6 +4,8 @@ import com.dnd.domain.member.Member;
 import com.dnd.domain.room.entity.Room;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,7 +14,9 @@ import static lombok.AccessLevel.PROTECTED;
 
 @Getter
 @Entity
+@Builder
 @NoArgsConstructor(access = PROTECTED)
+@AllArgsConstructor(access = PROTECTED)
 public class RoomMember {
 
     @Id
@@ -31,4 +35,11 @@ public class RoomMember {
     @JoinColumn(name = "room_id")
     private Room room;
 
+    public static RoomMember of(final Member member, final Room room, final boolean isHost) {
+        return RoomMember.builder()
+                .isHost(isHost)
+                .member(member)
+                .room(room)
+                .build();
+    }
 }
