@@ -15,6 +15,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+import static com.dnd.domain.vo.RoomStatus.WAITING;
+
 @Getter
 @NoArgsConstructor
 public class CreateRoomRequest {
@@ -65,6 +67,7 @@ public class CreateRoomRequest {
                 .startDate(startDate)
                 .endDate(endDate)
                 .limitHour(limitHour)
+                .roomStatus(WAITING)
                 .remainingDay(remainingDay)
                 .memberCount(MINIMUM_MEMBER_COUNT)
                 .build();
