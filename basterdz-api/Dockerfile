@@ -10,4 +10,4 @@ ENV ENCRYPT_KEY=${ENCRYPT_KEY}
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=${PROFILE}", "-Dspring.encryptor.key=${ENCRYPT_KEY}", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=${PROFILE}", "-Dencryptor.key=${ENCRYPT_KEY}", "/app.jar"]
