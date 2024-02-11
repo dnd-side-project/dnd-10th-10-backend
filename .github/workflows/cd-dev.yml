@@ -52,6 +52,7 @@ jobs:
           script: |
             cd ~/basterdz-server
             docker stop $(docker ps -a -q) 
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/basterdz-server:0.0.1
             docker rm -f $(docker ps -a -q) 
             docker-compose up -d
             docker image prune -f
