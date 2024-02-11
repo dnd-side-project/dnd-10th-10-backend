@@ -1,4 +1,4 @@
-package com.dnd.common.config;
+package com.dnd.api.common.config;
 
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import org.jasypt.encryption.StringEncryptor;

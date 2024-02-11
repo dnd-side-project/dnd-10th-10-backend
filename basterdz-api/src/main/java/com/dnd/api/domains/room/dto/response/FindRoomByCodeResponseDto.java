@@ -1,7 +1,7 @@
 package com.dnd.api.domains.room.dto.response;
 
 import com.dnd.domain.room.entity.Room;
-import com.dnd.domain.room.entity.RestrictApp;
+import com.dnd.domain.vo.RestrictApp;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

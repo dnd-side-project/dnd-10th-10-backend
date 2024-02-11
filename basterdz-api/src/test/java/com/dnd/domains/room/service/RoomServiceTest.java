@@ -16,7 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.time.LocalDate;
 
-import static com.dnd.domain.room.entity.RestrictApp.INSTAGRAM;
+import static com.dnd.domain.vo.RestrictApp.INSTAGRAM;
 import static org.mockito.BDDMockito.given;
 
 class RoomServiceTest extends IntegrationServiceTest {
