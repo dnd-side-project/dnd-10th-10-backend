@@ -1,7 +1,7 @@
 package com.dnd.domain.room.implement;
 
 import com.dnd.domain.common.annotation.Appender;
-import com.dnd.domain.room.RoomJpaRepository;
+import com.dnd.domain.room.repository.RoomJpaRepository;
 import com.dnd.domain.room.entity.Room;
 
 import lombok.RequiredArgsConstructor;

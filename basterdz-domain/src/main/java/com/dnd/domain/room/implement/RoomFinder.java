@@ -6,7 +6,7 @@ import static com.dnd.common.exception.ErrorCode.ROOM_NOT_FOUND;
 import com.dnd.common.exception.BadRequestException;
 import com.dnd.common.exception.NotFoundException;
 import com.dnd.domain.common.annotation.Finder;
-import com.dnd.domain.room.RoomJpaRepository;
+import com.dnd.domain.room.repository.RoomJpaRepository;
 import com.dnd.domain.room.entity.Room;
 
 import lombok.RequiredArgsConstructor;

@@ -4,7 +4,7 @@ import com.dnd.api.common.dto.ApiResult;
 import com.dnd.api.domains.room.dto.CreateRoomRequest;
 import com.dnd.api.domains.room.dto.EnterRoomRequest;
 import com.dnd.api.domains.room.dto.RoomIdResponse;
-import com.dnd.domain.member.Member;
+import com.dnd.domain.member.entity.Member;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

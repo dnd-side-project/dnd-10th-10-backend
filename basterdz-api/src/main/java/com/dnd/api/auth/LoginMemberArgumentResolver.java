@@ -9,8 +9,8 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 import com.dnd.common.exception.ErrorCode;
 import com.dnd.common.exception.UnauthorizedException;
-import com.dnd.domain.member.Member;
-import com.dnd.domain.member.MemberFinder;
+import com.dnd.domain.member.entity.Member;
+import com.dnd.domain.member.implement.MemberFinder;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

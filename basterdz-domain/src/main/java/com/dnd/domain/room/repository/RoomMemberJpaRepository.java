@@ -1,6 +1,6 @@
-package com.dnd.domain.room;
+package com.dnd.domain.room.repository;
 
-import com.dnd.domain.member.Member;
+import com.dnd.domain.member.entity.Member;
 import com.dnd.domain.room.entity.RoomMember;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

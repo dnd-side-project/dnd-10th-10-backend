@@ -6,7 +6,7 @@ import com.dnd.api.domains.room.dto.CreateRoomRequest;
 import com.dnd.api.domains.room.dto.EnterRoomRequest;
 import com.dnd.api.domains.room.dto.RoomIdResponse;
 import com.dnd.api.domains.room.service.RoomService;
-import com.dnd.domain.member.Member;
+import com.dnd.domain.member.entity.Member;
 import com.dnd.domain.room.entity.Room;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

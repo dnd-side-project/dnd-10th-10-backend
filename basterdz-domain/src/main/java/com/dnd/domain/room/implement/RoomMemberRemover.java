@@ -1,7 +1,7 @@
 package com.dnd.domain.room.implement;
 
 import com.dnd.domain.common.annotation.Remover;
-import com.dnd.domain.room.RoomMemberJpaRepository;
+import com.dnd.domain.room.repository.RoomMemberJpaRepository;
 import lombok.RequiredArgsConstructor;
 
 @Remover

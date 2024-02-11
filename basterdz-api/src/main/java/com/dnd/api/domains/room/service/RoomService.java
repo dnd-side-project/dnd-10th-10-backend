@@ -2,7 +2,7 @@ package com.dnd.api.domains.room.service;
 
 import com.dnd.api.domains.room.util.InviteCodeUtil;
 import com.dnd.api.domains.room.dto.CreateRoomRequest;
-import com.dnd.domain.member.Member;
+import com.dnd.domain.member.entity.Member;
 import com.dnd.domain.room.entity.Room;
 import com.dnd.domain.room.entity.RoomMember;
 import com.dnd.domain.room.implement.RoomAppender;
