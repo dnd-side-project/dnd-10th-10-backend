@@ -44,8 +44,8 @@ public class ScreenReportService {
 		appendScreenTimes(member.getId(), appendedScreenTime, usageDate);
 	}
 
-	public void appendScreenTimes(Long memberId, List<ScreenTime> appendedScreenTIme, LocalDate usageDate) {
-		screenReportAppender.appendAll(memberId, appendedScreenTIme, usageDate);
+	public void appendScreenTimes(Long memberId, List<ScreenTime> appendedScreenTime, LocalDate usageDate) {
+		screenReportAppender.appendAll(memberId, appendedScreenTime, usageDate);
 	}
 
 	private List<ScreenTime> filterToRestrictApp(List<ScreenTime> screenTimeData) {
