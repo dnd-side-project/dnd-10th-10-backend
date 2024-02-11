@@ -1,7 +1,9 @@
-package com.dnd.domain.member;
+package com.dnd.domain.member.entity;
 
 import com.dnd.domain.common.entity.BaseTimeEntity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +13,8 @@ import static lombok.AccessLevel.PROTECTED;
 @Getter
 @Entity
 @NoArgsConstructor(access = PROTECTED)
+@AllArgsConstructor(access = PROTECTED)
+@Builder
 public class Member extends BaseTimeEntity {
 
     @Id
@@ -23,8 +27,4 @@ public class Member extends BaseTimeEntity {
 
     @Column(nullable = false)
     private String oauthId;
-
-    @Column(nullable = false)
-    private String oauthProvider;
-
 }
