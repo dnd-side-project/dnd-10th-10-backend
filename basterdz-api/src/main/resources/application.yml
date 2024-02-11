@@ -43,4 +43,3 @@ spring:
       on-profile: test
     import:
     - db-test.yml
-
