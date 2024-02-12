@@ -22,6 +22,8 @@ import java.time.Period;
 @RequiredArgsConstructor
 public class RoomService {
 
+    public static final boolean IS_HOST = true;
+    public static final boolean IS_NOT_HOST = false;
     private final RoomFinder roomFinder;
     private final RoomAppender roomAppender;
     private final RoomMemberFinder roomMemberFinder;
@@ -37,7 +39,7 @@ public class RoomService {
         Period period = Period.between(registerDate, requestDto.getEndDate());
         Room room = requestDto.toEntity(inviteCode, period.getDays());
 
-        RoomMember roomMember = RoomMember.of(member, room, true);
+        RoomMember roomMember = RoomMember.of(member, room, IS_HOST);
         roomMemberAppender.append(roomMember);
 
         return roomAppender.append(room);
@@ -45,10 +47,10 @@ public class RoomService {
 
     @Transactional
     public Room enterRoom(final String inviteCode, final Member member) {
-        roomMemberFinder.existsMemberByMemberId(member);
+        roomMemberFinder.existsMember(member);
 
         Room room = roomFinder.findByInviteCode(inviteCode);
-        RoomMember roomMember = RoomMember.of(member, room, false);
+        RoomMember roomMember = RoomMember.of(member, room, IS_NOT_HOST);
 
         room.addMemberCount();
 

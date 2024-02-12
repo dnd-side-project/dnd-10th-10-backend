@@ -50,7 +50,7 @@ public class Room extends BaseTimeEntity {
 
     @Enumerated(STRING)
     @Column(nullable = false)
-    private RoomStatus roomStatus;
+    private RoomStatus status;
 
     @Enumerated(STRING)
     @Column(nullable = false)
@@ -68,7 +68,7 @@ public class Room extends BaseTimeEntity {
             final String goal, final int memberCount,
             final int personnel, final LocalDate startDate,
             final LocalDate endDate, final String inviteCode,
-            final RoomStatus roomStatus, final RestrictApp restrictApp,
+            final RoomStatus status, final RestrictApp restrictApp,
             final int limitHour, final int remainingDay
     ) {
         this.id = id;
@@ -79,7 +79,7 @@ public class Room extends BaseTimeEntity {
         this.startDate = startDate;
         this.endDate = endDate;
         this.inviteCode = inviteCode;
-        this.roomStatus = roomStatus;
+        this.status = status;
         this.restrictApp = restrictApp;
         this.limitHour = limitHour;
         this.remainingDay = remainingDay;

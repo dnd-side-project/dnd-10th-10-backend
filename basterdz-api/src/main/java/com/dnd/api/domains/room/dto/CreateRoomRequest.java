@@ -67,7 +67,7 @@ public class CreateRoomRequest {
                 .startDate(startDate)
                 .endDate(endDate)
                 .limitHour(limitHour)
-                .roomStatus(WAITING)
+                .status(WAITING)
                 .remainingDay(remainingDay)
                 .memberCount(MINIMUM_MEMBER_COUNT)
                 .build();
