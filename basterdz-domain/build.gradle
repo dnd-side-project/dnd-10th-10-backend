@@ -2,8 +2,12 @@ bootJar { enabled = false }
 jar { enabled = true }
 
 dependencies {
-    api 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation project(":basterdz-common")
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    
+    annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
+    annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
+
     runtimeOnly 'com.mysql:mysql-connector-j'
     runtimeOnly 'com.h2database:h2'
 }
