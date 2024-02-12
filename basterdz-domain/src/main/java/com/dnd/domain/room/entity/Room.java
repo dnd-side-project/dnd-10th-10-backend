@@ -91,4 +91,8 @@ public class Room extends BaseTimeEntity {
         }
         this.memberCount += 1;
     }
+
+    public void changeStatus(RoomStatus roomStatus) {
+        this.status = roomStatus;
+    }
 }

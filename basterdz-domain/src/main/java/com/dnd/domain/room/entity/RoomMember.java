@@ -1,5 +1,6 @@
 package com.dnd.domain.room.entity;
 
+import com.dnd.common.exception.BadRequestException;
 import com.dnd.domain.member.entity.Member;
 
 import jakarta.persistence.*;
@@ -8,6 +9,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.Objects;
+
+import static com.dnd.common.exception.ErrorCode.INVALID_HOST;
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -40,5 +44,11 @@ public class RoomMember {
                 .member(member)
                 .room(room)
                 .build();
+    }
+
+    public void isEqualsMember(final Long memberId) {
+        if (!Objects.equals(memberId, this.member.getId())) {
+            throw new BadRequestException(INVALID_HOST);
+        }
     }
 }

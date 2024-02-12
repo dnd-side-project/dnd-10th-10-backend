@@ -60,4 +60,13 @@ public class RoomController implements RoomApiPresentation {
 		Room room = roomService.enterRoom(inviteCode, member);
 		return ApiResult.ok(RoomIdResponse.from(room));
 	}
+
+	@PostMapping("/{roomId}/members")
+	public ApiResult<RoomIdResponse> startRoom(
+			final @LoginMember Member member,
+			final @PathVariable Long roomId
+	) {
+		Room room = roomService.startRoom(member, roomId);
+		return ApiResult.ok(RoomIdResponse.from(room));
+	}
 }
