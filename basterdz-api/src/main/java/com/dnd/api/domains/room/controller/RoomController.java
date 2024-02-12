@@ -1,14 +1,21 @@
 package com.dnd.api.domains.room.controller;
 
+import com.dnd.api.auth.LoginMember;
 import com.dnd.api.common.dto.ApiResult;
+import com.dnd.api.domains.room.dto.*;
 import com.dnd.api.domains.room.service.RoomService;
-import com.dnd.api.domains.room.dto.FindRoomByCodeResponse;
-import com.dnd.api.domains.room.dto.FindRoomResponse;
+import com.dnd.domain.member.entity.Member;
 import com.dnd.domain.room.entity.Room;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+
+import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
 @RequestMapping("/v1/rooms")
@@ -33,5 +40,26 @@ public class RoomController implements RoomApiPresentation {
 		Room room = roomService.findRoomByInviteCode(inviteCode);
 		FindRoomByCodeResponse responseDto = FindRoomByCodeResponse.from(room);
 		return ApiResult.ok(responseDto);
+	}
+
+	@PostMapping
+	public ResponseEntity<ApiResult<RoomIdResponse>> createRoom(
+			final @LoginMember Member member,
+			final @Valid @RequestBody CreateRoomRequest roomCreateRequestDto
+	) {
+		LocalDate registeredDate = LocalDate.now();
+		Room createdRoom = roomService.createRoom(roomCreateRequestDto, registeredDate, member);
+		RoomIdResponse responseDto = RoomIdResponse.from(createdRoom);
+		return ResponseEntity.status(CREATED).body(ApiResult.ok(responseDto));
+	}
+
+	@PostMapping("/entrance")
+	public ApiResult<RoomIdResponse> enterRoom(
+			final @LoginMember Member member,
+			final @RequestBody @Valid EnterRoomRequest enterRoomRequestDto
+	) {
+		String inviteCode = enterRoomRequestDto.getInviteCode();
+		Room room = roomService.enterRoom(inviteCode, member);
+		return ApiResult.ok(RoomIdResponse.from(room));
 	}
 }
