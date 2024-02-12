@@ -4,6 +4,7 @@ import com.dnd.domain.common.entity.BaseTimeEntity;
 import com.dnd.common.exception.BadRequestException;
 import com.dnd.domain.vo.RestrictApp;
 
+import com.dnd.domain.vo.RoomStatus;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -47,11 +48,9 @@ public class Room extends BaseTimeEntity {
     @Column(nullable = false)
     private String inviteCode;
 
+    @Enumerated(STRING)
     @Column(nullable = false)
-    private boolean isActive = false;
-
-    @Column(nullable = false)
-    private boolean isFinished = false;
+    private RoomStatus status;
 
     @Enumerated(STRING)
     @Column(nullable = false)
@@ -69,9 +68,8 @@ public class Room extends BaseTimeEntity {
             final String goal, final int memberCount,
             final int personnel, final LocalDate startDate,
             final LocalDate endDate, final String inviteCode,
-            final boolean isActive, final boolean isFinished,
-            final RestrictApp restrictApp, final int limitHour,
-            final int remainingDay
+            final RoomStatus status, final RestrictApp restrictApp,
+            final int limitHour, final int remainingDay
     ) {
         this.id = id;
         this.title = title;
@@ -81,8 +79,7 @@ public class Room extends BaseTimeEntity {
         this.startDate = startDate;
         this.endDate = endDate;
         this.inviteCode = inviteCode;
-        this.isActive = isActive;
-        this.isFinished = isFinished;
+        this.status = status;
         this.restrictApp = restrictApp;
         this.limitHour = limitHour;
         this.remainingDay = remainingDay;

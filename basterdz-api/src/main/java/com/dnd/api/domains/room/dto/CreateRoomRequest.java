@@ -1,4 +1,4 @@
-package com.dnd.api.domains.room.dto.request;
+package com.dnd.api.domains.room.dto;
 
 import com.dnd.domain.room.entity.Room;
 import com.dnd.domain.vo.RestrictApp;
@@ -15,9 +15,11 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+import static com.dnd.domain.vo.RoomStatus.WAITING;
+
 @Getter
 @NoArgsConstructor
-public class CreateRoomRequestDto {
+public class CreateRoomRequest {
 
     public static final int MINIMUM_MEMBER_COUNT = 1;
 
@@ -65,13 +67,14 @@ public class CreateRoomRequestDto {
                 .startDate(startDate)
                 .endDate(endDate)
                 .limitHour(limitHour)
+                .status(WAITING)
                 .remainingDay(remainingDay)
                 .memberCount(MINIMUM_MEMBER_COUNT)
                 .build();
     }
 
     @Builder
-    public CreateRoomRequestDto(
+    public CreateRoomRequest(
             final String title, final String goal,
             final int personnel, final RestrictApp restrictApp,
             final LocalDate startDate, final LocalDate endDate,

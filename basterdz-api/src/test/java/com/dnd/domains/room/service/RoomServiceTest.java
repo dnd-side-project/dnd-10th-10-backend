@@ -1,9 +1,13 @@
 package com.dnd.domains.room.service;
 
-import com.dnd.api.domains.room.dto.request.CreateRoomRequestDto;
+import com.dnd.api.domains.room.dto.CreateRoomRequest;
 import com.dnd.api.domains.room.service.RoomService;
 import com.dnd.api.domains.room.util.InviteCodeUtil;
+import com.dnd.domain.member.entity.Member;
+import com.dnd.domain.member.implement.MemberAppender;
+import com.dnd.domain.member.implement.MemberRemover;
 import com.dnd.domain.room.entity.Room;
+import com.dnd.domain.room.implement.RoomMemberRemover;
 import com.dnd.domain.room.implement.RoomRemover;
 import com.dnd.config.IntegrationServiceTest;
 
@@ -22,24 +26,41 @@ import static org.mockito.BDDMockito.given;
 class RoomServiceTest extends IntegrationServiceTest {
 
     @Autowired
-    private RoomRemover roomRemover;
+    private RoomService roomService;
 
     @Autowired
-    private RoomService roomService;
+    private MemberAppender memberAppender;
+
+    @Autowired
+    private MemberRemover memberRemover;
+
+    @Autowired
+    private RoomMemberRemover roomMemberRemover;
+
+    @Autowired
+    private RoomRemover roomRemover;
 
     @MockBean
     private InviteCodeUtil inviteCodeUtil;
 
     @AfterEach
     void tearDown() {
+        roomMemberRemover.deleteAll();
         roomRemover.deleteAll();
+        memberRemover.deleteAll();
     }
 
     @DisplayName("초기 방을 생성할 수 있습니다.")
     @Test
     void createRoom(){
         // given
-        CreateRoomRequestDto requestDto = CreateRoomRequestDto.builder()
+        Member member = Member.builder()
+                .nickname("정민")
+                .oauthId("1234")
+                .build();
+        memberAppender.append(member);
+
+        CreateRoomRequest requestDto = CreateRoomRequest.builder()
                 .title("우리들의 도파민 탈출기")
                 .goal("우리 시험기간에만 인스타 하지 말아보자")
                 .personnel(4)
@@ -56,7 +77,7 @@ class RoomServiceTest extends IntegrationServiceTest {
         // when
         given(inviteCodeUtil.generate()).willReturn("ABCDEFG");
 
-        Room result = roomService.createRoom(requestDto, registeredDate);
+        Room result = roomService.createRoom(requestDto, registeredDate, member);
 
         // then
         Assertions.assertThat(createdRoom.getInviteCode())
