@@ -17,7 +17,7 @@ public class RoomMemberFinder {
 
     private final RoomMemberJpaRepository roomMemberJpaRepository;
 
-    public List<RoomMember> findRoom(final Long roomId) {
+    public List<RoomMember> findRoomMember(final Long roomId) {
         return roomMemberJpaRepository.findByRoomId(roomId);
     }
 

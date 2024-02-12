@@ -68,7 +68,7 @@ public class RoomService {
     public Room startRoom(final Member member, final Long roomId) {
         findRoom(roomId);
 
-        List<RoomMember> roomMemberList = roomMemberFinder.findRoom(roomId);
+        List<RoomMember> roomMemberList = roomMemberFinder.findRoomMember(roomId);
         RoomMember roomMember = findHostRoomMember(roomMemberList);
         roomMember.isEqualsMember(member.getId());
 
