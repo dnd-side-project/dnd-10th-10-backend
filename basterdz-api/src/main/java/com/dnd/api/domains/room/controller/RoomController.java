@@ -1,21 +1,19 @@
 package com.dnd.api.domains.room.controller;
 
+import static org.springframework.http.HttpStatus.CREATED;
+
 import com.dnd.api.auth.LoginMember;
 import com.dnd.api.common.dto.ApiResult;
 import com.dnd.api.domains.room.dto.*;
 import com.dnd.api.domains.room.service.RoomService;
 import com.dnd.domain.member.entity.Member;
 import com.dnd.domain.room.entity.Room;
-
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
-
-import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
 @RequestMapping("/v1/rooms")

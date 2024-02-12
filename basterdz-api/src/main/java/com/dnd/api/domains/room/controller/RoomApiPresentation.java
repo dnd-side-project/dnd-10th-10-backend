@@ -56,7 +56,7 @@ public interface RoomApiPresentation {
 							content = @Content(schema = @Schema(
 									example = "{\"success\": false, \"data\" : null,"
 											+ "\"error\": {\"code\": \"ROOM-03\", \"message\": \"정원을 초과하였습니다.\"}}"))),
-					@ApiResponse(responseCode = "420", description = "이미 입장한 회원",
+					@ApiResponse(responseCode = "421", description = "이미 입장한 회원",
 							content = @Content(schema = @Schema(
 									example = "{\"success\": false, \"data\" : null,"
 											+ "\"error\": {\"code\": \"ROOM-05\", \"message\": \"이미 방에 입장한 회원입니다.\"}}")))
