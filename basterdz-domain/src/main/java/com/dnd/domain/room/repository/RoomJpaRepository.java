@@ -1,4 +1,4 @@
-package com.dnd.domain.room;
+package com.dnd.domain.room.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,4 +14,5 @@ public interface RoomJpaRepository extends JpaRepository<Room, Long> {
 
     @Query("select r from Room r where r.inviteCode = :inviteCode")
     Optional<Room> findByInviteCode(@Param("inviteCode")final String inviteCode);
+
 }

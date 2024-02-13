@@ -1,4 +1,4 @@
-package com.dnd.domain.report.entity;
+package com.dnd.domain.ranking;
 
 import com.dnd.domain.room.entity.Room;
 import jakarta.persistence.*;

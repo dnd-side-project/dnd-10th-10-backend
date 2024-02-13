@@ -1,5 +1,10 @@
 package com.dnd.domain.room.entity;
 
+import static com.dnd.common.exception.ErrorCode.ALREADY_OVER_PERSONNEL;
+import static jakarta.persistence.EnumType.STRING;
+import static jakarta.persistence.GenerationType.IDENTITY;
+import static lombok.AccessLevel.PROTECTED;
+
 import com.dnd.domain.common.entity.BaseTimeEntity;
 import com.dnd.common.exception.BadRequestException;
 import com.dnd.domain.vo.RestrictApp;
@@ -10,11 +15,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-
-import static com.dnd.common.exception.ErrorCode.ALREADY_OVER_PERSONNEL;
-import static jakarta.persistence.EnumType.STRING;
-import static jakarta.persistence.GenerationType.IDENTITY;
-import static lombok.AccessLevel.PROTECTED;
 
 @Getter
 @Entity
@@ -47,6 +47,7 @@ public class Room extends BaseTimeEntity {
     @Column(nullable = false)
     private String inviteCode;
 
+    @Enumerated(STRING)
     @Column(nullable = false)
     private RoomStatus status;
 
@@ -57,7 +58,6 @@ public class Room extends BaseTimeEntity {
     @Column(nullable = false)
     private int limitHour;
 
-    @Column(nullable = false)
     private int remainingDay;
 
     @Builder
