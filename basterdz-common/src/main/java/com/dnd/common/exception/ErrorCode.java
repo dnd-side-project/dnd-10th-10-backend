@@ -24,10 +24,7 @@ public enum ErrorCode {
 	INVALID_INVITE_CODE("ROOM-02", "올바르지 않은 초대코드입니다."),
 	ALREADY_OVER_PERSONNEL("ROOM-03", "정원을 초과하였습니다."),
 	UNSUPPORTED_RESTRICT_APP("ROOM-04", "지원하지 않는 앱입니다."),
-	MEMBER_ALREADY_ENTERED("ROOM-05", "이미 방에 입장한 회원입니다."),
-	INVALID_HOST("ROOM-06", "해당 회원은 방장이 아닙니다."),
-	NOT_EXIST_HOST("ROOM-07", "방에 방장이 존재하지 않습니다."),
-	ALREADY_STARED_ROOM("ROOM-08", "이미 시작한 방입니다.");
+	MEMBER_ALREADY_ENTERED("ROOM-05", "이미 방에 입장한 회원입니다.");
 
 	//ScreenTIme
 

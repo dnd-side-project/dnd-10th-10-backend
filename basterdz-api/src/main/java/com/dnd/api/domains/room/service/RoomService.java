@@ -1,12 +1,9 @@
 package com.dnd.api.domains.room.service;
 
-import static com.dnd.common.exception.ErrorCode.ALREADY_STARED_ROOM;
-import static com.dnd.common.exception.ErrorCode.NOT_EXIST_HOST;
 import static com.dnd.domain.vo.RoomStatus.ACTIVE;
 
 import com.dnd.api.domains.room.util.InviteCodeUtil;
 import com.dnd.api.domains.room.dto.CreateRoomRequest;
-import com.dnd.common.exception.BadRequestException;
 import com.dnd.domain.member.entity.Member;
 import com.dnd.domain.room.entity.Room;
 import com.dnd.domain.room.entity.RoomMember;
@@ -21,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -61,23 +57,18 @@ public class RoomService {
         room.addMemberCount();
 
         roomMemberAppender.append(roomMember);
-        return roomAppender.append(room);
+        return room;
     }
 
     @Transactional
     public Room startRoom(final Member member, final Long roomId) {
-        findRoom(roomId);
-
-        List<RoomMember> roomMemberList = roomMemberFinder.findRoomMember(roomId);
-        RoomMember roomMember = findHostRoomMember(roomMemberList);
-        roomMember.isEqualsMember(member.getId());
-
-        Room room = roomMember.getRoom();
-        if (room.getStatus() == ACTIVE) {
-            throw new BadRequestException(ALREADY_STARED_ROOM);
+        Room room = findRoom(roomId);
+        RoomMember roomMember = roomMemberFinder.findRoomMember(member, room);
+        if (roomMember.isHost() == IS_HOST) {
+            room.activate(ACTIVE);
         }
-        room.changeStatus(ACTIVE);
-        return roomAppender.append(room);
+
+        return room;
     }
 
     public Room findRoom(final Long roomId) {
@@ -88,10 +79,4 @@ public class RoomService {
         return roomFinder.findByInviteCode(inviteCode);
     }
 
-    private RoomMember findHostRoomMember(final List<RoomMember> roomMemberList) {
-        return roomMemberList.stream()
-                .filter(roomMember -> roomMember.isHost() == IS_HOST)
-                .findFirst()
-                .orElseThrow(() -> new BadRequestException(NOT_EXIST_HOST));
-    }
 }

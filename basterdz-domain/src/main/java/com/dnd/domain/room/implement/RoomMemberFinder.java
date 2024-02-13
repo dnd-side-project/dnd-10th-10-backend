@@ -1,15 +1,14 @@
 package com.dnd.domain.room.implement;
 
+import static com.dnd.common.exception.ErrorCode.MEMBER_ALREADY_ENTERED;
+
 import com.dnd.common.exception.BadRequestException;
 import com.dnd.domain.common.annotation.Finder;
 import com.dnd.domain.member.entity.Member;
+import com.dnd.domain.room.entity.Room;
 import com.dnd.domain.room.entity.RoomMember;
 import com.dnd.domain.room.repository.RoomMemberJpaRepository;
 import lombok.RequiredArgsConstructor;
-
-import java.util.List;
-
-import static com.dnd.common.exception.ErrorCode.MEMBER_ALREADY_ENTERED;
 
 @Finder
 @RequiredArgsConstructor
@@ -17,8 +16,8 @@ public class RoomMemberFinder {
 
     private final RoomMemberJpaRepository roomMemberJpaRepository;
 
-    public List<RoomMember> findRoomMember(final Long roomId) {
-        return roomMemberJpaRepository.findByRoomId(roomId);
+    public RoomMember findRoomMember(final Member member, final Room room) {
+        return roomMemberJpaRepository.findByRoomMember(member.getId(), room.getId());
     }
 
     public void existsMember(final Member member) {

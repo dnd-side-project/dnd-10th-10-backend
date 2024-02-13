@@ -74,19 +74,7 @@ public interface RoomApiPresentation {
 					@ApiResponse(responseCode = "404", description = "존재하지 않는 그룹",
 							content = @Content(schema = @Schema(
 									example = "{\"success\": false, \"data\" : null,"
-											+ "\"error\": {\"code\": \"ROOM-01\", \"message\": \"존재하지 않는 그룹입니다.\"}}"))),
-					@ApiResponse(responseCode = "400", description = "해당 회원 방장 아님",
-							content = @Content(schema = @Schema(
-									example = "{\"success\": false, \"data\" : null,"
-											+ "\"error\": {\"code\": \"ROOM-06\", \"message\": \"해당 회원은 방장이 아닙니다.\"}}"))),
-					@ApiResponse(responseCode = "420", description = "방장 존재하지 않음",
-							content = @Content(schema = @Schema(
-									example = "{\"success\": false, \"data\" : null,"
-											+ "\"error\": {\"code\": \"ROOM-07\", \"message\": \"방에 방장이 존재하지 않습니다.\"}}"))),
-					@ApiResponse(responseCode = "421", description = "이미 시작한 방",
-							content = @Content(schema = @Schema(
-									example = "{\"success\": false, \"data\" : null,"
-											+ "\"error\": {\"code\": \"ROOM-08\", \"message\": \"이미 시작한 방입니다.\"}}")))
+											+ "\"error\": {\"code\": \"ROOM-01\", \"message\": \"존재하지 않는 그룹입니다.\"}}")))
 			}
 	)
 	ApiResult<RoomIdResponse> startRoom(final @LoginMember Member member, final @PathVariable Long roomId);
