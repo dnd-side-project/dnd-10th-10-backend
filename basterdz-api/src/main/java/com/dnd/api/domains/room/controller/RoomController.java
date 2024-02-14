@@ -78,6 +78,14 @@ public class RoomController implements RoomApiPresentation {
 		return ApiResult.ok(FindWaitingRoomResponse.from());
 	}
 
+	@GetMapping("/{roomId}/active")
+	public ApiResult<FindParticipatingRoomsResponse> findParticipatingRooms(
+			final Member member,
+			final @PathVariable Long roomId
+	) {
+		return ApiResult.ok(FindParticipatingRoomsResponse.from());
+	}
+
 	@DeleteMapping("/{roomId}")
 	public ApiResult<Void> deleteRoom(
 			final Member member,

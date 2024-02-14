@@ -1,5 +1,7 @@
 package com.dnd.api.domains.room.dto;
 
+import static lombok.AccessLevel.PROTECTED;
+
 import com.dnd.domain.member.entity.Member;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -10,7 +12,7 @@ import java.util.List;
 
 @Getter
 @Builder
-@AllArgsConstructor
+@AllArgsConstructor(access = PROTECTED)
 public class FindWaitingRoomResponse {
 
     @Schema(name = "memberCount", example = "4")
