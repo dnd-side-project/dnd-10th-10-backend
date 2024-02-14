@@ -64,8 +64,8 @@ public class RoomService {
     public Room startRoom(final Member member, final Long roomId) {
         Room room = findRoom(roomId);
         RoomMember roomMember = roomMemberFinder.findRoomMember(member, room);
-        if (roomMember.isHost() == IS_HOST) {
-            room.activate(ACTIVE);
+        if (roomMember.isHost()) {
+            room.changeStatus(ACTIVE);
         }
 
         return room;
