@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Tag(name = "\uD83C\uDFE0Room", description = "Room API")
 public interface RoomApiPresentation {
 
-	@Operation(summary = "목표 방 조회")
+	@Operation(summary = "방 상세 조회(진행 중인 방)")
 	@ApiResponses(
 			value = {
 					@ApiResponse(responseCode = "200", description = "방 조회 성공"),
@@ -30,7 +30,7 @@ public interface RoomApiPresentation {
 	)
 	ApiResult<FindRoomResponse> findRoom(final Long roomId);
 
-	@Operation(summary = "초대 코드를 통한 목표 방 조회")
+	@Operation(summary = "초대 코드를 통한 방 조회")
 	@ApiResponses(
 			value = {
 					@ApiResponse(responseCode = "200", description = "방 조회 성공"),
@@ -42,11 +42,11 @@ public interface RoomApiPresentation {
 	)
 	ApiResult<FindRoomByCodeResponse> findRoomByInviteCode(final String inviteCode);
 
-	@Operation(summary = "목표 방 생성")
+	@Operation(summary = "방 생성")
 	@ApiResponse(responseCode = "201", description = "방 생성 성공")
 	ResponseEntity<ApiResult<RoomIdResponse>> createRoom(final Member member, final CreateRoomRequest roomCreateRequestDto);
 
-	@Operation(summary = "목표 방 입장")
+	@Operation(summary = "초대 코드를 통합 방 입장")
 	@ApiResponses(
 			value = {
 					@ApiResponse(responseCode = "200", description = "방 입장 성공"),
@@ -67,7 +67,7 @@ public interface RoomApiPresentation {
 	ApiResult<RoomIdResponse> enterRoom(final Member member, final EnterRoomRequest enterRoomRequestDto);
 
 
-	@Operation(summary = "목표 방 시작")
+	@Operation(summary = "방 시작")
 	@ApiResponses(
 			value = {
 					@ApiResponse(responseCode = "200", description = "방 시작 성공"),
