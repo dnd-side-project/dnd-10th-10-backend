@@ -1,6 +1,6 @@
 package com.dnd.api.domains.room.service;
 
-import static com.dnd.domain.vo.RoomStatus.ACTIVE;
+import static com.dnd.domain.room.entity.RoomStatus.ACTIVE;
 
 import com.dnd.api.domains.room.util.InviteCodeUtil;
 import com.dnd.api.domains.room.dto.CreateRoomRequest;

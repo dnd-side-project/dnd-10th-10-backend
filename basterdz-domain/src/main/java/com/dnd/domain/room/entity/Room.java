@@ -9,7 +9,6 @@ import com.dnd.domain.common.entity.BaseTimeEntity;
 import com.dnd.common.exception.BadRequestException;
 import com.dnd.domain.vo.RestrictApp;
 
-import com.dnd.domain.vo.RoomStatus;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
