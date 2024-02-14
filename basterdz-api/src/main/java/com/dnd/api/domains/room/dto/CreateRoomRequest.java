@@ -1,7 +1,6 @@
 package com.dnd.api.domains.room.dto;
 
 import com.dnd.domain.room.entity.Room;
-import com.dnd.domain.room.entity.RoomStatus;
 import com.dnd.domain.vo.RestrictApp;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -63,7 +62,6 @@ public class CreateRoomRequest {
                 .title(title)
                 .goal(goal)
                 .personnel(personnel)
-                .roomStatus(RoomStatus.WAITING)
                 .restrictApp(restrictApp)
                 .inviteCode(code)
                 .startDate(startDate)
