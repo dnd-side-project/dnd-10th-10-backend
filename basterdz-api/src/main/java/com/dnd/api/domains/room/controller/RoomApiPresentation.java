@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Tag(name = "\uD83C\uDFE0Room", description = "Room API")
@@ -85,7 +86,11 @@ public interface RoomApiPresentation {
 
 	@Operation(summary = "참여방 조회")
 	@ApiResponse(responseCode = "200", description = "참여방 조회 성공")
-	ApiResult<FindParticipatingRoomsResponse> findParticipatingRooms(final Member member, final @PathVariable Long roomId);
+	ApiResult<FindRoomsResponse> findParticipatingRooms(final Member member, final @PathVariable Long roomId);
+
+	@Operation(summary = "종료방 조회")
+	@ApiResponse(responseCode = "200", description = "종료방 조회 성공")
+	ApiResult<FindRoomsResponse> findFinishedRooms(final Member member, final @PathVariable Long roomId);
 
 	@Operation(summary = "방 삭제")
 	@ApiResponse(responseCode = "200", description = "방 삭제 성공")

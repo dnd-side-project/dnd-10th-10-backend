@@ -14,13 +14,13 @@ import java.util.List;
 @Getter
 @Builder
 @AllArgsConstructor(access = PROTECTED)
-public class FindParticipatingRoomsResponse {
+public class FindRoomsResponse {
 
     @Schema(name = "rooms", example = "[{\"id\":1,\"title\":\"우리들의 도파민 탈출기\",\"personnel\":6,\"memberCount\":4,\"remainingDay\":10}]")
     private List<Room> rooms;
 
-    public static FindParticipatingRoomsResponse from() {
-        return FindParticipatingRoomsResponse.builder()
+    public static FindRoomsResponse from() {
+        return FindRoomsResponse.builder()
                 .rooms(null)
                 .build();
     }
