@@ -7,14 +7,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-
 @Getter
 @Builder
 @AllArgsConstructor(access = PROTECTED)
 public class CheckHostResponse {
 
     @Schema(name = "isHost", example = "true")
-    private boolean isHost;
+    private Boolean isHost;
 
     public static CheckHostResponse from() {
         return CheckHostResponse.builder()

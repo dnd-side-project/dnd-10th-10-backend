@@ -10,17 +10,16 @@ import lombok.Getter;
 
 import java.util.List;
 
-
 @Getter
 @Builder
 @AllArgsConstructor(access = PROTECTED)
-public class FindRoomsResponse {
+public class FindFinishedRoomsResponse {
 
-    @Schema(name = "rooms", example = "[{\"id\":1,\"title\":\"우리들의 도파민 탈출기\",\"personnel\":6,\"memberCount\":4,\"remainingDay\":10}]")
+    @Schema(name = "rooms", example = "[{\"id\":1,\"title\":\"우리들의 도파민 탈출기\",\"personnel\":6,\"memberCount\":4}]")
     private List<Room> rooms;
 
-    public static FindRoomsResponse from() {
-        return FindRoomsResponse.builder()
+    public static FindFinishedRoomsResponse from() {
+        return FindFinishedRoomsResponse.builder()
                 .rooms(null)
                 .build();
     }

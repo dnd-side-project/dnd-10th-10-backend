@@ -85,11 +85,11 @@ public interface RoomApiPresentation {
 
 	@Operation(summary = "참여방 조회")
 	@ApiResponse(responseCode = "200", description = "참여방 조회 성공")
-	ApiResult<FindRoomsResponse> findParticipatingRooms(final Member member, final @PathVariable Long roomId);
+	ApiResult<FindActiveRoomsResponse> findActiveRooms(final Member member, final @PathVariable Long roomId);
 
 	@Operation(summary = "종료방 조회")
 	@ApiResponse(responseCode = "200", description = "종료방 조회 성공")
-	ApiResult<FindRoomsResponse> findFinishedRooms(final Member member, final @PathVariable Long roomId);
+	ApiResult<FindFinishedRoomsResponse> findFinishedRooms(final Member member, final @PathVariable Long roomId);
 
 	@Operation(summary = "호스트 확인")
 	@ApiResponse(responseCode = "200", description = "호스트 확인 성공")

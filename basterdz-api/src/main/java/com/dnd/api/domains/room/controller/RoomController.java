@@ -79,19 +79,19 @@ public class RoomController implements RoomApiPresentation {
 	}
 
 	@GetMapping("/{roomId}/active")
-	public ApiResult<FindRoomsResponse> findParticipatingRooms(
+	public ApiResult<FindActiveRoomsResponse> findActiveRooms(
 			final @LoginMember Member member,
 			final @PathVariable Long roomId
 	) {
-		return ApiResult.ok(FindRoomsResponse.from());
+		return ApiResult.ok(FindActiveRoomsResponse.from());
 	}
 
 	@GetMapping("/{roomId}/finished")
-	public ApiResult<FindRoomsResponse> findFinishedRooms(
+	public ApiResult<FindFinishedRoomsResponse> findFinishedRooms(
 			final @LoginMember Member member,
 			final @PathVariable Long roomId
 	) {
-		return ApiResult.ok(FindRoomsResponse.from());
+		return ApiResult.ok(FindFinishedRoomsResponse.from());
 	}
 
 	@GetMapping("/{roomId}/check-host")
