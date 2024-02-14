@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-import static com.dnd.domain.vo.RoomStatus.WAITING;
+import static com.dnd.domain.room.entity.RoomStatus.WAITING;
 
 @Getter
 @NoArgsConstructor

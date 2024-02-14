@@ -1,5 +1,7 @@
 package com.dnd.api.domains.room.service;
 
+import static com.dnd.domain.room.entity.RoomStatus.ACTIVE;
+
 import com.dnd.api.domains.room.util.InviteCodeUtil;
 import com.dnd.api.domains.room.dto.CreateRoomRequest;
 import com.dnd.domain.member.entity.Member;
@@ -55,16 +57,26 @@ public class RoomService {
         room.addMemberCount();
 
         roomMemberAppender.append(roomMember);
-        return roomAppender.append(room);
+        return room;
     }
 
-    public Room findRoom(Long roomId) {
+    @Transactional
+    public Room startRoom(final Member member, final Long roomId) {
+        Room room = findRoom(roomId);
+        RoomMember roomMember = roomMemberFinder.findRoomMember(member, room);
+        if (roomMember.isHost()) {
+            room.changeStatus(ACTIVE);
+        }
+
+        return room;
+    }
+
+    public Room findRoom(final Long roomId) {
         return roomFinder.find(roomId);
     }
 
-    public Room findRoomByInviteCode(String inviteCode) {
+    public Room findRoomByInviteCode(final String inviteCode) {
         return roomFinder.findByInviteCode(inviteCode);
     }
-
 
 }

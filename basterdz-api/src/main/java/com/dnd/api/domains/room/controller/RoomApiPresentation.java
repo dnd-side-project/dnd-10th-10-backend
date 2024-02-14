@@ -1,5 +1,6 @@
 package com.dnd.api.domains.room.controller;
 
+import com.dnd.api.auth.LoginMember;
 import com.dnd.api.domains.room.dto.*;
 
 import com.dnd.api.common.dto.ApiResult;
@@ -12,6 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Tag(name = "\uD83C\uDFE0Room", description = "Room API")
 public interface RoomApiPresentation {
@@ -63,5 +65,18 @@ public interface RoomApiPresentation {
 			}
 	)
 	ApiResult<RoomIdResponse> enterRoom(final Member member, final EnterRoomRequest enterRoomRequestDto);
+
+
+	@Operation(summary = "목표 방 시작")
+	@ApiResponses(
+			value = {
+					@ApiResponse(responseCode = "200", description = "방 시작 성공"),
+					@ApiResponse(responseCode = "404", description = "존재하지 않는 그룹",
+							content = @Content(schema = @Schema(
+									example = "{\"success\": false, \"data\" : null,"
+											+ "\"error\": {\"code\": \"ROOM-01\", \"message\": \"존재하지 않는 그룹입니다.\"}}")))
+			}
+	)
+	ApiResult<RoomIdResponse> startRoom(final @LoginMember Member member, final @PathVariable Long roomId);
 
 }

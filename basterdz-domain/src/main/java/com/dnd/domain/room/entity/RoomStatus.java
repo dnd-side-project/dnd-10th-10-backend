@@ -1,4 +1,4 @@
-package com.dnd.domain.vo;
+package com.dnd.domain.room.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

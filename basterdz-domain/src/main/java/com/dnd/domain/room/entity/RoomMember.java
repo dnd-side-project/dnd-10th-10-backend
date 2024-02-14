@@ -1,5 +1,8 @@
 package com.dnd.domain.room.entity;
 
+import static jakarta.persistence.GenerationType.IDENTITY;
+import static lombok.AccessLevel.PROTECTED;
+
 import com.dnd.domain.member.entity.Member;
 
 import jakarta.persistence.*;
@@ -7,9 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import static jakarta.persistence.GenerationType.IDENTITY;
-import static lombok.AccessLevel.PROTECTED;
 
 @Getter
 @Entity

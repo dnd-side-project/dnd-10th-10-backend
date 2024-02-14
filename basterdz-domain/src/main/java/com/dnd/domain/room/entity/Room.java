@@ -1,21 +1,20 @@
 package com.dnd.domain.room.entity;
 
+import static com.dnd.common.exception.ErrorCode.ALREADY_OVER_PERSONNEL;
+import static jakarta.persistence.EnumType.STRING;
+import static jakarta.persistence.GenerationType.IDENTITY;
+import static lombok.AccessLevel.PROTECTED;
+
 import com.dnd.domain.common.entity.BaseTimeEntity;
 import com.dnd.common.exception.BadRequestException;
 import com.dnd.domain.vo.RestrictApp;
 
-import com.dnd.domain.vo.RoomStatus;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-
-import static com.dnd.common.exception.ErrorCode.ALREADY_OVER_PERSONNEL;
-import static jakarta.persistence.EnumType.STRING;
-import static jakarta.persistence.GenerationType.IDENTITY;
-import static lombok.AccessLevel.PROTECTED;
 
 @Getter
 @Entity
@@ -90,5 +89,9 @@ public class Room extends BaseTimeEntity {
             throw new BadRequestException(ALREADY_OVER_PERSONNEL);
         }
         this.memberCount += 1;
+    }
+
+    public void changeStatus(RoomStatus roomStatus) {
+        this.status = roomStatus;
     }
 }
