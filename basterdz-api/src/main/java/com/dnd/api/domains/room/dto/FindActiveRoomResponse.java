@@ -13,7 +13,7 @@ import static lombok.AccessLevel.PROTECTED;
 @Builder
 @AllArgsConstructor(access = PROTECTED)
 @NoArgsConstructor(access = PROTECTED)
-public class FindRoomResponse {
+public class FindActiveRoomResponse {
 
     @Schema(name = "id", example = "1")
     private Long id;
@@ -48,8 +48,8 @@ public class FindRoomResponse {
     @Schema(name = "inviteCode", example = "inviteMe")
     private String inviteCode;
 
-    public static FindRoomResponse from(final Room room) {
-        return FindRoomResponse.builder()
+    public static FindActiveRoomResponse from(final Room room) {
+        return FindActiveRoomResponse.builder()
                 .id(room.getId())
                 .title(room.getTitle())
                 .goal(room.getGoal())

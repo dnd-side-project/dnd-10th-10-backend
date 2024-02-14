@@ -28,7 +28,7 @@ public interface RoomApiPresentation {
 											+ "\"error\": {\"code\": \"ROOM-01\", \"message\": \"존재하지 않는 그룹입니다.\"}}")))
 			}
 	)
-	ApiResult<FindRoomResponse> findRoom(final Long roomId);
+	ApiResult<FindActiveRoomResponse> findActiveRoom(final Long roomId);
 
 	@Operation(summary = "초대 코드를 통한 방 조회")
 	@ApiResponses(
@@ -78,5 +78,9 @@ public interface RoomApiPresentation {
 			}
 	)
 	ApiResult<RoomIdResponse> startRoom(final @LoginMember Member member, final @PathVariable Long roomId);
+
+	@Operation(summary = "방 상세 조회(대기방)")
+	@ApiResponse(responseCode = "200", description = "방 조회 성공")
+	ApiResult<FindWaitingRoomResponse> findWaitingRoom(final Member member, final @PathVariable Long roomId);
 
 }

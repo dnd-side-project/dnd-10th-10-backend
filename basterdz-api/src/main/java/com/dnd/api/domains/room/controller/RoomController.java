@@ -23,11 +23,11 @@ public class RoomController implements RoomApiPresentation {
 	private final RoomService roomService;
 
 	@GetMapping("/{roomId}")
-	public ApiResult<FindRoomResponse> findRoom(
+	public ApiResult<FindActiveRoomResponse> findActiveRoom(
 			final @PathVariable Long roomId
 	) {
 		Room room = roomService.findRoom(roomId);
-		FindRoomResponse responseDto = FindRoomResponse.from(room);
+		FindActiveRoomResponse responseDto = FindActiveRoomResponse.from(room);
 		return ApiResult.ok(responseDto);
 	}
 
@@ -68,5 +68,13 @@ public class RoomController implements RoomApiPresentation {
 	) {
 		Room room = roomService.startRoom(member, roomId);
 		return ApiResult.ok(RoomIdResponse.from(room));
+	}
+
+	@GetMapping("{roomId}/members")
+	public ApiResult<FindWaitingRoomResponse> findWaitingRoom(
+			final Member member,
+			final @PathVariable Long roomId
+	) {
+		return ApiResult.ok(FindWaitingRoomResponse.from());
 	}
 }
