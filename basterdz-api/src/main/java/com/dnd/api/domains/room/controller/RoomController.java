@@ -70,11 +70,19 @@ public class RoomController implements RoomApiPresentation {
 		return ApiResult.ok(RoomIdResponse.from(room));
 	}
 
-	@GetMapping("{roomId}/members")
+	@GetMapping("/{roomId}/members")
 	public ApiResult<FindWaitingRoomResponse> findWaitingRoom(
 			final Member member,
 			final @PathVariable Long roomId
 	) {
 		return ApiResult.ok(FindWaitingRoomResponse.from());
+	}
+
+	@DeleteMapping("/{roomId}")
+	public ApiResult<Void> deleteRoom(
+			final Member member,
+			final @PathVariable Long roomId
+	) {
+		return ApiResult.ok(null);
 	}
 }
