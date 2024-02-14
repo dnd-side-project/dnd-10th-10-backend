@@ -72,7 +72,7 @@ public class RoomController implements RoomApiPresentation {
 
 	@GetMapping("/{roomId}/members")
 	public ApiResult<FindWaitingRoomResponse> findWaitingRoom(
-			final Member member,
+			final @LoginMember Member member,
 			final @PathVariable Long roomId
 	) {
 		return ApiResult.ok(FindWaitingRoomResponse.from());
@@ -80,7 +80,7 @@ public class RoomController implements RoomApiPresentation {
 
 	@GetMapping("/{roomId}/active")
 	public ApiResult<FindRoomsResponse> findParticipatingRooms(
-			final Member member,
+			final @LoginMember Member member,
 			final @PathVariable Long roomId
 	) {
 		return ApiResult.ok(FindRoomsResponse.from());
@@ -88,10 +88,18 @@ public class RoomController implements RoomApiPresentation {
 
 	@GetMapping("/{roomId}/finished")
 	public ApiResult<FindRoomsResponse> findFinishedRooms(
-			final Member member,
+			final @LoginMember Member member,
 			final @PathVariable Long roomId
 	) {
 		return ApiResult.ok(FindRoomsResponse.from());
+	}
+
+	@GetMapping("/{roomId}/check-host")
+	public ApiResult<CheckHostResponse> checkHost(
+			final @LoginMember Member member,
+			final @PathVariable Long roomId
+	) {
+		return ApiResult.ok(CheckHostResponse.from());
 	}
 
 	@DeleteMapping("/{roomId}")
