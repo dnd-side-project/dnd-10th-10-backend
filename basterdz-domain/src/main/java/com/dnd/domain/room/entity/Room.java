@@ -58,7 +58,6 @@ public class Room extends BaseTimeEntity {
     @Column(nullable = false)
     private int limitHour;
 
-    @Column(nullable = false)
     private int remainingDay;
 
     @Builder

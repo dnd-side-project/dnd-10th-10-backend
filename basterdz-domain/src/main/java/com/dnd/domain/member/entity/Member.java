@@ -1,14 +1,18 @@
 package com.dnd.domain.member.entity;
 
-import com.dnd.domain.common.entity.BaseTimeEntity;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
+
+import com.dnd.domain.common.entity.BaseTimeEntity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 @Getter
 @Entity
@@ -27,4 +31,8 @@ public class Member extends BaseTimeEntity {
 
     @Column(nullable = false)
     private String oauthId;
+
+    @Column(nullable = false)
+    private String oauthProvider;
+
 }

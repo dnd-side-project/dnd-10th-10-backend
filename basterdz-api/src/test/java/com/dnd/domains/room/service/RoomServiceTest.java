@@ -57,6 +57,7 @@ class RoomServiceTest extends IntegrationServiceTest {
         Member member = Member.builder()
                 .nickname("정민")
                 .oauthId("1234")
+                .oauthProvider("APPLE")
                 .build();
         memberAppender.append(member);
 

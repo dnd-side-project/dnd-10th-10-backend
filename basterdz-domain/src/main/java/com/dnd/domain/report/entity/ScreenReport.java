@@ -3,7 +3,10 @@ package com.dnd.domain.report.entity;
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,8 +26,10 @@ public class ScreenReport {
     @Column(name = "daily_report_id")
     private Long id;
 
+    @Column(nullable = false)
     private Long bundle;
 
+    @Column(nullable = false)
     private String appName;
 
     @Column(nullable = false)
