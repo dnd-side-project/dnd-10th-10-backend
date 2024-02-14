@@ -6,5 +6,5 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum RoomStatus {
-	WAITING, ACTIVE, FINISHED
+    WAITING, ACTIVE, FINISHED
 }

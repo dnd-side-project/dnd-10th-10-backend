@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dnd.domain.member.Member;
+import com.dnd.domain.member.entity.Member;
 import com.dnd.domain.report.implement.ScreenReportAppender;
 import com.dnd.domain.report.implement.ScreenReportFinder;
 import com.dnd.domain.report.entity.ScreenReport;

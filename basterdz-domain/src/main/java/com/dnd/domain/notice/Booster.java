@@ -1,7 +1,7 @@
 package com.dnd.domain.notice;
 
 import com.dnd.domain.common.entity.BaseTimeEntity;
-import com.dnd.domain.member.Member;
+import com.dnd.domain.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

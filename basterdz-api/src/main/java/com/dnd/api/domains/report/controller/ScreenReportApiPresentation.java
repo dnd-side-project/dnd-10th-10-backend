@@ -1,10 +1,8 @@
 package com.dnd.api.domains.report.controller;
 
-import org.springframework.http.ResponseEntity;
-
 import com.dnd.api.common.dto.ApiResult;
 import com.dnd.api.domains.report.dto.ScreenReportRequest;
-import com.dnd.domain.member.Member;
+import com.dnd.domain.member.entity.Member;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

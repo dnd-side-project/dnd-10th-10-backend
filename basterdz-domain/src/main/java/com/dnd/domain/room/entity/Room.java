@@ -66,7 +66,7 @@ public class Room extends BaseTimeEntity {
             final String goal, final int memberCount,
             final int personnel, final LocalDate startDate,
             final LocalDate endDate, final String inviteCode,
-            final RoomStatus roomStatus, final RestrictApp restrictApp,
+            final RoomStatus status, final RestrictApp restrictApp,
             final int limitHour, final int remainingDay
     ) {
         this.id = id;
@@ -77,7 +77,7 @@ public class Room extends BaseTimeEntity {
         this.startDate = startDate;
         this.endDate = endDate;
         this.inviteCode = inviteCode;
-        this.status = roomStatus;
+        this.status = status;
         this.restrictApp = restrictApp;
         this.limitHour = limitHour;
         this.remainingDay = remainingDay;
@@ -88,5 +88,9 @@ public class Room extends BaseTimeEntity {
             throw new BadRequestException(ALREADY_OVER_PERSONNEL);
         }
         this.memberCount += 1;
+    }
+
+    public void changeStatus(RoomStatus roomStatus) {
+        this.status = roomStatus;
     }
 }

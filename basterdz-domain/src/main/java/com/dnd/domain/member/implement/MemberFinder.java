@@ -1,14 +1,16 @@
-package com.dnd.domain.member;
+package com.dnd.domain.member.implement;
 
 import static com.dnd.common.exception.ErrorCode.MEMBER_NOT_FOUND;
 
 import com.dnd.common.exception.NotFoundException;
 
-import org.springframework.stereotype.Component;
+import com.dnd.domain.common.annotation.Finder;
 
+import com.dnd.domain.member.entity.Member;
+import com.dnd.domain.member.repository.MemberJpaRepository;
 import lombok.RequiredArgsConstructor;
 
-@Component
+@Finder
 @RequiredArgsConstructor
 public class MemberFinder {
 
