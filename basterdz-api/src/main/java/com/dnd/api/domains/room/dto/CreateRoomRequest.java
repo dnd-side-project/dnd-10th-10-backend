@@ -1,5 +1,7 @@
 package com.dnd.api.domains.room.dto;
 
+import static com.dnd.domain.room.entity.RoomStatus.WAITING;
+
 import com.dnd.domain.room.entity.Room;
 import com.dnd.domain.vo.RestrictApp;
 
@@ -14,8 +16,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-
-import static com.dnd.domain.room.entity.RoomStatus.WAITING;
 
 @Getter
 @NoArgsConstructor

@@ -1,5 +1,7 @@
 package com.dnd.api.domains.room.dto;
 
+import static lombok.AccessLevel.PROTECTED;
+
 import com.dnd.domain.room.entity.Room;
 import com.dnd.domain.vo.RestrictApp;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -9,8 +11,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-
-import static lombok.AccessLevel.PROTECTED;
 
 @Getter
 @Builder

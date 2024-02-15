@@ -1,5 +1,7 @@
 package com.dnd.api.domains.room.dto;
 
+import static lombok.AccessLevel.PROTECTED;
+
 import com.dnd.domain.room.entity.Room;
 import com.dnd.domain.vo.RestrictApp;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -7,13 +9,11 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-import static lombok.AccessLevel.PROTECTED;
-
 @Getter
 @Builder
 @AllArgsConstructor(access = PROTECTED)
 @NoArgsConstructor(access = PROTECTED)
-public class FindRoomResponse {
+public class FindActiveRoomResponse {
 
     @Schema(name = "id", example = "1")
     private Long id;
@@ -48,8 +48,8 @@ public class FindRoomResponse {
     @Schema(name = "inviteCode", example = "inviteMe")
     private String inviteCode;
 
-    public static FindRoomResponse from(final Room room) {
-        return FindRoomResponse.builder()
+    public static FindActiveRoomResponse from(final Room room) {
+        return FindActiveRoomResponse.builder()
                 .id(room.getId())
                 .title(room.getTitle())
                 .goal(room.getGoal())

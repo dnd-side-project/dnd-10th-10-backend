@@ -1,6 +1,5 @@
 package com.dnd.api.domains.room.controller;
 
-import com.dnd.api.auth.LoginMember;
 import com.dnd.api.domains.room.dto.*;
 
 import com.dnd.api.common.dto.ApiResult;
@@ -13,12 +12,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Tag(name = "\uD83C\uDFE0Room", description = "Room API")
 public interface RoomApiPresentation {
 
-	@Operation(summary = "목표 방 조회")
+	@Operation(summary = "방 상세 조회(진행 중인 방)")
 	@ApiResponses(
 			value = {
 					@ApiResponse(responseCode = "200", description = "방 조회 성공"),
@@ -28,9 +26,9 @@ public interface RoomApiPresentation {
 											+ "\"error\": {\"code\": \"ROOM-01\", \"message\": \"존재하지 않는 그룹입니다.\"}}")))
 			}
 	)
-	ApiResult<FindRoomResponse> findRoom(final Long roomId);
+	ApiResult<FindActiveRoomResponse> findActiveRoom(final Long roomId);
 
-	@Operation(summary = "초대 코드를 통한 목표 방 조회")
+	@Operation(summary = "초대 코드를 통한 방 조회")
 	@ApiResponses(
 			value = {
 					@ApiResponse(responseCode = "200", description = "방 조회 성공"),
@@ -42,11 +40,11 @@ public interface RoomApiPresentation {
 	)
 	ApiResult<FindRoomByCodeResponse> findRoomByInviteCode(final String inviteCode);
 
-	@Operation(summary = "목표 방 생성")
+	@Operation(summary = "방 생성")
 	@ApiResponse(responseCode = "201", description = "방 생성 성공")
 	ResponseEntity<ApiResult<RoomIdResponse>> createRoom(final Member member, final CreateRoomRequest roomCreateRequestDto);
 
-	@Operation(summary = "목표 방 입장")
+	@Operation(summary = "초대 코드를 통합 방 입장")
 	@ApiResponses(
 			value = {
 					@ApiResponse(responseCode = "200", description = "방 입장 성공"),
@@ -67,7 +65,7 @@ public interface RoomApiPresentation {
 	ApiResult<RoomIdResponse> enterRoom(final Member member, final EnterRoomRequest enterRoomRequestDto);
 
 
-	@Operation(summary = "목표 방 시작")
+	@Operation(summary = "방 시작")
 	@ApiResponses(
 			value = {
 					@ApiResponse(responseCode = "200", description = "방 시작 성공"),
@@ -77,6 +75,25 @@ public interface RoomApiPresentation {
 											+ "\"error\": {\"code\": \"ROOM-01\", \"message\": \"존재하지 않는 그룹입니다.\"}}")))
 			}
 	)
-	ApiResult<RoomIdResponse> startRoom(final @LoginMember Member member, final @PathVariable Long roomId);
+	ApiResult<RoomIdResponse> startRoom(final Member member, final Long roomId);
 
+	@Operation(summary = "방 상세 조회(대기방)")
+	@ApiResponse(responseCode = "200", description = "방 조회 성공")
+	ApiResult<FindWaitingRoomResponse> findWaitingRoom(final Member member, final Long roomId);
+
+	@Operation(summary = "참여방 조회")
+	@ApiResponse(responseCode = "200", description = "참여방 조회 성공")
+	ApiResult<FindActiveRoomsResponse> findActiveRooms(final Member member, final Long roomId);
+
+	@Operation(summary = "종료방 조회")
+	@ApiResponse(responseCode = "200", description = "종료방 조회 성공")
+	ApiResult<FindFinishedRoomsResponse> findFinishedRooms(final Member member, final Long roomId);
+
+	@Operation(summary = "호스트 확인")
+	@ApiResponse(responseCode = "200", description = "호스트 확인 성공")
+	ApiResult<CheckHostResponse> checkHost(final Member member, final Long roomId);
+
+	@Operation(summary = "방 삭제")
+	@ApiResponse(responseCode = "200", description = "방 삭제 성공")
+	ApiResult<RoomIdResponse> deleteRoom(final Member member, final Long roomId);
 }

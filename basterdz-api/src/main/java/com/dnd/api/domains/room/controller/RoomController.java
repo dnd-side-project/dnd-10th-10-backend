@@ -23,11 +23,11 @@ public class RoomController implements RoomApiPresentation {
 	private final RoomService roomService;
 
 	@GetMapping("/{roomId}")
-	public ApiResult<FindRoomResponse> findRoom(
+	public ApiResult<FindActiveRoomResponse> findActiveRoom(
 			final @PathVariable Long roomId
 	) {
 		Room room = roomService.findRoom(roomId);
-		FindRoomResponse responseDto = FindRoomResponse.from(room);
+		FindActiveRoomResponse responseDto = FindActiveRoomResponse.from(room);
 		return ApiResult.ok(responseDto);
 	}
 
@@ -68,5 +68,45 @@ public class RoomController implements RoomApiPresentation {
 	) {
 		Room room = roomService.startRoom(member, roomId);
 		return ApiResult.ok(RoomIdResponse.from(room));
+	}
+
+	@GetMapping("/{roomId}/members")
+	public ApiResult<FindWaitingRoomResponse> findWaitingRoom(
+			final @LoginMember Member member,
+			final @PathVariable Long roomId
+	) {
+		return ApiResult.ok(FindWaitingRoomResponse.from());
+	}
+
+	@GetMapping("/{roomId}/active")
+	public ApiResult<FindActiveRoomsResponse> findActiveRooms(
+			final @LoginMember Member member,
+			final @PathVariable Long roomId
+	) {
+		return ApiResult.ok(FindActiveRoomsResponse.from());
+	}
+
+	@GetMapping("/{roomId}/finished")
+	public ApiResult<FindFinishedRoomsResponse> findFinishedRooms(
+			final @LoginMember Member member,
+			final @PathVariable Long roomId
+	) {
+		return ApiResult.ok(FindFinishedRoomsResponse.from());
+	}
+
+	@GetMapping("/{roomId}/check-host")
+	public ApiResult<CheckHostResponse> checkHost(
+			final @LoginMember Member member,
+			final @PathVariable Long roomId
+	) {
+		return ApiResult.ok(CheckHostResponse.from());
+	}
+
+	@DeleteMapping("/{roomId}")
+	public ApiResult<RoomIdResponse> deleteRoom(
+			final @LoginMember Member member,
+			final @PathVariable Long roomId
+	) {
+		return ApiResult.ok(RoomIdResponse.temp());
 	}
 }
