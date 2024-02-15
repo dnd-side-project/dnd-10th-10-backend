@@ -1,6 +1,5 @@
 package com.dnd.api.domains.room.controller;
 
-import com.dnd.api.auth.LoginMember;
 import com.dnd.api.domains.room.dto.*;
 
 import com.dnd.api.common.dto.ApiResult;
@@ -13,7 +12,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Tag(name = "\uD83C\uDFE0Room", description = "Room API")
 public interface RoomApiPresentation {
@@ -77,25 +75,25 @@ public interface RoomApiPresentation {
 											+ "\"error\": {\"code\": \"ROOM-01\", \"message\": \"존재하지 않는 그룹입니다.\"}}")))
 			}
 	)
-	ApiResult<RoomIdResponse> startRoom(final @LoginMember Member member, final @PathVariable Long roomId);
+	ApiResult<RoomIdResponse> startRoom(final Member member, final Long roomId);
 
 	@Operation(summary = "방 상세 조회(대기방)")
 	@ApiResponse(responseCode = "200", description = "방 조회 성공")
-	ApiResult<FindWaitingRoomResponse> findWaitingRoom(final Member member, final @PathVariable Long roomId);
+	ApiResult<FindWaitingRoomResponse> findWaitingRoom(final Member member, final Long roomId);
 
 	@Operation(summary = "참여방 조회")
 	@ApiResponse(responseCode = "200", description = "참여방 조회 성공")
-	ApiResult<FindActiveRoomsResponse> findActiveRooms(final Member member, final @PathVariable Long roomId);
+	ApiResult<FindActiveRoomsResponse> findActiveRooms(final Member member, final Long roomId);
 
 	@Operation(summary = "종료방 조회")
 	@ApiResponse(responseCode = "200", description = "종료방 조회 성공")
-	ApiResult<FindFinishedRoomsResponse> findFinishedRooms(final Member member, final @PathVariable Long roomId);
+	ApiResult<FindFinishedRoomsResponse> findFinishedRooms(final Member member, final Long roomId);
 
 	@Operation(summary = "호스트 확인")
 	@ApiResponse(responseCode = "200", description = "호스트 확인 성공")
-	ApiResult<CheckHostResponse> checkHost(final @LoginMember Member member, final @PathVariable Long roomId);
+	ApiResult<CheckHostResponse> checkHost(final Member member, final Long roomId);
 
 	@Operation(summary = "방 삭제")
 	@ApiResponse(responseCode = "200", description = "방 삭제 성공")
-	ApiResult<Void> deleteRoom(final Member member, final @PathVariable Long roomId);
+	ApiResult<Void> deleteRoom(final Member member, final Long roomId);
 }

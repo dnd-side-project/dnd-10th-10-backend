@@ -104,7 +104,7 @@ public class RoomController implements RoomApiPresentation {
 
 	@DeleteMapping("/{roomId}")
 	public ApiResult<Void> deleteRoom(
-			final Member member,
+			final @LoginMember Member member,
 			final @PathVariable Long roomId
 	) {
 		return ApiResult.ok(null);
