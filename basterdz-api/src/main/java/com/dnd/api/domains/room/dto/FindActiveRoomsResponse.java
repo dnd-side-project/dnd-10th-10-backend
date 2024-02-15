@@ -2,7 +2,6 @@ package com.dnd.api.domains.room.dto;
 
 import static lombok.AccessLevel.PROTECTED;
 
-import com.dnd.domain.room.entity.Room;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,12 +14,12 @@ import java.util.List;
 @AllArgsConstructor(access = PROTECTED)
 public class FindActiveRoomsResponse {
 
-    @Schema(name = "rooms", example = "[{\"id\":1,\"title\":\"우리들의 도파민 탈출기\",\"personnel\":6,\"memberCount\":4,\"remainingDay\":10}]")
-    private List<Room> rooms;
+    @Schema(name = "roomResponses", example = "[{\"id\":1,\"title\":\"우리들의 도파민 탈출기\",\"personnel\":6,\"memberCount\":4,\"remainingDay\":10}]")
+    private List<RoomResponse> roomResponses;
 
     public static FindActiveRoomsResponse from() {
         return FindActiveRoomsResponse.builder()
-                .rooms(null)
+                .roomResponses(null)
                 .build();
     }
 }

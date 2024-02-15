@@ -95,5 +95,5 @@ public interface RoomApiPresentation {
 
 	@Operation(summary = "방 삭제")
 	@ApiResponse(responseCode = "200", description = "방 삭제 성공")
-	ApiResult<Void> deleteRoom(final Member member, final Long roomId);
+	ApiResult<RoomIdResponse> deleteRoom(final Member member, final Long roomId);
 }
