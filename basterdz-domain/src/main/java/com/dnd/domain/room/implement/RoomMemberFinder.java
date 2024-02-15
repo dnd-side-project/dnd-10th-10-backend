@@ -11,6 +11,8 @@ import com.dnd.domain.room.entity.RoomMember;
 import com.dnd.domain.room.repository.RoomMemberJpaRepository;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @Finder
 @RequiredArgsConstructor
 public class RoomMemberFinder {
@@ -26,5 +28,9 @@ public class RoomMemberFinder {
         if (roomMemberJpaRepository.existsByMemberId(member.getId())) {
             throw new BadRequestException(MEMBER_ALREADY_ENTERED);
         }
+    }
+
+    public List<RoomMember> findRoomMembers(final Room room) {
+        return roomMemberJpaRepository.findRoomMemberByRoom(room);
     }
 }

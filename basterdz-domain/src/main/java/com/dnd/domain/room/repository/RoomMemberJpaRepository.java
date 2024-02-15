@@ -6,10 +6,13 @@ import com.dnd.domain.room.entity.RoomMember;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface RoomMemberJpaRepository extends JpaRepository<RoomMember, Long> {
+
+    List<RoomMember> findRoomMemberByRoom(final Room room);
 
     Optional<RoomMember> findRoomMemberByMemberAndRoom(final Member member, final Room room);
 
