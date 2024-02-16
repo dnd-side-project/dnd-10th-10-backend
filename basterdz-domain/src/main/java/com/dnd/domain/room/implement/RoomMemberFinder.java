@@ -31,6 +31,6 @@ public class RoomMemberFinder {
     }
 
     public List<RoomMember> findRoomMembers(final Room room) {
-        return roomMemberJpaRepository.findRoomMemberByRoom(room);
+        return roomMemberJpaRepository.findRoomMembers(room);
     }
 }
