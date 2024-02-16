@@ -51,9 +51,9 @@ public class RoomService {
 
     @Transactional
     public Room enterRoom(final String inviteCode, final Member member) {
-        roomMemberFinder.existsMember(member);
+        Room room = findRoomByInviteCode(inviteCode);
+        roomMemberFinder.checkExistsMember(member, room);
 
-        Room room = roomFinder.findByInviteCode(inviteCode);
         RoomMember roomMember = RoomMember.of(member, room, IS_NOT_HOST);
 
         room.addMemberCount();
@@ -79,11 +79,11 @@ public class RoomService {
     }
 
     public Room findRoom(final Long roomId) {
-        return roomFinder.find(roomId);
+        return roomFinder.findRoom(roomId);
     }
 
     public Room findRoomByInviteCode(final String inviteCode) {
-        return roomFinder.findByInviteCode(inviteCode);
+        return roomFinder.findRoomByInviteCode(inviteCode);
     }
 
 }

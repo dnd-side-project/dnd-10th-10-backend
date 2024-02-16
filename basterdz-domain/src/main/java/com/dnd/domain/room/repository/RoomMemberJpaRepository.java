@@ -18,5 +18,5 @@ public interface RoomMemberJpaRepository extends JpaRepository<RoomMember, Long>
 
     Optional<RoomMember> findRoomMemberByMemberAndRoom(final Member member, final Room room);
 
-    boolean existsByMemberId(final Long memberId);
+    boolean existsByMemberAndRoom(final Member member, final Room room);
 }

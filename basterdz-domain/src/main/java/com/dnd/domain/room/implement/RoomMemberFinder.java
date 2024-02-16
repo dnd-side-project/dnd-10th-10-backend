@@ -24,8 +24,8 @@ public class RoomMemberFinder {
                 .orElseThrow(() -> new BadRequestException(MEMBER_NOT_FOUND));
     }
 
-    public void existsMember(final Member member) {
-        if (roomMemberJpaRepository.existsByMemberId(member.getId())) {
+    public void checkExistsMember(final Member member, final Room room) {
+        if (roomMemberJpaRepository.existsByMemberAndRoom(member, room)) {
             throw new BadRequestException(MEMBER_ALREADY_ENTERED);
         }
     }

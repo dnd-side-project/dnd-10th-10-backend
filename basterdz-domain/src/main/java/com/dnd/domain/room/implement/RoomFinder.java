@@ -23,12 +23,12 @@ public class RoomFinder {
 	private final RoomJpaRepository roomJpaRepository;
 	private final RoomMemberQueryRepository roomMemberQueryRepository;
 
-	public Room find(final Long roomId) {
+	public Room findRoom(final Long roomId) {
 		return roomJpaRepository.findById(roomId)
 			.orElseThrow(() -> new NotFoundException(ROOM_NOT_FOUND));
 	}
 
-	public Room findByInviteCode(final String inviteCode) {
+	public Room findRoomByInviteCode(final String inviteCode) {
 		return roomJpaRepository.findByInviteCode(inviteCode)
 			.orElseThrow(() -> new BadRequestException(INVALID_INVITE_CODE));
 	}
