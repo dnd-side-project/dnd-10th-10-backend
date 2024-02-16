@@ -2,6 +2,7 @@ package com.dnd.api.domains.room.service;
 
 import static com.dnd.domain.room.entity.RoomStatus.ACTIVE;
 
+import com.dnd.api.domains.room.dto.FindWaitingRoomResponse;
 import com.dnd.api.domains.room.dto.RoomMemberResponse;
 import com.dnd.api.domains.room.util.InviteCodeUtil;
 import com.dnd.api.domains.room.dto.CreateRoomRequest;
@@ -73,9 +74,11 @@ public class RoomService {
         return room;
     }
 
-    public List<RoomMemberResponse> findWaitingRoom(final Room room) {
+    public FindWaitingRoomResponse findWaitingRoom(final Long roomId) {
+        Room room = findRoom(roomId);
         List<RoomMember> roomMembers = roomMemberFinder.findRoomMembers(room);
-        return RoomMemberResponse.from(roomMembers);
+        List<RoomMemberResponse> roomMemberResponses = RoomMemberResponse.from(roomMembers);
+        return FindWaitingRoomResponse.createFindWaitingRoomResponse(room, roomMemberResponses);
     }
 
     public Room findRoom(final Long roomId) {

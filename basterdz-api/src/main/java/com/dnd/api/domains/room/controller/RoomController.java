@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @RestController
 @RequestMapping("/v1/rooms")
@@ -76,10 +75,8 @@ public class RoomController implements RoomApiPresentation {
 			final @LoginMember Member member,
 			final @PathVariable Long roomId
 	) {
-		Room room = roomService.findRoom(roomId);
-		List<RoomMemberResponse> roomMemberResponses = roomService.findWaitingRoom(room);
-		return ApiResult.ok(FindWaitingRoomResponse
-				.createFindWaitingRoomResponse(room, roomMemberResponses));
+		FindWaitingRoomResponse responseDto = roomService.findWaitingRoom(roomId);
+		return ApiResult.ok(responseDto);
 	}
 
 	@GetMapping("/{roomId}/active")
