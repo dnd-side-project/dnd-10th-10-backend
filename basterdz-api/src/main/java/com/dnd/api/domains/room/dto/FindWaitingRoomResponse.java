@@ -24,15 +24,14 @@ public class FindWaitingRoomResponse {
     @Schema(name = "members", example = "[{\"id\":1,\"nickname\":\"바밤바\"},{\"id\":2,\"nickname\":\"비비박\"}]")
     private List<RoomMemberResponse> members;
 
-    public static FindWaitingRoomResponse from(
+    public static FindWaitingRoomResponse createFindWaitingRoomResponse(
             final Room room,
-            final List<RoomMemberResponse> roomMemberResponses
+            final List<RoomMemberResponse> roomMembers
     ) {
-
         return FindWaitingRoomResponse.builder()
                 .memberCount(room.getMemberCount())
                 .personnel(room.getPersonnel())
-                .members(roomMemberResponses)
+                .members(roomMembers)
                 .build();
     }
 }

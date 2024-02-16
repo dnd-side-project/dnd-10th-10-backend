@@ -78,7 +78,8 @@ public class RoomController implements RoomApiPresentation {
 	) {
 		Room room = roomService.findRoom(roomId);
 		List<RoomMemberResponse> roomMemberResponses = roomService.findWaitingRoom(room);
-		return ApiResult.ok(FindWaitingRoomResponse.from(room, roomMemberResponses));
+		return ApiResult.ok(FindWaitingRoomResponse
+				.createFindWaitingRoomResponse(room, roomMemberResponses));
 	}
 
 	@GetMapping("/{roomId}/active")

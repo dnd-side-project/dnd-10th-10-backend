@@ -5,7 +5,6 @@ import static lombok.AccessLevel.PROTECTED;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-
 @Getter
 @AllArgsConstructor(access = PROTECTED)
 public class RoomResponse {

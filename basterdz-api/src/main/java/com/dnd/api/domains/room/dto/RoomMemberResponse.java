@@ -2,11 +2,13 @@ package com.dnd.api.domains.room.dto;
 
 import static lombok.AccessLevel.PROTECTED;
 
-import com.dnd.domain.member.entity.Member;
+import com.dnd.domain.room.entity.RoomMember;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Builder
@@ -17,10 +19,12 @@ public class RoomMemberResponse {
 
     private String nickname;
 
-    public static RoomMemberResponse from(final Member member) {
-        return RoomMemberResponse.builder()
-                .id(member.getId())
-                .nickname(member.getNickname())
-                .build();
+    public static List<RoomMemberResponse> from(final List<RoomMember> roomMembers) {
+        return roomMembers.stream()
+                .map(roomMember -> RoomMemberResponse.builder()
+                        .id(roomMember.getMember().getId())
+                        .nickname(roomMember.getMember().getNickname())
+                        .build())
+                .collect(Collectors.toList());
     }
 }

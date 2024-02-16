@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -76,12 +75,7 @@ public class RoomService {
 
     public List<RoomMemberResponse> findWaitingRoom(final Room room) {
         List<RoomMember> roomMembers = roomMemberFinder.findRoomMembers(room);
-        return roomMembers.stream()
-                .map(roomMember -> {
-                    Member member = roomMember.getMember();
-                    return RoomMemberResponse.from(member);
-                })
-                .collect(Collectors.toList());
+        return RoomMemberResponse.from(roomMembers);
     }
 
     public Room findRoom(final Long roomId) {
