@@ -75,7 +75,8 @@ public class RoomController implements RoomApiPresentation {
 			final @LoginMember Member member,
 			final @PathVariable Long roomId
 	) {
-		return ApiResult.ok(FindWaitingRoomResponse.from());
+		FindWaitingRoomResponse responseDto = roomService.findWaitingRoom(roomId);
+		return ApiResult.ok(responseDto);
 	}
 
 	@GetMapping("/{roomId}/active")

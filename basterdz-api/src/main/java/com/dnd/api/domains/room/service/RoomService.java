@@ -2,6 +2,8 @@ package com.dnd.api.domains.room.service;
 
 import static com.dnd.domain.room.entity.RoomStatus.ACTIVE;
 
+import com.dnd.api.domains.room.dto.FindWaitingRoomResponse;
+import com.dnd.api.domains.room.dto.RoomMemberResponse;
 import com.dnd.api.domains.room.util.InviteCodeUtil;
 import com.dnd.api.domains.room.dto.CreateRoomRequest;
 import com.dnd.domain.member.entity.Member;
@@ -18,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -49,9 +52,9 @@ public class RoomService {
 
     @Transactional
     public Room enterRoom(final String inviteCode, final Member member) {
-        roomMemberFinder.existsMember(member);
+        Room room = findRoomByInviteCode(inviteCode);
+        roomMemberFinder.checkExistsMember(member, room);
 
-        Room room = roomFinder.findByInviteCode(inviteCode);
         RoomMember roomMember = RoomMember.of(member, room, IS_NOT_HOST);
 
         room.addMemberCount();
@@ -71,12 +74,19 @@ public class RoomService {
         return room;
     }
 
+    public FindWaitingRoomResponse findWaitingRoom(final Long roomId) {
+        Room room = findRoom(roomId);
+        List<RoomMember> roomMembers = roomMemberFinder.findRoomMembers(room);
+        List<RoomMemberResponse> roomMemberResponses = RoomMemberResponse.from(roomMembers);
+        return FindWaitingRoomResponse.createFindWaitingRoomResponse(room, roomMemberResponses);
+    }
+
     public Room findRoom(final Long roomId) {
-        return roomFinder.find(roomId);
+        return roomFinder.findRoom(roomId);
     }
 
     public Room findRoomByInviteCode(final String inviteCode) {
-        return roomFinder.findByInviteCode(inviteCode);
+        return roomFinder.findRoomByInviteCode(inviteCode);
     }
 
 }
