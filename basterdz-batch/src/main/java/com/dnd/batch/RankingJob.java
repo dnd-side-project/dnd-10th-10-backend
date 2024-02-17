@@ -5,10 +5,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.dnd.batch.random.LocalDateHolder;
 import com.dnd.domain.room.dto.RoomMemberRankingDto;
-import com.dnd.domain.room.implement.RoomFinder;
 import com.dnd.domain.room.implement.RoomReportFinder;
-import com.dnd.util.LocalDateHolder;
 
 import lombok.RequiredArgsConstructor;
 

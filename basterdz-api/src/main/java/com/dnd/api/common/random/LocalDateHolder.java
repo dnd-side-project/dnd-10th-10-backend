@@ -1,4 +1,4 @@
-package com.dnd.util;
+package com.dnd.api.common.random;
 
 import java.time.LocalDate;
 
