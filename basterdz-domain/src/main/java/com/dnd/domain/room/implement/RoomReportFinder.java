@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RoomReportFinder {
 
+	private final RoomFinder roomFinder;
 	private final RoomMemberQueryRepository roomMemberQueryRepository;
 
 	public List<RoomMemberRankingDto> findRoomMemberRankingDto(final LocalDate usageDate) {
@@ -21,6 +22,7 @@ public class RoomReportFinder {
 	}
 
 	public List<RoomMemberDailyScreenTime> findRoomMemberDailyScreenTime(Long roomId, LocalDate today) {
+		roomFinder.find(roomId);
 		return roomMemberQueryRepository.findRoomMemberScreenTimeByRoomIdAndLocalDate(roomId, today);
 	}
 }

@@ -16,4 +16,14 @@ public class RoomMemberDailyScreenTime {
 	private int limitHour;
 
 	private int duration;
+
+	public double getPercent() {
+		double ratio = (double)duration / (limitHour*60);
+		if(ratio > 1.0) ratio = 1.0;
+		return Math.round(ratio * 100)/100.0;
+	}
+
+	public boolean getIsExceed() {
+		return duration > limitHour;
+	}
 }
