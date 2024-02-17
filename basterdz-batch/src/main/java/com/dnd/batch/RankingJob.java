@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.dnd.domain.room.dto.RoomMemberRankingDto;
 import com.dnd.domain.room.implement.RoomFinder;
+import com.dnd.domain.room.implement.RoomReportFinder;
 import com.dnd.util.LocalDateHolder;
 
 import lombok.RequiredArgsConstructor;
@@ -15,13 +16,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RankingJob {
 
-	private final RoomFinder roomFinder;
+	private final RoomReportFinder roomReportFinder;
 	private final LocalDateHolder localDateHolder;
 
 	//TODO 방별 멤버 사용량을 Redis에 저장
 	public void run() {
 		LocalDate yesterday = localDateHolder.today().minusDays(1);
-		List<RoomMemberRankingDto> roomMemberRankings = roomFinder.findRoomMemberRankingDto(yesterday);
+		List<RoomMemberRankingDto> roomMemberRankings = roomReportFinder.findRoomMemberRankingDto(yesterday);
 	}
 
 }

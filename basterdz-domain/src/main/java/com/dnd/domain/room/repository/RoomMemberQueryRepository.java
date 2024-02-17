@@ -1,5 +1,6 @@
 package com.dnd.domain.room.repository;
 
+import static com.dnd.domain.member.entity.QMember.member;
 import static com.dnd.domain.report.entity.QScreenReport.screenReport;
 import static com.dnd.domain.room.entity.QRoom.room;
 import static com.dnd.domain.room.entity.QRoomMember.roomMember;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.dnd.domain.room.dto.RoomMemberDailyScreenTime;
 import com.dnd.domain.room.dto.RoomMemberRankingDto;
 import com.dnd.domain.room.entity.RoomStatus;
 import com.querydsl.core.types.Projections;
@@ -45,6 +47,27 @@ public class RoomMemberQueryRepository {
 				room.status.eq(RoomStatus.ACTIVE),
 				screenReport.usageDate.eq(usageDate)
 			)
+			.fetch();
+	}
+
+	public List<RoomMemberDailyScreenTime> findRoomMemberScreenTimeByRoomIdAndLocalDate(Long roomId, LocalDate usageDate) {
+		return queryFactory.select(
+				Projections.constructor(
+					RoomMemberDailyScreenTime.class,
+					roomMember.member.id,
+					roomMember.member.nickname,
+					room.limitHour,
+					screenReport.duration.coalesce(0)
+				)
+			)
+			.from(roomMember)
+			.join(room).on(room.id.eq(roomMember.room.id))
+			.join(member).on(member.id.eq(roomMember.member.id))
+			.leftJoin(screenReport)
+			.on(roomMember.member.id.eq(screenReport.memberId)
+				.and(room.restrictApp.stringValue().eq(screenReport.appName.stringValue()))
+				.and(screenReport.usageDate.eq(usageDate)))
+			.where(roomMember.room.id.eq(roomId))
 			.fetch();
 	}
 
