@@ -1,6 +1,7 @@
 package com.dnd.domain.room.implement;
 
 import com.dnd.common.exception.BadRequestException;
+import com.dnd.common.exception.NotFoundException;
 import com.dnd.domain.common.annotation.Finder;
 import com.dnd.domain.member.entity.Member;
 import com.dnd.domain.room.entity.Room;
@@ -20,7 +21,7 @@ public class RoomMemberFinder {
 
     public RoomMember findRoomMember(final Member member, final Room room) {
         return roomMemberJpaRepository.findRoomMemberByMemberAndRoom(member, room)
-                .orElseThrow(() -> new BadRequestException(ROOM_MEMBER_NOT_FOUND));
+                .orElseThrow(() -> new NotFoundException(ROOM_MEMBER_NOT_FOUND));
     }
 
     public void checkExistsMember(final Member member, final Room room) {

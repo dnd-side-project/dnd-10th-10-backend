@@ -90,7 +90,15 @@ public interface RoomApiPresentation {
 	ApiResult<FindFinishedRoomsResponse> findFinishedRooms(final Member member, final Long roomId);
 
 	@Operation(summary = "호스트 확인")
-	@ApiResponse(responseCode = "200", description = "호스트 확인 성공")
+	@ApiResponses(
+			value = {
+					@ApiResponse(responseCode = "200", description = "호스트 확인 성공"),
+					@ApiResponse(responseCode = "404", description = "방에 존재하지 않는 회원",
+							content = @Content(schema = @Schema(
+									example = "{\"success\": false, \"data\" : null,"
+											+ "\"error\": {\"code\": \"ROOM-MEMBER-01\", \"message\": \"방에 존재하지 않는 회원입니다.\"}}")))
+			}
+	)
 	ApiResult<CheckHostResponse> checkHost(final Member member, final Long roomId);
 
 	@Operation(summary = "방 삭제")
