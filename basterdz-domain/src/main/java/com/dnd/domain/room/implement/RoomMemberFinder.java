@@ -1,8 +1,5 @@
 package com.dnd.domain.room.implement;
 
-import static com.dnd.common.exception.ErrorCode.MEMBER_ALREADY_ENTERED;
-import static com.dnd.common.exception.ErrorCode.MEMBER_NOT_FOUND;
-
 import com.dnd.common.exception.BadRequestException;
 import com.dnd.domain.common.annotation.Finder;
 import com.dnd.domain.member.entity.Member;
@@ -13,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+import static com.dnd.common.exception.ErrorCode.*;
+
 @Finder
 @RequiredArgsConstructor
 public class RoomMemberFinder {
@@ -21,7 +20,7 @@ public class RoomMemberFinder {
 
     public RoomMember findRoomMember(final Member member, final Room room) {
         return roomMemberJpaRepository.findRoomMemberByMemberAndRoom(member, room)
-                .orElseThrow(() -> new BadRequestException(MEMBER_NOT_FOUND));
+                .orElseThrow(() -> new BadRequestException(ROOM_MEMBER_NOT_FOUND));
     }
 
     public void checkExistsMember(final Member member, final Room room) {
