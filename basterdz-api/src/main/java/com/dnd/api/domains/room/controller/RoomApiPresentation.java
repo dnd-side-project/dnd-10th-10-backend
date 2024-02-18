@@ -35,7 +35,11 @@ public interface RoomApiPresentation {
 					@ApiResponse(responseCode = "400", description = "유효하지 않은 초대코드",
 							content = @Content(schema = @Schema(
 									example = "{\"success\": false, \"data\" : null,"
-											+ "\"error\": {\"code\": \"ROOM-02\", \"message\": \"유효하지 않은 초대코드입니다.\"}}")))
+											+ "\"error\": {\"code\": \"ROOM-02\", \"message\": \"유효하지 않은 초대코드입니다.\"}}"))),
+					@ApiResponse(responseCode = "420", description = "이미 시작된 방",
+							content = @Content(schema = @Schema(
+					example = "{\"success\": false, \"data\" : null,"
+							+ "\"error\": {\"code\": \"ROOM-06\", \"message\": \"이미 시작된 방입니다.\"}}")))
 			}
 	)
 	ApiResult<FindRoomByCodeResponse> findRoomByInviteCode(final Member member, final String inviteCode);
@@ -59,7 +63,11 @@ public interface RoomApiPresentation {
 					@ApiResponse(responseCode = "421", description = "이미 입장한 회원",
 							content = @Content(schema = @Schema(
 									example = "{\"success\": false, \"data\" : null,"
-											+ "\"error\": {\"code\": \"ROOM-05\", \"message\": \"이미 방에 입장한 회원입니다.\"}}")))
+											+ "\"error\": {\"code\": \"ROOM-05\", \"message\": \"이미 방에 입장한 회원입니다.\"}}"))),
+					@ApiResponse(responseCode = "420", description = "이미 시작된 방",
+							content = @Content(schema = @Schema(
+									example = "{\"success\": false, \"data\" : null,"
+											+ "\"error\": {\"code\": \"ROOM-06\", \"message\": \"이미 시작된 방입니다.\"}}")))
 			}
 	)
 	ApiResult<RoomIdResponse> enterRoom(final Member member, final EnterRoomRequest enterRoomRequestDto);

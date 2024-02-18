@@ -1,7 +1,7 @@
 package com.dnd.domain.room.implement;
 
-import static com.dnd.common.exception.ErrorCode.INVALID_INVITE_CODE;
-import static com.dnd.common.exception.ErrorCode.ROOM_NOT_FOUND;
+import static com.dnd.common.exception.ErrorCode.*;
+import static com.dnd.domain.room.entity.RoomStatus.WAITING;
 
 import com.dnd.common.exception.BadRequestException;
 import com.dnd.common.exception.NotFoundException;
@@ -23,7 +23,13 @@ public class RoomFinder {
 	}
 
 	public Room findRoomByInviteCode(final String inviteCode) {
-		return roomJpaRepository.findByInviteCode(inviteCode)
-			.orElseThrow(() -> new BadRequestException(INVALID_INVITE_CODE));
+		Room room = roomJpaRepository.findByInviteCode(inviteCode)
+				.orElseThrow(() -> new BadRequestException(INVALID_INVITE_CODE));
+
+		if (!room.getStatus().equals(WAITING)) {
+			throw new BadRequestException(ALREADY_STARTED_ROOM);
+		}
+
+		return room;
 	}
 }
