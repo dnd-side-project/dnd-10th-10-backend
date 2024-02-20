@@ -81,6 +81,12 @@ public class RoomService {
         return FindWaitingRoomResponse.createFindWaitingRoomResponse(room, roomMemberResponses);
     }
 
+    public boolean checkHost(final Member member, final Long roomId) {
+        Room room = findRoom(roomId);
+        RoomMember roomMember = roomMemberFinder.findRoomMember(member, room);
+        return roomMember.isHost();
+    }
+
     public Room findRoom(final Long roomId) {
         return roomFinder.findRoom(roomId);
     }

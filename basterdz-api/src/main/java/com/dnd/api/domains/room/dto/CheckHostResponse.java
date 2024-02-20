@@ -15,9 +15,9 @@ public class CheckHostResponse {
     @Schema(name = "isHost", example = "true")
     private Boolean isHost;
 
-    public static CheckHostResponse from() {
+    public static CheckHostResponse from(boolean isHost) {
         return CheckHostResponse.builder()
-                .isHost(true)
+                .isHost(isHost)
                 .build();
     }
 }

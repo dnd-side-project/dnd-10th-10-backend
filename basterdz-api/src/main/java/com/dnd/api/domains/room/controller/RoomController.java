@@ -24,6 +24,7 @@ public class RoomController implements RoomApiPresentation {
 
 	@GetMapping("/{roomId}")
 	public ApiResult<FindActiveRoomResponse> findActiveRoom(
+			final @LoginMember Member member,
 			final @PathVariable Long roomId
 	) {
 		Room room = roomService.findRoom(roomId);
@@ -33,6 +34,7 @@ public class RoomController implements RoomApiPresentation {
 
 	@GetMapping
 	public ApiResult<FindRoomByCodeResponse> findRoomByInviteCode(
+			final @LoginMember Member member,
 			final @RequestParam String inviteCode
 	) {
 		Room room = roomService.findRoomByInviteCode(inviteCode);
@@ -100,7 +102,8 @@ public class RoomController implements RoomApiPresentation {
 			final @LoginMember Member member,
 			final @PathVariable Long roomId
 	) {
-		return ApiResult.ok(CheckHostResponse.from());
+		boolean checkHost = roomService.checkHost(member, roomId);
+		return ApiResult.ok(CheckHostResponse.from(checkHost));
 	}
 
 	@DeleteMapping("/{roomId}")
