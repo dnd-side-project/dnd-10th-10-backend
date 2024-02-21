@@ -15,6 +15,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -57,6 +59,9 @@ public class Room extends BaseTimeEntity {
 
     @Column(nullable = false)
     private int limitHour;
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval=true)
+    private List<RoomMember> roomMembers = new ArrayList<>();
 
     private int remainingDay;
 
