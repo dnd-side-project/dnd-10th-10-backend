@@ -110,6 +110,18 @@ public interface RoomApiPresentation {
 	ApiResult<CheckHostResponse> checkHost(final Member member, final Long roomId);
 
 	@Operation(summary = "방 삭제")
-	@ApiResponse(responseCode = "200", description = "방 삭제 성공")
+	@ApiResponses(
+			value = {
+					@ApiResponse(responseCode = "200", description = "방 삭제 성공"),
+					@ApiResponse(responseCode = "400", description = "해당 회원은 방장이 아님",
+							content = @Content(schema = @Schema(
+									example = "{\"success\": false, \"data\" : null,"
+											+ "\"error\": {\"code\": \"ROOM-MEMBER-02\", \"message\": \"해당 회원은 방장이 아닙니다.\"}}"))),
+					@ApiResponse(responseCode = "404", description = "존재하지 않는 그룹",
+							content = @Content(schema = @Schema(
+									example = "{\"success\": false, \"data\" : null,"
+											+ "\"error\": {\"code\": \"ROOM-01\", \"message\": \"존재하지 않는 그룹입니다.\"}}")))
+			}
+	)
 	ApiResult<RoomIdResponse> deleteRoom(final Member member, final Long roomId);
 }
