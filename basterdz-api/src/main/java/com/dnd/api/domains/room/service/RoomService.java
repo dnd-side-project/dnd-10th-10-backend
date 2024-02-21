@@ -1,19 +1,18 @@
 package com.dnd.api.domains.room.service;
 
+import static com.dnd.common.exception.ErrorCode.NOT_ROOM_HOST;
 import static com.dnd.domain.room.entity.RoomStatus.ACTIVE;
 
 import com.dnd.api.domains.room.dto.FindWaitingRoomResponse;
 import com.dnd.api.domains.room.dto.RoomMemberResponse;
 import com.dnd.api.domains.room.util.InviteCodeUtil;
 import com.dnd.api.domains.room.dto.CreateRoomRequest;
+import com.dnd.common.exception.BadRequestException;
 import com.dnd.domain.member.entity.Member;
 import com.dnd.domain.room.entity.Room;
 import com.dnd.domain.room.entity.RoomMember;
-import com.dnd.domain.room.implement.RoomAppender;
-import com.dnd.domain.room.implement.RoomFinder;
+import com.dnd.domain.room.implement.*;
 
-import com.dnd.domain.room.implement.RoomMemberAppender;
-import com.dnd.domain.room.implement.RoomMemberFinder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +30,7 @@ public class RoomService {
     public static final boolean IS_NOT_HOST = false;
     private final RoomFinder roomFinder;
     private final RoomAppender roomAppender;
+    private final RoomRemover roomRemover;
     private final RoomMemberFinder roomMemberFinder;
     private final RoomMemberAppender roomMemberAppender;
     private final InviteCodeUtil inviteCodeUtil;
@@ -79,6 +79,17 @@ public class RoomService {
         List<RoomMember> roomMembers = roomMemberFinder.findRoomMembers(room);
         List<RoomMemberResponse> roomMemberResponses = RoomMemberResponse.from(roomMembers);
         return FindWaitingRoomResponse.createFindWaitingRoomResponse(room, roomMemberResponses);
+    }
+
+    @Transactional
+    public Room deleteRoom(final Member member, final Long roomId) {
+        if (!checkHost(member, roomId)) {
+            throw new BadRequestException(NOT_ROOM_HOST);
+        }
+
+        Room room = findRoom(roomId);
+        roomRemover.deleteRoom(room);
+        return room;
     }
 
     public boolean checkHost(final Member member, final Long roomId) {

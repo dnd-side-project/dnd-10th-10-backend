@@ -111,6 +111,7 @@ public class RoomController implements RoomApiPresentation {
 			final @LoginMember Member member,
 			final @PathVariable Long roomId
 	) {
-		return ApiResult.ok(RoomIdResponse.temp());
+		Room room = roomService.deleteRoom(member, roomId);
+		return ApiResult.ok(RoomIdResponse.from(room));
 	}
 }
