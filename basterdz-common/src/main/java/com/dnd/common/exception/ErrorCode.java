@@ -28,7 +28,8 @@ public enum ErrorCode {
 	ALREADY_STARTED_ROOM("ROOM-06", "이미 시작된 방입니다."),
 
 	//RoomMember
-	ROOM_MEMBER_NOT_FOUND("ROOM-MEMBER-01", "방에 존재하지 않는 회원입니다.");
+	ROOM_MEMBER_NOT_FOUND("ROOM-MEMBER-01", "방에 존재하지 않는 회원입니다."),
+	NOT_ROOM_HOST("ROOM-MEMBER-02", "해당 회원은 방장이 아닙니다.");
 
 	//ScreenTIme
 

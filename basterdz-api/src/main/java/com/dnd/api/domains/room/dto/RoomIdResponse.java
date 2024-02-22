@@ -24,10 +24,4 @@ public class RoomIdResponse {
                 .id(room.getId())
                 .build();
     }
-
-    public static RoomIdResponse temp() {
-        return RoomIdResponse.builder()
-                .id(1L)
-                .build();
-    }
 }
