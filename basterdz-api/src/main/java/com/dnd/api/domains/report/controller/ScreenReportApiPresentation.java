@@ -5,6 +5,7 @@ import com.dnd.api.domains.report.dto.ScreenReportRequest;
 import com.dnd.domain.member.entity.Member;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -13,5 +14,5 @@ public interface ScreenReportApiPresentation {
 
 	@Operation(summary = "하루 스크린 리포트 전송")
 	@ApiResponse(responseCode = "200", description = "스크린 리포트 요청 성공")
-	ApiResult<Void> appendScreenReport(Member member, ScreenReportRequest screenReportRequest);
+	ApiResult<Void> appendScreenReport(@Schema(hidden = true) Member member, ScreenReportRequest screenReportRequest);
 }

@@ -26,7 +26,7 @@ public interface RoomApiPresentation {
 											+ "\"error\": {\"code\": \"ROOM-01\", \"message\": \"존재하지 않는 그룹입니다.\"}}")))
 			}
 	)
-	ApiResult<FindActiveRoomResponse> findActiveRoom(final Member member, final Long roomId);
+	ApiResult<FindActiveRoomResponse> findActiveRoom(@Schema(hidden = true) final Member member, final Long roomId);
 
 	@Operation(summary = "초대 코드를 통한 방 조회")
 	@ApiResponses(
@@ -42,11 +42,11 @@ public interface RoomApiPresentation {
 							+ "\"error\": {\"code\": \"ROOM-06\", \"message\": \"이미 시작된 방입니다.\"}}")))
 			}
 	)
-	ApiResult<FindRoomByCodeResponse> findRoomByInviteCode(final Member member, final String inviteCode);
+	ApiResult<FindRoomByCodeResponse> findRoomByInviteCode(@Schema(hidden = true) final Member member, final String inviteCode);
 
 	@Operation(summary = "방 생성")
 	@ApiResponse(responseCode = "201", description = "방 생성 성공")
-	ResponseEntity<ApiResult<RoomIdResponse>> createRoom(final Member member, final CreateRoomRequest roomCreateRequestDto);
+	ResponseEntity<ApiResult<RoomIdResponse>> createRoom(@Schema(hidden = true) final Member member, final CreateRoomRequest roomCreateRequestDto);
 
 	@Operation(summary = "초대 코드를 통합 방 입장")
 	@ApiResponses(
@@ -70,7 +70,7 @@ public interface RoomApiPresentation {
 											+ "\"error\": {\"code\": \"ROOM-06\", \"message\": \"이미 시작된 방입니다.\"}}")))
 			}
 	)
-	ApiResult<RoomIdResponse> enterRoom(final Member member, final EnterRoomRequest enterRoomRequestDto);
+	ApiResult<RoomIdResponse> enterRoom(@Schema(hidden = true) final Member member, final EnterRoomRequest enterRoomRequestDto);
 
 
 	@Operation(summary = "방 시작")
@@ -83,19 +83,19 @@ public interface RoomApiPresentation {
 											+ "\"error\": {\"code\": \"ROOM-01\", \"message\": \"존재하지 않는 그룹입니다.\"}}")))
 			}
 	)
-	ApiResult<RoomIdResponse> startRoom(final Member member, final Long roomId);
+	ApiResult<RoomIdResponse> startRoom(@Schema(hidden = true) final Member member, final Long roomId);
 
 	@Operation(summary = "방 상세 조회(대기방)")
 	@ApiResponse(responseCode = "200", description = "방 조회 성공")
-	ApiResult<FindWaitingRoomResponse> findWaitingRoom(final Member member, final Long roomId);
+	ApiResult<FindWaitingRoomResponse> findWaitingRoom(@Schema(hidden = true) final Member member, final Long roomId);
 
 	@Operation(summary = "참여방 조회")
 	@ApiResponse(responseCode = "200", description = "참여방 조회 성공")
-	ApiResult<FindActiveRoomsResponse> findActiveRooms(final Member member, final Long roomId);
+	ApiResult<FindActiveRoomsResponse> findActiveRooms(@Schema(hidden = true) final Member member, final Long roomId);
 
 	@Operation(summary = "종료방 조회")
 	@ApiResponse(responseCode = "200", description = "종료방 조회 성공")
-	ApiResult<FindFinishedRoomsResponse> findFinishedRooms(final Member member, final Long roomId);
+	ApiResult<FindFinishedRoomsResponse> findFinishedRooms(@Schema(hidden = true) final Member member, final Long roomId);
 
 	@Operation(summary = "호스트 확인")
 	@ApiResponses(
@@ -107,7 +107,7 @@ public interface RoomApiPresentation {
 											+ "\"error\": {\"code\": \"ROOM-MEMBER-01\", \"message\": \"방에 존재하지 않는 회원입니다.\"}}")))
 			}
 	)
-	ApiResult<CheckHostResponse> checkHost(final Member member, final Long roomId);
+	ApiResult<CheckHostResponse> checkHost(@Schema(hidden = true) final Member member, final Long roomId);
 
 	@Operation(summary = "방 삭제")
 	@ApiResponses(
@@ -123,5 +123,5 @@ public interface RoomApiPresentation {
 											+ "\"error\": {\"code\": \"ROOM-01\", \"message\": \"존재하지 않는 그룹입니다.\"}}")))
 			}
 	)
-	ApiResult<RoomIdResponse> deleteRoom(final Member member, final Long roomId);
+	ApiResult<RoomIdResponse> deleteRoom(@Schema(hidden = true) final Member member, final Long roomId);
 }
