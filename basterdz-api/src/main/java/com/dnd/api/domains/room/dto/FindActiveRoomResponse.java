@@ -59,7 +59,6 @@ public class FindActiveRoomResponse {
                 .limitHour(room.getLimitHour())
                 .personnel(room.getPersonnel())
                 .memberCount(room.getMemberCount())
-                .remainingDay(room.getRemainingDay())
                 .inviteCode(room.getInviteCode())
                 .build();
     }
