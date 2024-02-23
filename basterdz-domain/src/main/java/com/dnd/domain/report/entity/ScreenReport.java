@@ -23,7 +23,7 @@ public class ScreenReport {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "daily_report_id")
+    @Column(name = "screen_report_id")
     private Long id;
 
     @Column(nullable = false)
