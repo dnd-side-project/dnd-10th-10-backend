@@ -69,7 +69,6 @@ public class RoomService {
         if (roomMember.isHost()) {
             room.changeStatus(ACTIVE);
         }
-
         return room;
     }
 

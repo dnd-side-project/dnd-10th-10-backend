@@ -95,6 +95,9 @@ public class Room extends BaseTimeEntity {
     }
 
     public void changeStatus(RoomStatus roomStatus) {
+        LocalDate nowDate = LocalDate.now();
+        this.startDate = nowDate;
+        this.endDate = nowDate.plusDays(targetDay);
         this.status = roomStatus;
     }
 }
