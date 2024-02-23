@@ -19,7 +19,7 @@ public class CreateRoomResponse {
 	@Schema(name = "id", example = "1")
 	private Long id;
 
-	@Schema(name = "inviteCode", example = "1")
+	@Schema(name = "inviteCode", example = "inviteMe")
 	private String inviteCode;
 
 	public static CreateRoomResponse from(final Room room) {
