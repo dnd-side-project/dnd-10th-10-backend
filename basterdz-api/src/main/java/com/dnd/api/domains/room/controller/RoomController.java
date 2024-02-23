@@ -43,14 +43,12 @@ public class RoomController implements RoomApiPresentation {
 	}
 
 	@PostMapping
-	public ResponseEntity<ApiResult<RoomIdResponse>> createRoom(
+	public ResponseEntity<ApiResult<CreateRoomResponse>> createRoom(
 			final @LoginMember Member member,
 			final @Valid @RequestBody CreateRoomRequest roomCreateRequestDto
 	) {
-		LocalDate registeredDate = LocalDate.now();
-		Room createdRoom = roomService.createRoom(roomCreateRequestDto, registeredDate, member);
-		RoomIdResponse responseDto = RoomIdResponse.from(createdRoom);
-		return ResponseEntity.status(CREATED).body(ApiResult.ok(responseDto));
+		Room createdRoom = roomService.createRoom(roomCreateRequestDto, member);
+		return ResponseEntity.status(CREATED).body(ApiResult.ok(CreateRoomResponse.from(createdRoom)));
 	}
 
 	@PostMapping("/entrance")

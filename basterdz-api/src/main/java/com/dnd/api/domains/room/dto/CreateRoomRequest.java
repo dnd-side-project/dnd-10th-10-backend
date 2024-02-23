@@ -11,6 +11,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Max;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,9 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Getter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class CreateRoomRequest {
 
     public static final int MINIMUM_MEMBER_COUNT = 1;
@@ -39,17 +42,12 @@ public class CreateRoomRequest {
     @Min(value = 1, message = "인원 수는 1명 미만일 수 없습니다.")
     private int personnel;
 
+    @Schema(description = "목표 날짜(디데이)", example = "26")
+    private int targetDay;
+
     @Schema(description = "제한 앱 설정", example = "INSTAGRAM")
     @NotNull(message = "제한 앱을 설정해 주세요.")
     private RestrictApp restrictApp;
-
-    @Schema(description = "시작 날짜", example = "2024-01-23")
-    @NotNull(message = "기한을 설정해 주세요.")
-    private LocalDate startDate;
-
-    @Schema(description = "종료 날짜", example = "2024-01-25")
-    @NotNull(message = "기한을 설정해 주세요.")
-    private LocalDate endDate;
 
     @Schema(description = "하루 총 제한 시간", example = "1시간")
     @NotNull(message = "하루 총 제한 시간을 설정해 주세요.")
@@ -57,34 +55,19 @@ public class CreateRoomRequest {
     @Min(value = 1, message = "제한 시간은 1시간 미만일 수 없습니다.")
     private int limitHour;
 
-    public Room toEntity(final String code, final int remainingDay) {
+    public Room toEntity(final String code) {
         return Room.builder()
                 .title(title)
                 .goal(goal)
                 .personnel(personnel)
                 .restrictApp(restrictApp)
                 .inviteCode(code)
-                .startDate(startDate)
-                .endDate(endDate)
+                .targetDay(targetDay)
+                .startDate(null)
+                .endDate(null)
                 .limitHour(limitHour)
                 .status(WAITING)
                 .memberCount(MINIMUM_MEMBER_COUNT)
                 .build();
-    }
-
-    @Builder
-    public CreateRoomRequest(
-            final String title, final String goal,
-            final int personnel, final RestrictApp restrictApp,
-            final LocalDate startDate, final LocalDate endDate,
-            final int limitHour
-    ) {
-        this.title = title;
-        this.goal = goal;
-        this.personnel = personnel;
-        this.restrictApp = restrictApp;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.limitHour = limitHour;
     }
 }

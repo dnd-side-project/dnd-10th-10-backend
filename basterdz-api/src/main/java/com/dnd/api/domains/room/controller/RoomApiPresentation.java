@@ -46,7 +46,7 @@ public interface RoomApiPresentation {
 
 	@Operation(summary = "방 생성")
 	@ApiResponse(responseCode = "201", description = "방 생성 성공")
-	ResponseEntity<ApiResult<RoomIdResponse>> createRoom(@Schema(hidden = true) final Member member, final CreateRoomRequest roomCreateRequestDto);
+	ResponseEntity<ApiResult<CreateRoomResponse>> createRoom(@Schema(hidden = true) final Member member, final CreateRoomRequest roomCreateRequestDto);
 
 	@Operation(summary = "초대 코드를 통합 방 입장")
 	@ApiResponses(
