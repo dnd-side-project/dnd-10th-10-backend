@@ -13,8 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
-import java.time.LocalDate;
-
 @RestController
 @RequestMapping("/v1/rooms")
 @RequiredArgsConstructor
@@ -47,8 +45,7 @@ public class RoomController implements RoomApiPresentation {
 			final @LoginMember Member member,
 			final @Valid @RequestBody CreateRoomRequest roomCreateRequestDto
 	) {
-		LocalDate registeredDate = LocalDate.now();
-		Room createdRoom = roomService.createRoom(roomCreateRequestDto, registeredDate, member);
+		Room createdRoom = roomService.createRoom(roomCreateRequestDto, member);
 		RoomIdResponse responseDto = RoomIdResponse.from(createdRoom);
 		return ResponseEntity.status(CREATED).body(ApiResult.ok(responseDto));
 	}

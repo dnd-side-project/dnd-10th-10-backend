@@ -65,20 +65,19 @@ class RoomServiceTest extends IntegrationServiceTest {
                 .title("우리들의 도파민 탈출기")
                 .goal("우리 시험기간에만 인스타 하지 말아보자")
                 .personnel(4)
+                .targetDay(2)
                 .restrictApp(INSTAGRAM)
-                .startDate(LocalDate.of(2024, 1, 23))
-                .endDate(LocalDate.of(2024, 1, 25))
                 .limitHour(1)
                 .build();
 
-        Room createdRoom = requestDto.toEntity("ABCDEFG", 2);
+        Room createdRoom = requestDto.toEntity("ABCDEFG");
 
         LocalDate registeredDate = LocalDate.of(2024, 1, 23);
 
         // when
         given(inviteCodeUtil.generate()).willReturn("ABCDEFG");
 
-        Room result = roomService.createRoom(requestDto, registeredDate, member);
+        Room result = roomService.createRoom(requestDto, member);
 
         // then
         Assertions.assertThat(createdRoom.getInviteCode())

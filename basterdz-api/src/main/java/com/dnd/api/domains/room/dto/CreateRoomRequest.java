@@ -15,8 +15,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Getter
 @NoArgsConstructor
 public class CreateRoomRequest {
@@ -43,13 +41,9 @@ public class CreateRoomRequest {
     @NotNull(message = "제한 앱을 설정해 주세요.")
     private RestrictApp restrictApp;
 
-    @Schema(description = "시작 날짜", example = "2024-01-23")
-    @NotNull(message = "기한을 설정해 주세요.")
-    private LocalDate startDate;
-
-    @Schema(description = "종료 날짜", example = "2024-01-25")
-    @NotNull(message = "기한을 설정해 주세요.")
-    private LocalDate endDate;
+    @Schema(description = "디데이 기간", example = "10")
+    @NotNull(message = "디데이 기간을 입력해 주세요.")
+    private int targetDay;
 
     @Schema(description = "하루 총 제한 시간", example = "1시간")
     @NotNull(message = "하루 총 제한 시간을 설정해 주세요.")
@@ -57,18 +51,16 @@ public class CreateRoomRequest {
     @Min(value = 1, message = "제한 시간은 1시간 미만일 수 없습니다.")
     private int limitHour;
 
-    public Room toEntity(final String code, final int remainingDay) {
+    public Room toEntity(final String code) {
         return Room.builder()
                 .title(title)
                 .goal(goal)
                 .personnel(personnel)
                 .restrictApp(restrictApp)
                 .inviteCode(code)
-                .startDate(startDate)
-                .endDate(endDate)
                 .limitHour(limitHour)
+                .targetDay(targetDay)
                 .status(WAITING)
-                .remainingDay(remainingDay)
                 .memberCount(MINIMUM_MEMBER_COUNT)
                 .build();
     }
@@ -77,15 +69,13 @@ public class CreateRoomRequest {
     public CreateRoomRequest(
             final String title, final String goal,
             final int personnel, final RestrictApp restrictApp,
-            final LocalDate startDate, final LocalDate endDate,
-            final int limitHour
+            final int targetDay, final int limitHour
     ) {
         this.title = title;
         this.goal = goal;
         this.personnel = personnel;
         this.restrictApp = restrictApp;
-        this.startDate = startDate;
-        this.endDate = endDate;
         this.limitHour = limitHour;
+        this.targetDay = targetDay;
     }
 }

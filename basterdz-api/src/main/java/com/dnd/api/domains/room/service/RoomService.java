@@ -17,8 +17,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.List;
 
 @Service
@@ -37,12 +35,10 @@ public class RoomService {
 
     @Transactional
     public Room createRoom(
-            final CreateRoomRequest requestDto,
-            final LocalDate registerDate, final Member member
+            final CreateRoomRequest requestDto, final Member member
     ) {
         String inviteCode = inviteCodeUtil.generate().toUpperCase();
-        Period period = Period.between(registerDate, requestDto.getEndDate());
-        Room room = requestDto.toEntity(inviteCode, period.getDays());
+        Room room = requestDto.toEntity(inviteCode);
 
         RoomMember roomMember = RoomMember.of(member, room, IS_HOST);
         roomMemberAppender.append(roomMember);

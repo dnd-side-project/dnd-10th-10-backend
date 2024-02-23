@@ -40,11 +40,12 @@ public class Room extends BaseTimeEntity {
     @Column(nullable = false)
     private int personnel;
 
-    @Column(nullable = false)
     private LocalDate startDate;
 
-    @Column(nullable = false)
     private LocalDate endDate;
+
+    @Column(nullable = false)
+    private int targetDay;
 
     @Column(nullable = false)
     private String inviteCode;
@@ -63,8 +64,6 @@ public class Room extends BaseTimeEntity {
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval=true)
     private List<RoomMember> roomMembers = new ArrayList<>();
 
-    private int remainingDay;
-
     @Builder
     public Room(
             final Long id, final String title,
@@ -72,7 +71,7 @@ public class Room extends BaseTimeEntity {
             final int personnel, final LocalDate startDate,
             final LocalDate endDate, final String inviteCode,
             final RoomStatus status, final RestrictApp restrictApp,
-            final int limitHour, final int remainingDay
+            final int limitHour, final int targetDay
     ) {
         this.id = id;
         this.title = title;
@@ -85,7 +84,7 @@ public class Room extends BaseTimeEntity {
         this.status = status;
         this.restrictApp = restrictApp;
         this.limitHour = limitHour;
-        this.remainingDay = remainingDay;
+        this.targetDay = targetDay;
     }
 
     public void addMemberCount() {
