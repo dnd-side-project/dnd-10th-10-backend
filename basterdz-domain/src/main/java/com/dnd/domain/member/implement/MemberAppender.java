@@ -11,7 +11,7 @@ public class MemberAppender {
 
     private final MemberJpaRepository memberJpaRepository;
 
-    public void append(Member member) {
-        memberJpaRepository.save(member);
+    public Member append(Member member) {
+        return memberJpaRepository.save(member);
     }
 }

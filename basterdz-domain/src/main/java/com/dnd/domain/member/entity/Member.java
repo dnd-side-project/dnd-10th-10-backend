@@ -27,12 +27,19 @@ public class Member extends BaseTimeEntity {
     private Long id;
 
     @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
     private String nickname;
 
     @Column(nullable = false)
     private String oauthId;
 
-    @Column(nullable = false)
-    private String oauthProvider;
-
+    public static Member create(OauthMemberInfo oauthMemberInfo, String oauthId) {
+        return Member.builder()
+            .email(oauthMemberInfo.getEmail())
+            .nickname(oauthMemberInfo.getName())
+            .oauthId(oauthId)
+            .build();
+    }
 }

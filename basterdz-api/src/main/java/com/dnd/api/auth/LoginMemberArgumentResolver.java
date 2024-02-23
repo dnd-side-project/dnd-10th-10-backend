@@ -4,6 +4,7 @@ import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
@@ -20,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class LoginMemberArgumentResolver implements HandlerMethodArgumentResolver {
 
-	private static final String LOGIN_ID = "Login-Id";
+	private static final String LOGIN_ID = "loginId";
 
 	private final MemberFinder memberFinder;
 
@@ -34,10 +35,9 @@ public class LoginMemberArgumentResolver implements HandlerMethodArgumentResolve
 	@Override
 	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
 		NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-		log.info(webRequest.getContextPath());
-		String value = webRequest.getHeader(LOGIN_ID);
+		Object value = webRequest.getAttribute(LOGIN_ID, RequestAttributes.SCOPE_REQUEST);
 		if(value == null) throw new UnauthorizedException(ErrorCode.UNAUTHORIZED);
-		Long loginId = Long.valueOf(value);
+		Long loginId = Long.valueOf((String)value);
 		return memberFinder.find(loginId);
 	}
 }
