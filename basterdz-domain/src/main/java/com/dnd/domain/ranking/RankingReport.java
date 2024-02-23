@@ -1,18 +1,21 @@
 package com.dnd.domain.ranking;
 
-import com.dnd.domain.room.entity.Room;
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
-
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
+import java.time.LocalDate;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 @Getter
 @Entity
+@Builder
 @NoArgsConstructor(access = PROTECTED)
+@AllArgsConstructor(access = PROTECTED)
 public class RankingReport {
 
     @Id
@@ -21,22 +24,18 @@ public class RankingReport {
     private Long id;
 
     @Column(nullable = false)
-    private int memberRank;
+    private Long roomId;
 
     @Column(nullable = false)
-    private String memberNickname;
+    private String nickname;
 
     @Column(nullable = false)
-    private LocalDateTime dailyUsageTime;
+    private int ranking;
 
     @Column(nullable = false)
-    private LocalDateTime rankingDate;
+    private int duration;
 
     @Column(nullable = false)
-    private boolean isCompleted;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id")
-    private Room room;
+    private LocalDate usageDate;
 
 }

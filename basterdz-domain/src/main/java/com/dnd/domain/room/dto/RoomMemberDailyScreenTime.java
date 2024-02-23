@@ -24,6 +24,6 @@ public class RoomMemberDailyScreenTime {
 	}
 
 	public boolean getIsExceed() {
-		return duration > limitHour;
+		return duration > limitHour*60;
 	}
 }
