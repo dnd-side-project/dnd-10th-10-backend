@@ -21,25 +21,25 @@ public class FindRoomByCodeResponse {
     @Schema(name = "id", example = "1")
     private Long id;
 
+    @Schema(name = "title", example = "우리들의 도파민 탈출기")
+    private String title;
+
     @Schema(name = "restrictApp", example = "INSTAGRAM")
     private RestrictApp restrictApp;
-
-    @Schema(name = "startDate", example = "2024-01-23")
-    private LocalDate startDate;
-
-    @Schema(name = "endDate", example = "2024-01-25")
-    private LocalDate endDate;
 
     @Schema(name = "limitHour", example = "2")
     private int limitHour;
 
+    @Schema(name = "targetDay", example = "26")
+    private int targetDay;
+
     public static FindRoomByCodeResponse from(final Room room) {
         return FindRoomByCodeResponse.builder()
                 .id(room.getId())
+                .title(room.getTitle())
                 .restrictApp(room.getRestrictApp())
-                .startDate(room.getStartDate())
-                .endDate(room.getEndDate())
                 .limitHour(room.getLimitHour())
+                .targetDay(room.getTargetDay())
                 .build();
     }
 }
