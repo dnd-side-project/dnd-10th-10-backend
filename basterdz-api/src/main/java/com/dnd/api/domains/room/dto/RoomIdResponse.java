@@ -19,9 +19,6 @@ public class RoomIdResponse {
     @Schema(name = "id", example = "1")
     private Long id;
 
-    @Schema(name = "inviteCode", example = "inviteMe")
-    private String inviteCode;
-
     public static RoomIdResponse from(final Room room) {
         return RoomIdResponse.builder()
                 .id(room.getId())
