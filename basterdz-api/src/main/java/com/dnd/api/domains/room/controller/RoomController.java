@@ -61,7 +61,7 @@ public class RoomController implements RoomApiPresentation {
 		return ApiResult.ok(RoomIdResponse.from(room));
 	}
 
-	@PostMapping("/{roomId}/members")
+	@PostMapping("/{roomId}/start")
 	public ApiResult<RoomIdResponse> startRoom(
 			final @LoginMember Member member,
 			final @PathVariable Long roomId
@@ -70,7 +70,7 @@ public class RoomController implements RoomApiPresentation {
 		return ApiResult.ok(RoomIdResponse.from(room));
 	}
 
-	@GetMapping("/{roomId}/members")
+	@GetMapping("/{roomId}/waiting")
 	public ApiResult<FindWaitingRoomResponse> findWaitingRoom(
 			final @LoginMember Member member,
 			final @PathVariable Long roomId
