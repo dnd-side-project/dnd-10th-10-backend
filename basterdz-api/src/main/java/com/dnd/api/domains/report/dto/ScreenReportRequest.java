@@ -21,7 +21,7 @@ public class ScreenReportRequest {
 
 	public List<ScreenTime> toScreenTimes() {
 		return screenTimeData.stream()
-			.map(screenTime -> ScreenTime.of(screenTime.getAppName(), screenTime.getDuration()))
+			.map(screenTime -> ScreenTime.of(screenTime.getAppName().toUpperCase(), screenTime.getDuration()))
 			.collect(Collectors.toList());
 	}
 }

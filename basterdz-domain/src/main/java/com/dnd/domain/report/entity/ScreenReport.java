@@ -27,9 +27,6 @@ public class ScreenReport {
     private Long id;
 
     @Column(nullable = false)
-    private Long bundle;
-
-    @Column(nullable = false)
     private String appName;
 
     @Column(nullable = false)
@@ -44,7 +41,6 @@ public class ScreenReport {
     public static ScreenReport create(Long memberId, ScreenTime screenTime, LocalDate usageDate) {
         return ScreenReport.builder()
             .memberId(memberId)
-            .bundle(1L)
             .appName(screenTime.getAppName())
             .duration(screenTime.getDuration())
             .usageDate(usageDate)
