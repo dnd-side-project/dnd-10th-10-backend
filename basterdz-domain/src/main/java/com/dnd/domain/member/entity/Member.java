@@ -35,6 +35,8 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private String oauthId;
 
+    private String deviceToken;
+
     public static Member create(OauthMemberInfo oauthMemberInfo, String oauthId) {
         return Member.builder()
             .email(oauthMemberInfo.getEmail())
