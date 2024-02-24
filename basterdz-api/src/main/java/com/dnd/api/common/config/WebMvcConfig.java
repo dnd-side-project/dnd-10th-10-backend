@@ -23,6 +23,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	private static final String[] AUTHORIZE_REQUEST_URLS = {
 		"/v1/rooms/**",
 		"/v1/reports/**",
+		"/v1/boosters/**"
 	};
 
 	@Override
