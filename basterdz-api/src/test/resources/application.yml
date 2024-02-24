@@ -1,0 +1,32 @@
+spring:
+  h2:
+    console:
+      enabled: true
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:basterdz_test;MODE=MYSQL;
+    username: sa
+    password:
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate.format_sql: true
+      dialect: org.hibernate.dialect.H2Dialect
+
+jwt:
+  issuer: "basterdz"
+  secret-key: "shoppershoppershoppershoppershoppershoppershoppershopper"
+  expiry-seconds: 1728000
+
+oauth:
+  apple:
+    iss: https://appleid.apple.com
+    client-id: ENC(QqK9Fkgo7DTdWgfZpNQBpSg7ZYsD418QWNClHKjEENY=)
+    nonce: "dfsdfadsfasdfasdfasdfasdfasdfasdfasdfdas"
+
+fcm:
+  value: firebase/basterdz-firebase-adminsdk.json
