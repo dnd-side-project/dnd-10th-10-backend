@@ -1,0 +1,7 @@
+bootJar { enabled = false }
+jar { enabled = true }
+
+dependencies {
+    implementation 'org.springframework:spring-context'
+    implementation 'com.google.firebase:firebase-admin:9.2.0'
+}

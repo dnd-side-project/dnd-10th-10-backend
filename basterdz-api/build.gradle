@@ -4,6 +4,7 @@ jar { enabled = false }
 dependencies {
     implementation project(":basterdz-domain")
     implementation project(":basterdz-common")
+    implementation project(":basterdz-external")
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation:'
     implementation 'org.springframework:spring-tx'
