@@ -24,6 +24,10 @@ oauth:
     client-id: ENC(QqK9Fkgo7DTdWgfZpNQBpSg7ZYsD418QWNClHKjEENY=)
     nonce: "dfsdfadsfasdfasdfasdfasdfasdfasdfasdfdas"
 
+spring:
+  config:
+    import:
+      - firebase.yml
 ---
 spring:
   config:
