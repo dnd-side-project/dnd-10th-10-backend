@@ -22,4 +22,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Test with Gradle
-        run: ENCRYPTOR_KEY=${{ secrets.ENCRYPT_KEY }} ./gradlew test
+        env:
+          ENCRYPT_KEY: ${{ secrets.ENCRYPT_KEY }}
+        run: |
+          ./gradlew test
