@@ -23,6 +23,6 @@ jobs:
 
       - name: Test with Gradle
         env:
-          ENCRYPT_KEY: ${{ secrets.ENCRYPT_KEY }}
+          ENCRYPTOR_KEY: ${{ secrets.ENCRYPTOR_KEY }}
         run: |
           ./gradlew test
