@@ -27,7 +27,7 @@ jobs:
         with:
           name: "basterdz-firebase-adminsdk.json"
           json: ${{ secrets.FIREBASE_ADMIN_SDK_JSON }}
-          dir: 'dnd-10th-10-backend/basterdz-external/src/main/resources/'
+          dir: 'basterdz-external/src/main/resources/'
 
       - name: Test with Gradle
         env:
