@@ -21,6 +21,12 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - name: Create and move Firebase Admin SDK JSON file
+          run: |
+            echo "$FIREBASE_ADMIN_SDK_JSON" > basterdz-firebase-adminsdk.json
+            mkdir -p dnd-10th-10-backend/basterdz-external/src/main/resources/firebase
+            mv basterdz-firebase-adminsdk.json dnd-10th-10-backend/basterdz-external/src/main/resources/firebase/
+
       - name: Test with Gradle
         env:
           ENCRYPTOR_KEY: ${{ secrets.ENCRYPTOR_KEY }}
