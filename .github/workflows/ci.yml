@@ -22,12 +22,12 @@ jobs:
         run: chmod +x gradlew
 
       - name: Create and move Firebase Admin SDK JSON file
-          env:
+        env:
           FIREBASE_ADMIN_SDK_JSON: ${{ secrets.FIREBASE_ADMIN_SDK_JSON }}
-          run: |
-            echo "${FIREBASE_ADMIN_SDK_JSON}" > basterdz-firebase-adminsdk.json
-            mkdir -p dnd-10th-10-backend/basterdz-external/src/main/resources/firebase
-            mv basterdz-firebase-adminsdk.json dnd-10th-10-backend/basterdz-external/src/main/resources/firebase/
+        run: |
+          echo "${FIREBASE_ADMIN_SDK_JSON}" > basterdz-firebase-adminsdk.json
+          mkdir -p dnd-10th-10-backend/basterdz-external/src/main/resources/firebase
+          mv basterdz-firebase-adminsdk.json dnd-10th-10-backend/basterdz-external/src/main/resources/firebase/
 
       - name: Test with Gradle
         env:
