@@ -13,18 +13,17 @@ import com.dnd.config.IntegrationServiceTest;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import java.time.LocalDate;
-
 import static com.dnd.domain.vo.RestrictApp.INSTAGRAM;
 import static org.mockito.BDDMockito.given;
 
+@Disabled
 class RoomServiceTest extends IntegrationServiceTest {
-/**
     @Autowired
     private RoomService roomService;
 
@@ -65,23 +64,18 @@ class RoomServiceTest extends IntegrationServiceTest {
                 .goal("우리 시험기간에만 인스타 하지 말아보자")
                 .personnel(4)
                 .restrictApp(INSTAGRAM)
-                .startDate(LocalDate.of(2024, 1, 23))
-                .endDate(LocalDate.of(2024, 1, 25))
                 .limitHour(1)
                 .build();
 
-        Room createdRoom = requestDto.toEntity("ABCDEFG", 2);
-
-        LocalDate registeredDate = LocalDate.of(2024, 1, 23);
+        Room createdRoom = requestDto.toEntity("ABCDEFG");
 
         // when
         given(inviteCodeUtil.generate()).willReturn("ABCDEFG");
 
-        Room result = roomService.createRoom(requestDto, registeredDate, member);
+        Room result = roomService.createRoom(requestDto, member);
 
         // then
         Assertions.assertThat(createdRoom.getInviteCode())
                 .isEqualTo(result.getInviteCode());
     }
-**/
 }

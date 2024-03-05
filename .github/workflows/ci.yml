@@ -20,3 +20,17 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+
+      - name: Create Firebase Admin SDK JSON file
+        id: create-json
+        uses: jsdaniell/create-json@v1.2.3
+        with:
+          name: "basterdz-firebase-adminsdk.json"
+          json: ${{ secrets.FIREBASE_ADMIN_SDK_JSON }}
+          dir: 'basterdz-external/src/main/resources/'
+
+      - name: Test with Gradle
+        env:
+          ENCRYPTOR_KEY: ${{ secrets.ENCRYPTOR_KEY }}
+        run: |
+          ./gradlew test

@@ -24,6 +24,11 @@ oauth:
     client-id: ENC(QqK9Fkgo7DTdWgfZpNQBpSg7ZYsD418QWNClHKjEENY=)
     nonce: "dfsdfadsfasdfasdfasdfasdfasdfasdfasdfdas"
 
+spring:
+  config:
+    import:
+      - firebase.yml
+
 ---
 spring:
   config:
@@ -31,8 +36,7 @@ spring:
       on-profile: local
     import:
       - db-local.yml
-      - firebase.yml
-      
+
 ---
 spring:
   config:
@@ -40,7 +44,6 @@ spring:
       on-profile: dev
     import:
       - db-dev.yml
-      - firebase.yml
 
 ---
 spring:
@@ -49,4 +52,11 @@ spring:
       on-profile: prod
     import:
       - db-prod.yml
-      - firebase.yml
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+    import:
+      - db-test.yml

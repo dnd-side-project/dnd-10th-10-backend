@@ -39,4 +39,4 @@ out/
 ### DS Store ###
 *.DS_Store
 
-basterdz-external/src/main/resources/firebase/basterdz-firebase-adminsdk.json
+basterdz-external/src/main/resources/basterdz-firebase-adminsdk.json
