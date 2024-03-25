@@ -8,12 +8,11 @@ import com.dnd.api.domains.room.dto.*;
 import com.dnd.api.domains.room.service.RoomService;
 import com.dnd.domain.member.entity.Member;
 import com.dnd.domain.room.entity.Room;
+import com.dnd.domain.vo.RestrictApp;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-
-import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/v1/rooms")
@@ -81,9 +80,11 @@ public class RoomController implements RoomApiPresentation {
 
 	@GetMapping("/active")
 	public ApiResult<FindActiveRoomsResponse> findActiveRooms(
-			final @LoginMember Member member
+			final @LoginMember Member member,
+			final @RequestParam(required = false) RestrictApp restrictApp
 	) {
-		return ApiResult.ok(FindActiveRoomsResponse.from());
+		FindActiveRoomsResponse responseDto = roomService.findActiveRooms(member, restrictApp);
+		return ApiResult.ok(responseDto);
 	}
 
 	@GetMapping("/finished")

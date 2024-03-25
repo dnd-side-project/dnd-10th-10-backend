@@ -5,6 +5,7 @@ import com.dnd.api.domains.room.dto.*;
 import com.dnd.api.common.dto.ApiResult;
 
 import com.dnd.domain.member.entity.Member;
+import com.dnd.domain.vo.RestrictApp;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -91,7 +92,7 @@ public interface RoomApiPresentation {
 
 	@Operation(summary = "참여방 조회")
 	@ApiResponse(responseCode = "200", description = "참여방 조회 성공")
-	ApiResult<FindActiveRoomsResponse> findActiveRooms(@Schema(hidden = true) final Member member);
+	ApiResult<FindActiveRoomsResponse> findActiveRooms(@Schema(hidden = true) final Member member, final RestrictApp restrictApp);
 
 	@Operation(summary = "종료방 조회")
 	@ApiResponse(responseCode = "200", description = "종료방 조회 성공")
