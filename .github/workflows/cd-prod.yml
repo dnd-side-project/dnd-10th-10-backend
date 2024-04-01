@@ -1,0 +1,66 @@
+name: cd-prod
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Gradle Caching
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Create Firebase Admin SDK JSON file
+        id: create-json
+        uses: jsdaniell/create-json@v1.2.3
+        with:
+          name: "basterdz-firebase-adminsdk.json"
+          json: ${{ secrets.FIREBASE_ADMIN_SDK_JSON }}
+          dir: 'basterdz-external/src/main/resources/'
+
+      - name: Build with Gradle
+        run: ./gradlew clean build -x test
+
+      - name: Build Docker image
+        run: |
+          docker login -u ${{ secrets.DOCKERHUB_ID_PROD }} -p ${{ secrets.DOCKERHUB_TOKEN_PROD }}
+          docker build -t ${{ secrets.DOCKERHUB_ID_PROD }}/basterdz-server \
+            --build-arg ENCRYPT_KEY=${{ secrets.ENCRYPTOR_KEY }} \
+            -f ./basterdz-api/Dockerfile .
+          docker push ${{ secrets.DOCKERHUB_ID_PROD }}/basterdz-server
+
+      - name: Docker Deploy executing remote ssh commands using ssh_key
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.WAS_HOST_PROD }}
+          username: ${{ secrets.WAS_USERNAME_PROD }}
+          key: ${{ secrets.WAS_PASSWORD_PROD }}
+          port: ${{ secrets.WAS_PORT_PROD }}
+          script: |
+            cd ~/basterdz-server
+            docker stop $(docker ps -a -q) 
+            docker pull ${{ secrets.DOCKERHUB_ID_PROD }}/basterdz-server
+            docker rm -f $(docker ps -a -q) 
+            docker-compose -f docker-compose.prod.yml up
+            docker image prune -f
