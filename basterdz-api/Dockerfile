@@ -1,6 +1,6 @@
 FROM amazoncorretto:17
 
-ARG PROFILE=dev
+ARG PROFILE
 ARG ENCRYPT_KEY
 
 COPY basterdz-api/build/libs/basterdz-api-0.0.1-SNAPSHOT.jar app.jar

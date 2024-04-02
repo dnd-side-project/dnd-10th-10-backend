@@ -62,5 +62,5 @@ jobs:
             docker stop $(docker ps -a -q) 
             docker pull ${{ secrets.DOCKERHUB_ID_PROD }}/basterdz-server
             docker rm -f $(docker ps -a -q) 
-            docker-compose -f docker-compose.prod.yml up
+            docker-compose -f ~/docker-compose.prod.yml up -d
             docker image prune -f
