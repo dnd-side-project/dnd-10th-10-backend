@@ -29,6 +29,15 @@ spring:
     import:
       - firebase.yml
 
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+
+logging:
+  slack:
+    webhook-uri: ENC(hQyfqoMma7ToATpXwx5vG42HD2OfLBpL6Cv0jLhlyq6M0hcOO3ch5ApWfiPedrk1Sw+5kg6Xh8QgoRRmoeom1W+OoABkJ+GxXtJKQ+KJlZkfdtaC8wDT3zNPGBRWnqTt)
+  config: classpath:logback-spring.xml
+
 ---
 spring:
   config:

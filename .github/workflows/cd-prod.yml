@@ -47,6 +47,7 @@ jobs:
           docker login -u ${{ secrets.DOCKERHUB_ID_PROD }} -p ${{ secrets.DOCKERHUB_TOKEN_PROD }}
           docker build -t ${{ secrets.DOCKERHUB_ID_PROD }}/basterdz-server \
             --build-arg ENCRYPT_KEY=${{ secrets.ENCRYPTOR_KEY }} \
+            --build-arg PROFILE=prod \
             -f ./basterdz-api/Dockerfile .
           docker push ${{ secrets.DOCKERHUB_ID_PROD }}/basterdz-server
 
