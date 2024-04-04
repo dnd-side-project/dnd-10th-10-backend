@@ -21,22 +21,13 @@ jwt:
 oauth:
   apple:
     iss: https://appleid.apple.com
-    client-id: ENC(QqK9Fkgo7DTdWgfZpNQBpSg7ZYsD418QWNClHKjEENY=)
+    client-id: ${CLIENT_ID}
     nonce: "dfsdfadsfasdfasdfasdfasdfasdfasdfasdfdas"
 
 spring:
   config:
     import:
       - firebase.yml
-
-jasypt:
-  encryptor:
-    bean: jasyptStringEncryptor
-
-logging:
-  slack:
-    webhook-uri: ENC(hQyfqoMma7ToATpXwx5vG42HD2OfLBpL6Cv0jLhlyq6M0hcOO3ch5ApWfiPedrk1Sw+5kg6Xh8QgoRRmoeom1W+OoABkJ+GxXtJKQ+KJlZkfdtaC8wDT3zNPGBRWnqTt)
-  config: classpath:logback-spring.xml
 
 ---
 spring:
@@ -61,6 +52,11 @@ spring:
       on-profile: prod
     import:
       - db-prod.yml
+
+logging:
+  slack:
+    webhook-uri: ${SLACK_URL_PROD}
+  config: classpath:logback-spring.xml
 
 ---
 spring:
