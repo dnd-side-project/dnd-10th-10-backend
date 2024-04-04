@@ -5,19 +5,41 @@
     <property name="LOG_PATTERN"
               value="[%d{yyyy-MM-dd HH:mm:ss}:%-4relative] %green([%thread]) %highlight(%-5level) %boldWhite([%C.%M:%yellow(%L)]) - %msg%n"/>
 
-<!--    <springProfile name="!prod">-->
+    <springProfile name="!prod">
         <include resource="console-appender.xml"/>
 
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
         </root>
-<!--    </springProfile>-->
+    </springProfile>
 
-<!--    <springProfile name="prod">-->
+    <springProfile name="prod">
 <!--        <include resource="file-info-appender.xml"/>-->
+        <include resource="console-appender.xml"/>
+        <springProperty name="SLACK_WEBHOOK_URI" source="logging.slack.webhook-uri"/>
+        <appender name="SLACK" class="com.github.maricn.logback.SlackAppender">
+            <webhookUri>${SLACK_WEBHOOK_URI}</webhookUri>
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %msg %n</pattern>
+            </layout>
+            <username>Logger</username>
+            <iconEmoji>:warning:</iconEmoji>
+            <colorCoding>true</colorCoding>
+        </appender>
 
-<!--        <root level="INFO">-->
+        <appender name="ASYNC_SLACK" class="ch.qos.logback.classic.AsyncAppender">
+            <appender-ref ref="SLACK"/>
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>ERROR</level>
+            </filter>
+        </appender>
+
+
+        <root level="INFO">
+            <appender-ref ref="ASYNC_SLACK"/>
+            <appender-ref ref="CONSOLE"/>
 <!--            <appender-ref ref="FILE-INFO"/>-->
-<!--        </root>-->
-<!--    </springProfile>-->
+        </root>
+
+    </springProfile>
 </configuration>
