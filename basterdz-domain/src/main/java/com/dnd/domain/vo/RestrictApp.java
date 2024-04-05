@@ -22,9 +22,9 @@ public enum RestrictApp {
 
     public static RestrictApp from(String appName) {
         return Arrays.stream(RestrictApp.values())
-            .filter(restrictApp -> Objects.equals(restrictApp.getAppName(), appName))
-            .findFirst()
-            .orElseThrow(() -> new BadRequestException(ErrorCode.UNSUPPORTED_RESTRICT_APP));
+                .filter(restrictApp -> Objects.equals(restrictApp.getAppName(), appName))
+                .findFirst()
+                .orElseThrow(() -> new BadRequestException(ErrorCode.UNSUPPORTED_RESTRICT_APP));
     }
 
     public static boolean contains(String appName) {
