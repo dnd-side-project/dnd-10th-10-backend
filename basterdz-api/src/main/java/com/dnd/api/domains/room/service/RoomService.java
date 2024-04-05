@@ -99,7 +99,7 @@ public class RoomService {
 
     public FindActiveRoomsResponse findActiveRooms(final Member member, final RestrictApp restrictApp) {
         List<ActiveRoom> activeRooms = roomMemberFinder.findActiveRooms(member, restrictApp);
-        return FindActiveRoomsResponse.from(activeRooms, activeRooms.size());
+        return FindActiveRoomsResponse.from(activeRooms);
     }
 
     public Room findRoom(final Long roomId) {

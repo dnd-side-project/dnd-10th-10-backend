@@ -21,9 +21,9 @@ public class FindActiveRoomsResponse {
     @Schema(name = "roomResponses", example = "[{\"id\":1,\"title\":\"우리들의 도파민 탈출기\",\"personnel\":6,\"memberCount\":4,\"remainingDay\":10}]")
     private List<ActiveRoom> activeRooms;
 
-    public static FindActiveRoomsResponse from(final List<ActiveRoom> activeRooms, final int roomCount) {
+    public static FindActiveRoomsResponse from(final List<ActiveRoom> activeRooms) {
         return FindActiveRoomsResponse.builder()
-                .roomCount(roomCount)
+                .roomCount(activeRooms.size())
                 .activeRooms(activeRooms)
                 .build();
     }
