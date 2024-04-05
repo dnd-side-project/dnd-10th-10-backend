@@ -40,3 +40,4 @@ out/
 *.DS_Store
 
 basterdz-external/src/main/resources/basterdz-firebase-adminsdk.json
+.github/workflows/my.secrets

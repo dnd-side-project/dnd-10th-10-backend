@@ -30,7 +30,5 @@ jobs:
           dir: 'basterdz-external/src/main/resources/'
 
       - name: Test with Gradle
-        env:
-          ENCRYPTOR_KEY: ${{ secrets.ENCRYPTOR_KEY }}
         run: |
           ./gradlew test

@@ -1,13 +1,19 @@
 FROM amazoncorretto:17
 
-ARG PROFILE=dev
-ARG ENCRYPT_KEY
+ARG PROFILE
+ARG DB_URL_PROD
+ARG DB_USERNAME_PROD
+ARG DB_PASSWORD_PROD
+ARG SLACK_URL_PROD
 
 COPY basterdz-api/build/libs/basterdz-api-0.0.1-SNAPSHOT.jar app.jar
 
 ENV PROFILE=${PROFILE}
-ENV ENCRYPT_KEY=${ENCRYPT_KEY}
+ENV DB_URL_PROD=${DB_URL_PROD}
+ENV DB_USERNAME_PROD=${DB_USERNAME_PROD}
+ENV DB_PASSWORD_PROD=${DB_PASSWORD_PROD}
+ENV SLACK_URL_PROD=${SLACK_URL_PROD}
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=${PROFILE}", "-Dencryptor.key=${ENCRYPT_KEY}", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=${PROFILE}", "/app.jar"]

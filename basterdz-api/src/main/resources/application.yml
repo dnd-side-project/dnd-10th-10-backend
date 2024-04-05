@@ -21,7 +21,7 @@ jwt:
 oauth:
   apple:
     iss: https://appleid.apple.com
-    client-id: ENC(QqK9Fkgo7DTdWgfZpNQBpSg7ZYsD418QWNClHKjEENY=)
+    client-id: ${CLIENT_ID}
     nonce: "dfsdfadsfasdfasdfasdfasdfasdfasdfasdfdas"
 
 spring:
@@ -52,6 +52,11 @@ spring:
       on-profile: prod
     import:
       - db-prod.yml
+
+logging:
+  slack:
+    webhook-uri: ${SLACK_URL_PROD}
+  config: classpath:logback-spring.xml
 
 ---
 spring:
